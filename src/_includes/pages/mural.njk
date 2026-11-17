@@ -3,31 +3,50 @@
 {%- set list = murais | sorted -%}
 {%- set nb = list | neighbours(slug) -%}
 {%- set base = '/' + lang + '/' + t.path_murals + '/' -%}
-<article class="item">
-  <aside class="item-info">
-    <a class="back link-quiet" href="{{ base | u }}">← {{ t.back_murals }}</a>
+{%- set country = m['country_' + lang] -%}
+{%- set client = ((m.client if lang == 'pt' else (m.client_en or m.client)) or '') | replace(' · ', ', ') -%}
+{%- set dims = ((m.dimensions or '') | replace(',', '.')) if lang == 'en' else m.dimensions -%}
+{%- set txt = m['text_' + lang] -%}
+<article class="detail">
+  <header class="detail-head wrap">
+    <a class="back" href="{{ base | u }}">{% include "chev.svg" %}{{ t.back_murals }}</a>
     <h1>{{ m.title }}</h1>
-    <dl class="facts">
-      {% if m.year %}<div><dt class="sr">Ano</dt><dd>{{ m.year }}</dd></div>{% endif %}
-      <div><dd>{{ m.city }}{% if lang == 'pt' %}{% if m.country_pt %}, {{ m.country_pt }}{% endif %}{% else %}{% if m.country_en %}, {{ m.country_en }}{% endif %}{% endif %}</dd></div>
-      {% set client = m.client if lang == 'pt' else (m.client_en or m.client) %}
-      {% if client %}<div><dd>{{ client }}</dd></div>{% endif %}
-      {% if m.dimensions %}<div><dd>{{ m.dimensions }}</dd></div>{% endif %}
-    </dl>
-    {% set txt = m.text_pt if lang == 'pt' else m.text_en %}
-    {% if txt %}<div class="item-text">{{ txt | paras | safe }}</div>{% endif %}
-    <p class="actions">
-      {% if m.vimeo %}<a class="link" href="https://vimeo.com/{{ m.vimeo }}" target="_blank" rel="noopener">{{ t.watch_video }}</a>{% endif %}
-      <a class="button" href="{{ ('/' + lang + '/' + t.path_contact + '/') | u }}?tipo=mural&amp;ref={{ m.title | enc }}">{{ t.project_enquire }}</a>
-    </p>
-  </aside>
-  <div class="item-media">
-    {%- for src in m.images %}
-    <img src="{{ src | img(2000) }}" alt="{{ m.title }}{% if not loop.first %} ({{ loop.index }}){% endif %}"{% if not loop.first %} loading="lazy"{% endif %}>
-    {%- endfor %}
+    <p class="detail-sub">{{ m.city }}{% if country %}, {{ country }}{% endif %}</p>
+  </header>
+
+  <div class="wrap">
+    <figure class="detail-hero" style="view-transition-name:m-{{ slug }}"><img src="{{ m.images[0] | img(2400) }}" alt="{{ m.title }}" fetchpriority="high"></figure>
   </div>
+
+  <div class="detail-body wrap">
+    <dl class="specs">
+      {% if m.year %}<div><dt>{{ t.s_year }}</dt><dd>{{ m.year }}</dd></div>{% endif %}
+      <div><dt>{{ t.s_place }}</dt><dd>{{ m.city }}{% if country %}, {{ country }}{% endif %}</dd></div>
+      {% if client %}<div><dt>{{ t.s_client }}</dt><dd>{{ client }}</dd></div>{% endif %}
+      {% if dims %}<div><dt>{{ t.s_size }}</dt><dd>{{ dims }}</dd></div>{% endif %}
+    </dl>
+    {% if txt %}<div class="prose detail-text">{{ txt | paras | safe }}</div>{% endif %}
+    <p class="actions">
+      <a class="btn" href="{{ ('/' + lang + '/' + t.path_contact + '/') | u }}?tipo=mural&amp;ref={{ m.title | enc }}">{{ t.project_enquire }}</a>
+      {% if m.vimeo %}<a class="btn btn--ghost" href="https://vimeo.com/{{ m.vimeo }}" target="_blank" rel="noopener"><svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path fill="currentColor" d="M3 1.6v8.8a.6.6 0 0 0 .9.5l7-4.4a.6.6 0 0 0 0-1L3.9 1.1a.6.6 0 0 0-.9.5z"/></svg>{{ t.watch_video }}</a>{% endif %}
+    </p>
+  </div>
+
+  {%- if m.images.length > 1 %}
+  <div class="gallery wrap">
+    {%- for src in m.images %}{% if not loop.first %}
+    <img src="{{ src | img(1800) }}" alt="{{ m.title }} ({{ loop.index }})" loading="lazy" decoding="async" data-reveal>
+    {%- endif %}{% endfor %}
+  </div>
+  {%- endif %}
 </article>
-<nav class="pager" aria-label="{{ t.nav_murals }}">
-  <a class="link-quiet" href="{{ (base + nb.prev.slug + '/') | u }}"><span class="muted">{{ t.prev }}</span><br>{{ nb.prev.title }}</a>
-  <a class="link-quiet right" href="{{ (base + nb.next.slug + '/') | u }}"><span class="muted">{{ t.next }}</span><br>{{ nb.next.title }}</a>
-</nav>
+
+<section class="wrap next-wrap">
+  <a class="next" href="{{ (base + nb.next.slug + '/') | u }}" style="view-transition-name:m-{{ nb.next.slug }}">
+    <img src="{{ nb.next.images[0] | img(1800) }}" alt="" loading="lazy" decoding="async" data-parallax>
+    <span class="next-cap">
+      <span class="next-label">{{ t.next_mural }}</span>
+      <span class="next-title">{{ nb.next.title }}</span>
+    </span>
+  </a>
+</section>

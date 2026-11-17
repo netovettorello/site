@@ -1,51 +1,56 @@
 {%- set t = i18n[lang] -%}
 {%- set thanks = '/' + lang + '/' + t.path_contact + '/' + ('obrigado' if lang == 'pt' else 'thanks') + '/' -%}
-<section class="page-head">
-  <h1>{{ t.contact_title }}</h1>
-</section>
-<section class="contact">
+<section class="contact wrap">
   <div class="contact-intro">
+    <h1>{{ t.contact_title }}</h1>
     <p class="page-intro">{{ t.contact_text }}</p>
-    <p class="contact-direct">{{ t.f_or }}<br><a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+    <dl class="rows contact-rows">
+      <div><dt>{{ t.direct }}</dt><dd><a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a></dd></div>
+      <div><dt>{{ t.s_place }}</dt><dd>{{ t.worldwide }}</dd></div>
+    </dl>
   </div>
 
-  <form class="form" name="contato" method="POST" action="{{ thanks | u }}" data-netlify="true" netlify-honeypot="website"{% if env.preview %} data-preview="1"{% endif %}>
+  <form class="form tile" name="contato" method="POST" action="{{ thanks | u }}" data-netlify="true" netlify-honeypot="website"{% if env.preview %} data-preview="1"{% endif %}>
     <input type="hidden" name="form-name" value="contato">
     <input type="hidden" name="idioma" value="{{ lang }}">
     <p class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></p>
 
+    <fieldset class="field">
+      <legend>{{ t.f_type }}</legend>
+      <div class="picks">
+        <label class="pick"><input type="radio" name="assunto" value="mural" checked><span>{{ t.t_mural }}</span></label>
+        <label class="pick"><input type="radio" name="assunto" value="obra"><span>{{ t.t_work }}</span></label>
+        <label class="pick"><input type="radio" name="assunto" value="exposicao"><span>{{ t.t_exhibition }}</span></label>
+        <label class="pick"><input type="radio" name="assunto" value="marca"><span>{{ t.t_brand }}</span></label>
+        <label class="pick"><input type="radio" name="assunto" value="outro"><span>{{ t.t_other }}</span></label>
+      </div>
+    </fieldset>
+    <p class="form-ref" id="ref-line" hidden><span>{{ t.f_ref }}</span> <strong id="ref-name"></strong></p>
     <div class="row">
       <label class="field" for="f-name"><span>{{ t.f_name }}</span><input id="f-name" name="nome" autocomplete="name" required></label>
       <label class="field" for="f-email"><span>{{ t.f_email }}</span><input id="f-email" name="email" type="email" autocomplete="email" required></label>
     </div>
     <div class="row">
-      <label class="field" for="f-type"><span>{{ t.f_type }}</span>
-        <select id="f-type" name="assunto">
-          <option value="mural">{{ t.t_mural }}</option>
-          <option value="obra">{{ t.t_work }}</option>
-          <option value="exposicao">{{ t.t_exhibition }}</option>
-          <option value="marca">{{ t.t_brand }}</option>
-          <option value="outro">{{ t.t_other }}</option>
-        </select>
-      </label>
       <label class="field" for="f-place"><span>{{ t.f_place }}</span><input id="f-place" name="local" autocomplete="country-name"></label>
+      <label class="field" for="f-budget"><span>{{ t.f_budget }}</span><input id="f-budget" name="prazo_orcamento"></label>
     </div>
-    <label class="field" for="f-budget"><span>{{ t.f_budget }}</span><input id="f-budget" name="prazo_orcamento"></label>
     <label class="field" for="f-msg"><span>{{ t.f_msg }}</span><textarea id="f-msg" name="mensagem" rows="6" required></textarea></label>
     <input type="hidden" name="referencia" id="f-ref">
-    <p><button class="button" type="submit">{{ t.f_send }}</button></p>
-    <p class="form-done" id="form-done" hidden><strong>{{ t.thanks_title }}.</strong> {{ t.thanks_text }}<br><span class="muted">{{ t.preview_note }}</span></p>
+    <p class="form-send"><button class="btn" type="submit">{{ t.f_send }}</button></p>
+    <p class="form-done" id="form-done" role="status" hidden><strong>{{ t.thanks_title }}.</strong> {{ t.thanks_text }}<br><span class="muted">{{ t.preview_note }}</span></p>
   </form>
 </section>
 <script>
 (function(){
   var q=new URLSearchParams(location.search),type=q.get('tipo'),ref=q.get('ref'),f=document.querySelector('.form');
-  if(type){var s=document.getElementById('f-type');if(s.querySelector('option[value="'+type+'"]'))s.value=type;}
+  if(type){var r=f.querySelector('input[name="assunto"][value="'+type.replace(/[^a-z]/g,'')+'"]');if(r)r.checked=true;}
   if(ref){
     document.getElementById('f-ref').value=ref;
+    document.getElementById('ref-name').textContent=ref;
+    document.getElementById('ref-line').hidden=false;
     var msg=document.getElementById('f-msg');
     msg.value=(type==='obra'?{{ t.msg_work | dump | safe }}:{{ t.msg_mural | dump | safe }})+' “'+ref+'”.\n\n';
   }
-  if(f&&f.dataset.preview){f.addEventListener('submit',function(e){e.preventDefault();if(!f.reportValidity())return;document.getElementById('form-done').hidden=false;f.querySelector('button').disabled=true;});}
+  if(f&&f.dataset.preview){f.addEventListener('submit',function(e){e.preventDefault();if(!f.reportValidity())return;document.getElementById('form-done').hidden=false;f.querySelector('button[type=submit]').disabled=true;});}
 })();
 </script>

@@ -1,6 +1,7 @@
 {%- set t = i18n[lang] -%}
-<section class="page-head thanks">
+<section class="thanks wrap">
+  <svg class="thanks-mark" viewBox="0 0 48 48" width="48" height="48" aria-hidden="true"><circle cx="24" cy="24" r="22.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M15 24.5l6.2 6.2L33.5 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   <h1>{{ t.thanks_title }}</h1>
   <p class="page-intro">{{ t.thanks_text }}</p>
-  <p><a class="button button--ghost" href="{{ ('/' + lang + '/') | u }}">{{ t.thanks_back }}</a></p>
+  <p class="actions"><a class="btn btn--ghost" href="{{ ('/' + lang + '/') | u }}">{{ t.thanks_back }}</a></p>
 </section>

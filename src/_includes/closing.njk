@@ -1,0 +1,8 @@
+<section class="sec wrap closing" data-reveal>
+  <h2>{{ t.closing_title }}</h2>
+  <p>{{ t.closing_text }}</p>
+  <p class="actions">
+    <a class="btn" href="{{ ('/' + lang + '/' + t.path_contact + '/') | u }}">{{ t.project_enquire }}</a>
+    <a class="btn btn--ghost" href="{{ site.portfolio_pdf | u }}" download>{{ t.download_pdf }}</a>
+  </p>
+</section>

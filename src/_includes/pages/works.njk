@@ -1,13 +1,18 @@
 {%- set t = i18n[lang] -%}
 {%- import "cards.njk" as cards -%}
-<section class="page-head">
+<section class="page-head wrap">
   <h1>{{ t.nav_works }}</h1>
   <p class="page-intro">{{ t.works_intro }}</p>
+  <div class="chips" data-filter-for="#lista" hidden>
+    <button class="chip" type="button" data-filter="*" aria-pressed="true">{{ t.f_all_f }}</button>
+    <button class="chip" type="button" data-filter="available" aria-pressed="false">{{ t.f_available }}</button>
+  </div>
 </section>
-<section class="block block--first">
-  <div class="grid grid--3">
+<section class="wrap list">
+  <div class="grid-art" id="lista">
     {%- for w in obras | sorted %}
-    {{ cards.workCard(w, lang, t, ('/' + lang + '/' + t.path_works + '/' + w.slug + '/') | u, w.images[0] | img(800)) }}
+    {{ cards.art(w, w.slug, lang, t, ('/' + lang + '/' + t.path_works + '/' + w.slug + '/') | u, w.images[0] | img(900)) }}
     {%- endfor %}
   </div>
 </section>
+{% include "closing.njk" %}

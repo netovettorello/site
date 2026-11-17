@@ -1,4 +1,7 @@
-# Site netovettorello.com
+# Site netovettorello.com — versão B
+
+Mesmo conteúdo e mesmo painel da versão anterior, com visual de marca de tecnologia e mais movimento ligado à rolagem.
+Use esta pasta **ou** a anterior no GitHub, não as duas.
 
 Site em português e inglês, com painel de edição em **netovettorello.com/admin**.
 Você atualiza murais, obras, bio e CV preenchendo formulários. Não precisa mexer em código.
@@ -24,9 +27,11 @@ Entre em **netovettorello.com/admin** com sua conta do GitHub.
 
 - **Murais → Novo Mural**: título, ano, cidade, país, cliente, dimensões, fotos (a primeira é a capa), vídeo do Vimeo, texto em PT e EN.
 - **Obras → Nova Obra**: título, ano, tipo, dimensões, situação (Disponível / Reservada / Vendida), código NV do registro e fotos.
-- **Destaque na home**: marque para a obra ou mural aparecer na página inicial. A home mostra 3 ou 6 de cada, completando com os mais recentes.
+- **Destaque na home**: marque para o mural ou a obra aparecer primeiro na página inicial. A home mostra 6 murais no carrossel e 4 obras, completando com os primeiros da lista.
+- **Na mesma escala** (faixa da home): entram sozinhos os murais compridos com dimensões no formato `largura × altura m` (ex.: `80 × 3,5 m`). O campo "Altura do mural na foto de capa" escolhe qual faixa da foto aparece.
+- **Configurações → Título e subtítulo da home**: a frase grande da abertura, em português e inglês.
 - **Ordem na lista**: número menor aparece primeiro.
-- **Configurações**: e-mail, links, foto de abertura da home, clientes, bio, CV e imprensa.
+- **Configurações**: e-mail, links, fotos de abertura da home, clientes, tema (escuro ou claro), bio e CV.
 
 Ao clicar em **Publicar**, o site se atualiza sozinho em cerca de 1 minuto.
 
@@ -34,7 +39,7 @@ Ao clicar em **Publicar**, o site se atualiza sozinho em cerca de 1 minuto.
 
 - `src/_data/murais/*.json` e `src/_data/obras/*.json` — um arquivo por mural/obra
 - `src/_data/site.json`, `about.json`, `i18n.json` — dados gerais, bio/CV e textos da interface
-- `src/_includes/pages/*.njk` — layout de cada página; `src/css/site.css` — visual
+- `src/_includes/pages/*.njk` — layout de cada página; `src/css/site.css` — visual (cores no topo do arquivo); `src/js/site.js` — movimento
 - `src/admin/config.yml` — campos do painel
 - Testar no computador: `npm install` e depois `npm start`
 

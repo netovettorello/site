@@ -2,82 +2,125 @@
 {%- import "cards.njk" as cards -%}
 {%- set allMurals = murais | sorted -%}
 {%- set allWorks = obras | sorted -%}
-<section class="hero" aria-label="{{ site.name }}">
-  {%- if site.hero_video %}
-  <video class="hero-media on" src="{{ site.hero_video | u }}" poster="{{ site.hero[0].image | img(2400) }}" autoplay muted loop playsinline></video>
-  <p class="hero-cap">{{ site.hero[0].caption }}</p>
-  {%- else %}
-  {%- for h in site.hero %}
-  <img class="hero-media{% if loop.first %} on{% endif %}" src="{{ h.image | img(2400) }}" alt="{{ h.caption }}" data-cap="{{ h.caption }}"{% if loop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
-  {%- endfor %}
-  <p class="hero-cap" aria-live="polite">{{ site.hero[0].caption }}</p>
-  {%- endif %}
-</section>
-
-<section class="intro">
-  <p class="lead">{{ t.intro }}</p>
-</section>
-
-<section class="block">
-  <div class="block-head">
-    <h2>{{ t.selected }}</h2>
-    <a class="label-link" href="{{ ('/' + lang + '/' + t.path_murals + '/') | u }}">{{ t.all_murals }} →</a>
+{%- set muralsUrl = '/' + lang + '/' + t.path_murals + '/' -%}
+{%- set worksUrl = '/' + lang + '/' + t.path_works + '/' -%}
+{%- set showsUrl = '/' + lang + '/' + t.path_exhibitions + '/' -%}
+<section class="hero nv-hero" aria-label="{{ site.name }}">
+  <div class="hero-stick">
+    <div class="hero-frame nv-hero-frame">
+      <div class="hero-slides">
+        {% for h in site.hero %}<img class="hero-media{% if loop.first %} on{% endif %}" src="{{ h.image | img(2400) }}" alt="{{ h.caption }}" data-cap="{{ h.caption }}" {% if loop.first %}fetchpriority="high"{% endif %} decoding="async">{% endfor %}
+      </div>
+      <div class="nv-hero-grain"></div>
+      <div class="nv-hero-cursor" aria-hidden="true"><span>EXPLORE<br>THE WORK</span></div>
+    </div>
+    <div class="nv-hero-layout">
+      <div class="nv-top-label">INDEPENDENT VISUAL ARTIST <span>CURITIBA / EVERYWHERE</span></div>
+      <div class="nv-hero-headline" aria-label="Neto Vettorello"><span class="nv-title-one">NETO</span><span class="nv-title-two">VETTORELLO<span class="nv-asterisk">✳</span></span></div>
+      <div class="nv-hero-bottom">
+        <div class="nv-hero-index"><span class="nv-index-number">01</span><span class="nv-index-rule"></span><span class="nv-index-total">0{{ site.hero.length }}</span></div>
+        <div class="nv-hero-descriptor"><strong>{{ site['headline_' + lang] }}</strong><span>{{ site['sub_' + lang] }}</span></div>
+        <a href="#nv-curated" class="nv-scroll-cue" aria-label="{{ 'Explorar obras' if lang == 'pt' else 'Explore works' }}">{{ 'DESCOBRIR' if lang == 'pt' else 'DISCOVER' }}<span>↘</span></a>
+      </div>
+      <div class="nv-slide-mark">{{ site.hero[0].caption }}</div>
+    </div>
+    <button class="nv-slide-next" type="button" aria-label="Next artwork">NEXT <span>↗</span></button>
   </div>
-  <div class="panels">
-    {%- for m in allMurals | fit3 %}
-    <a class="panel" href="{{ ('/' + lang + '/' + t.path_murals + '/' + m.slug + '/') | u }}">
-      <img src="{{ m.images[0] | img(2000) }}" alt="{{ m.title }}" loading="lazy">
-      <span class="panel-cap">
-        <span class="panel-title">{{ m.title }}</span>
-        <span class="panel-meta">{{ m.city }}{% if m.year %} · {{ m.year }}{% endif %}</span>
-      </span>
-    </a>
+</section>
+<section class="nv-manifesto" aria-label="Artist introduction">
+  <span class="nv-micro">[ 001 — AN INTRODUCTION ]</span>
+  <p class="nv-manifesto-copy">{{ 'A ARTE NÃO EXISTE APENAS NA SUPERFÍCIE.' if lang == 'pt' else 'ART DOES NOT EXIST ONLY ON THE SURFACE.' }}</p>
+  <span class="nv-manifesto-sub">{{ 'ENTRE A CIDADE, A MATÉRIA E O INVISÍVEL.' if lang == 'pt' else 'BETWEEN THE CITY, MATTER AND THE UNSEEN.' }}</span>
+</section>
+<section class="nv-curated" id="nv-curated" aria-label="Selected visual works">
+  <div class="nv-curated-top"><span>[ 002 — SELECTED WORKS ]</span><span>SCROLL TO EXPLORE ↓</span></div>
+  <div class="nv-curated-heading"><span>SELECTED</span><em>WORKS.</em></div>
+  <div class="nv-immersive-rail" data-immersive-rail>
+    <a href="{{ muralsUrl | u }}" class="nv-immersive-card"><img src="/img/portal.jpg" alt="The Portal — mural" loading="lazy"><span class="nv-immersive-meta"><b>01 / THE PORTAL</b><small>WATERFORD — 2023</small></span></a>
+    <a href="{{ worksUrl | u }}" class="nv-immersive-card"><img src="/img/tani-e.jpg" alt="Tani É" loading="lazy"><span class="nv-immersive-meta"><b>02 / TANI É</b><small>VISUAL LANGUAGE</small></span></a>
+    <a href="{{ muralsUrl | u }}" class="nv-immersive-card"><img src="/img/into-the-reef.jpg" alt="Into the Reef" loading="lazy"><span class="nv-immersive-meta"><b>03 / INTO THE REEF</b><small>CORK — 2025</small></span></a>
+    <a href="{{ worksUrl | u }}" class="nv-immersive-card"><img src="/img/mestres.jpg" alt="Mestres" loading="lazy"><span class="nv-immersive-meta"><b>04 / MESTRES</b><small>2025</small></span></a>
+  </div>
+  <div class="nv-rail-footer"><span>DRAG / SCROLL TO NAVIGATE</span><div class="nv-rail-actions"><button type="button" data-nv-prev aria-label="Previous artwork">←</button><button type="button" data-nv-next aria-label="Next artwork">→</button></div></div>
+</section>
+
+<section class="statement wrap">
+  <div class="statement-index"><span>01 / ARTIST STATEMENT</span><span class="statement-asterisk" aria-hidden="true">✳</span></div>
+  <p class="statement-text" data-words>{{ t.intro }}</p>
+</section>
+
+<section class="sec section-numbered" style="--section-n:'02'">
+  <div class="head wrap">
+    <h2>{{ t.nav_murals }}</h2>
+    <a class="more" href="{{ muralsUrl | u }}">{{ t.all_murals }}{% include "chev.svg" %}</a>
+  </div>
+  <div class="rail" data-rail>
+    <div class="rail-track">
+      {%- for m in allMurals | top(6) %}
+      {{ cards.shot(m, m.slug, lang, (muralsUrl + m.slug + '/') | u, m.images[0] | img(1800)) }}
+      {%- endfor %}
+    </div>
+    <div class="rail-nav wrap" hidden>
+      <button class="paddle" type="button" data-dir="-1" aria-label="{{ t.prev }}">{% include "chev.svg" %}</button>
+      <button class="paddle" type="button" data-dir="1" aria-label="{{ t.next }}">{% include "chev.svg" %}</button>
+    </div>
+  </div>
+</section>
+
+{%- set scaled = allMurals | toScale(5) %}
+{%- if scaled.length > 1 %}
+<section class="sec wrap">
+  <div class="tile scale" data-reveal>
+    <div class="scale-head">
+      <h2>{{ t.scale_title }}</h2>
+      <p>{{ t.scale_text }}</p>
+    </div>
+    <div class="scale-scroll">
+      <ol class="scale-list">
+        {%- for m in scaled %}
+        <li style="--w:{{ m.pct }}%;--ar:{{ m.ar }};--person:{{ m.person }}%;--i:{{ loop.index0 }}">
+          <a href="{{ (muralsUrl + m.slug + '/') | u }}">
+            <span class="scale-bar"><img src="{{ m.images[0] | img(2000) }}" alt="" loading="lazy" decoding="async" style="object-position:50% {{ m.focus if m.focus is defined else 50 }}%"><svg class="scale-person" viewBox="0 0 10 28" aria-hidden="true"><circle cx="5" cy="3" r="2.7"/><path d="M1 9.4a2.8 2.8 0 0 1 2.8-2.8h2.4A2.8 2.8 0 0 1 9 9.4v7.4H7.5V28h-2v-9h-1v9h-2V16.8H1z"/></svg></span>
+            <span class="scale-cap"><span class="scale-name">{{ m.title }}</span><span class="scale-dim">{{ (m.dimensions | replace(',', '.')) if lang == 'en' else m.dimensions }}</span></span>
+          </a>
+        </li>
+        {%- endfor %}
+      </ol>
+    </div>
+  </div>
+</section>
+{%- endif %}
+
+<section class="sec section-numbered" style="--section-n:'04'">
+  <div class="head wrap">
+    <h2>{{ t.nav_works }}</h2>
+    <a class="more" href="{{ worksUrl | u }}">{{ t.all_works }}{% include "chev.svg" %}</a>
+  </div>
+  <div class="bento wrap">
+    {%- for w in allWorks | bento %}
+    {{ cards.art(w, w.slug, lang, t, (worksUrl + w.slug + '/') | u, w.images[0] | img(1200), 'art--' + w.slot) }}
     {%- endfor %}
   </div>
 </section>
 
 {%- set shows = exposicoes | sorted | featured %}
 {%- if shows.length %}
-<section class="block">
-  <div class="block-head">
+<section class="sec wrap">
+  <div class="head">
     <h2>{{ t.nav_exhibitions }}</h2>
-    <a class="label-link" href="{{ ('/' + lang + '/' + t.path_exhibitions + '/') | u }}">{{ t.see_exhibitions }} →</a>
+    <a class="more" href="{{ showsUrl | u }}">{{ t.see_exhibitions }}{% include "chev.svg" %}</a>
   </div>
-  <div class="panels">
+  <div class="features">
     {%- for e in shows %}
-    <a class="panel" href="{{ ('/' + lang + '/' + t.path_exhibitions + '/' + e.slug + '/') | u }}">
-      <img src="{{ e.images[0] | img(2000) }}" alt="{{ e.title }}" loading="lazy">
-      <span class="panel-cap">
-        <span class="panel-title">{{ e.title }}</span>
-        <span class="panel-meta">{{ e.type_pt if lang == 'pt' else e.type_en }} · {{ e.city }} · {{ e.year }}</span>
-      </span>
-    </a>
+    {{ cards.feature(e, lang, t, (showsUrl + e.slug + '/') | u, e.images[0] | img(1600)) }}
     {%- endfor %}
   </div>
 </section>
 {%- endif %}
 
-<section class="block">
-  <div class="block-head">
-    <h2>{{ t.nav_works }}</h2>
-    <a class="label-link" href="{{ ('/' + lang + '/' + t.path_works + '/') | u }}">{{ t.all_works }} →</a>
-  </div>
-  <div class="grid grid--3">
-    {%- for w in allWorks | fit3 %}
-    {{ cards.workCard(w, lang, t, ('/' + lang + '/' + t.path_works + '/' + w.slug + '/') | u, w.images[0] | img(800)) }}
-    {%- endfor %}
-  </div>
+<section class="sec wrap clients">
+  <h2>{{ t.clients }}</h2>
+  <img class="clients-img" src="{{ site.clients_image | img(2000) }}" alt="{{ site.clients_alt }}" loading="lazy" decoding="async" width="2000" height="957" data-reveal>
 </section>
 
-<section class="block">
-  <div class="block-head"><h2>{{ t.clients }}</h2></div>
-  <img class="clients-img" src="{{ site.clients_image | img(2000) }}" alt="{{ site.clients_alt }}" loading="lazy" width="2000" height="957">
-</section>
-
-<script>
-(function(){
-  var imgs=[].slice.call(document.querySelectorAll('img.hero-media')),cap=document.querySelector('.hero-cap'),i=0;
-  if(imgs.length<2||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-  setInterval(function(){imgs[i].classList.remove('on');i=(i+1)%imgs.length;imgs[i].loading='eager';imgs[i].classList.add('on');cap.textContent=imgs[i].getAttribute('data-cap')},5500);
-})();
-</script>
+{% include "closing.njk" %}

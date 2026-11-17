@@ -28,7 +28,8 @@ collections:
       - { label: País (inglês), name: country_en, widget: string }
       - { label: Cliente / festival (português), name: client, widget: string, required: false }
       - { label: Cliente / festival (inglês), name: client_en, widget: string, required: false }
-      - { label: Dimensões, name: dimensions, widget: string, required: false, hint: "Ex.: 12 × 3 m" }
+      - { label: Dimensões, name: dimensions, widget: string, required: false, hint: "Largura × altura, ex.: 12 × 3 m. Murais compridos entram na faixa Na mesma escala da home." }
+      - { label: Altura do mural na foto de capa, name: focus, widget: number, value_type: int, min: 0, max: 100, default: 50, required: false, hint: "Só para a faixa Na mesma escala: 0 = topo da foto, 50 = meio, 100 = base." }
       - { label: Fotos, name: images, widget: list, field: { label: Foto, name: image, widget: image }, hint: "A primeira foto é a capa." }
       - { label: Vídeo no Vimeo (número), name: vimeo, widget: string, required: false, hint: "Só o número, ex.: 867092359" }
       - { label: Texto (português), name: text_pt, widget: text, required: false }
@@ -104,6 +105,10 @@ collections:
           - { label: Loja, name: shop, widget: string }
           - { label: Registro de obras, name: registry, widget: string }
           - { label: Portfólio em PDF, name: portfolio_pdf, widget: file }
+          - { label: Título da home (português), name: headline_pt, widget: string }
+          - { label: Título da home (inglês), name: headline_en, widget: string }
+          - { label: Subtítulo da home (português), name: sub_pt, widget: string }
+          - { label: Subtítulo da home (inglês), name: sub_en, widget: string }
           - { label: Fotos de abertura da home, name: hero, widget: list, fields: [{ label: Foto, name: image, widget: image }, { label: Legenda, name: caption, widget: string }], hint: "Passam sozinhas na abertura. Use 3 a 5." }
           - { label: Vídeo de abertura (opcional, .mp4), name: hero_video, widget: file, required: false, hint: "Loop curto sem som, até 10 MB. Se houver vídeo, ele substitui as fotos." }
           - { label: Logos de clientes (PNG branco, fundo transparente), name: clients_image, widget: image }
@@ -121,5 +126,5 @@ collections:
           - { label: Bio (português), name: bio_pt, widget: text }
           - { label: Bio (inglês), name: bio_en, widget: text }
           - { label: Prêmios, name: awards, widget: list, fields: [{ label: Ano, name: year, widget: string }, { label: Português, name: pt, widget: string }, { label: Inglês, name: en, widget: string }, { label: Link, name: url, widget: string, required: false }] }
-          - { label: Histórico de exposições (página Exposições), name: exhibitions, widget: list, fields: [{ label: Ano, name: year, widget: string }, { label: Português, name: pt, widget: string }, { label: Inglês, name: en, widget: string }, { label: Link, name: url, widget: string, required: false }] }
+          - { label: Histórico de exposições (página Exposições), name: exhibitions, widget: list, fields: [{ label: Tipo, name: kind, widget: select, options: [{ label: Individual, value: solo }, { label: Coletiva, value: group }, { label: Festival / convite, value: festival }, { label: Mural (não aparece na lista), value: mural }] }, { label: Ano, name: year, widget: string }, { label: Português, name: pt, widget: string }, { label: Inglês, name: en, widget: string }, { label: Link, name: url, widget: string, required: false }] }
           - { label: Palestras e workshops, name: talks, widget: list, fields: [{ label: Ano, name: year, widget: string }, { label: Português, name: pt, widget: string }, { label: Inglês, name: en, widget: string }, { label: Link, name: url, widget: string, required: false }] }

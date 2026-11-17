@@ -3,66 +3,328 @@
   "bio_pt": "Neto Vettorello é um artista visual brasileiro que trabalha com murais, pintura e escultura. Há mais de duas décadas transforma espaços urbanos em experiências visuais imersivas, investigando espiritualidade, ancestralidade e a relação entre as cidades e quem vive nelas.\n\nSua obra é um elo entre o mundo material e o espiritual. Inspirado pela cultura afro-brasileira, pelos povos originários e pela experiência espiritual, incluindo a Umbanda, o Candomblé e a ayahuasca, cria narrativas visuais sobre pertencimento e conexão. O personagem Tani É, nascido nas ruas de Curitiba em 2018, atravessa todo o trabalho. O nome vem do iorubá e significa “quem é você?”.\n\nSeus trabalhos já passaram por mais de 30 países, em parcerias com marcas, festivais e instituições. É co-organizador do festival Street of Styles, em Curitiba, e em 2025 recebeu o Prêmio Curitiba pela contribuição à cultura visual e ao espaço urbano.",
   "bio_en": "Neto Vettorello is a Brazilian visual artist working across murals, painting and sculpture. For more than two decades he has turned urban spaces into immersive visual experiences, exploring spirituality, ancestry and the relationship between cities and the people who live in them.\n\nHis work is a bridge between the material and the spiritual. Drawing on Afro-Brazilian culture, Indigenous peoples and spiritual experience, including Umbanda, Candomblé and ayahuasca, he creates visual narratives about belonging and connection. The character Tani É, born on the streets of Curitiba in 2018, runs through all of it. The name comes from Yoruba and means “who are you?”.\n\nHis work has reached more than 30 countries, in partnership with brands, festivals and institutions. He co-organises the Street of Styles festival in Curitiba, and in 2025 he received the Prêmio Curitiba for his contribution to visual culture and urban space.",
   "awards": [
-    { "year": "2025", "pt": "Prêmio Curitiba, Prefeitura de Curitiba", "en": "Prêmio Curitiba, City of Curitiba, Brazil" }
+    {
+      "year": "2025",
+      "pt": "Prêmio Curitiba, Prefeitura de Curitiba",
+      "en": "Prêmio Curitiba, City of Curitiba, Brazil"
+    }
   ],
   "exhibitions": [
-    { "year": "2025", "pt": "De Urihi a Òrun, exposição individual, Curitiba", "en": "De Urihi a Òrun, solo exhibition, Curitiba", "url": "https://thunderous-mandazi-303575.netlify.app" },
-    { "year": "2025", "pt": "ACRE Graffiti Festival Internacional, artista convidado", "en": "ACRE Graffiti International Festival, Brazil, guest artist" },
-    { "year": "2025", "pt": "Urban Giants, Milão, artista convidado", "en": "Urban Giants, Milan, guest artist" },
-    { "year": "2025", "pt": "Into the Reef, University College Cork e TIDAL ArtS", "en": "Into the Reef, University College Cork and TIDAL ArtS" },
-    { "year": "2025", "pt": "Festival Internacional Beco dos Sonhos, artista convidado", "en": "Beco dos Sonhos International Festival, guest artist" },
-    { "year": "2025", "pt": "Exposição coletiva, Magma", "en": "Group exhibition, Magma, Brazil" },
-    { "year": "2025", "pt": "ArteCool, pintura ao vivo", "en": "ArteCool, live painting, Brazil" },
-    { "year": "2025", "pt": "Art Festival NH, Novo Hamburgo, mural coletivo", "en": "Art Festival NH, Novo Hamburgo, collective mural" },
-    { "year": "2024", "pt": "Art Riddler, Dublin, exposição coletiva", "en": "Art Riddler, Dublin, group exhibition" },
-    { "year": "2024", "pt": "SumGood Art Auction, Copper House Gallery, Dublin", "en": "SumGood Art Auction, Copper House Gallery, Dublin" },
-    { "year": "2024", "pt": "Top8, Limerick, artista convidado", "en": "Top8, Limerick, guest artist" },
-    { "year": "2022–24", "pt": "Waterford Walls, Irlanda, artista convidado", "en": "Waterford Walls, Ireland, guest artist" },
-    { "year": "2021–24", "pt": "Cork Jam, Irlanda, artista convidado", "en": "Cork Jam, Ireland, guest artist" },
-    { "year": "2022", "pt": "Mural Do Not Remove, Dublin", "en": "Do Not Remove mural, Dublin" },
-    { "year": "2021", "pt": "Mural Dream, Dublin", "en": "Dream mural, Dublin" },
-    { "year": "2018", "pt": "Mural Semente da Terra, Curitiba", "en": "Seed of Earth mural, Curitiba" },
-    { "year": "2018", "pt": "Bud Basement, Budweiser, Copa do Mundo FIFA 2018, Curitiba", "en": "Bud Basement, Budweiser, FIFA World Cup 2018, Curitiba" },
-    { "year": "2017", "pt": "Curitibacool, pintura ao vivo", "en": "Curitibacool, live painting" },
-    { "year": "2017", "pt": "Mural Despertar da Consciência, Curitiba", "en": "Awakening of Consciousness mural, Curitiba" },
-    { "year": "2016", "pt": "Mural Mito da Vida, Curitiba", "en": "Myth of Life mural, Curitiba" },
-    { "year": "2015", "pt": "Contramão, Curitiba, exposição coletiva", "en": "Contramão, Curitiba, group exhibition" },
-    { "year": "2015", "pt": "Curitibando, Curitiba, exposição", "en": "Curitibando, Curitiba, exhibition" },
-    { "year": "2012", "pt": "Recortes da Cidade, SESC/PR, exposição coletiva", "en": "Recortes da Cidade, SESC/PR, group exhibition" },
-    { "year": "2012", "pt": "Expalmilhas, Curitiba, exposição coletiva", "en": "Expalmilhas, Curitiba, group exhibition" },
-    { "year": "2011–12", "pt": "Prêmio Paraná Hip Hop, finalista", "en": "Prêmio Paraná Hip Hop, finalist" },
-    { "year": "2007", "pt": "Black Beats, Curitiba, exposição individual", "en": "Black Beats, Curitiba, solo exhibition" },
-    { "year": "2006", "pt": "Black Tié (92º), Curitiba, exposição coletiva", "en": "Black Tié (92º), Curitiba, group exhibition" },
-    { "year": "2006", "pt": "Graffiti nos Bairros, Curitiba", "en": "Graffiti in the Neighbourhoods, Curitiba" },
-    { "year": "2005", "pt": "Encontro da Juventude em Rede, Belo Horizonte, exposição individual", "en": "Encontro da Juventude em Rede, Belo Horizonte, solo exhibition" },
-    { "year": "2003", "pt": "Feira da Providência, Rio de Janeiro", "en": "Providence Fair, Rio de Janeiro" },
-    { "year": "2003", "pt": "Mercado Mundo Mix, Curitiba", "en": "Mercado Mundo Mix, Curitiba" },
-    { "year": "1999–2002", "pt": "Hip-Hop Pro Arte, Curitiba", "en": "Hip-Hop Pro Arte, Curitiba" },
-    { "year": "1999", "pt": "1º B.boys Jam, Curitiba", "en": "1st B.boys Jam, Curitiba" }
+    {
+      "year": "2025",
+      "pt": "De Urihi a Òrun, exposição individual, Curitiba",
+      "en": "De Urihi a Òrun, solo exhibition, Curitiba",
+      "kind": "solo",
+      "page": "de-urihi-a-orun"
+    },
+    {
+      "year": "2025",
+      "pt": "ACRE Graffiti Festival Internacional, artista convidado",
+      "en": "ACRE Graffiti International Festival, Brazil, guest artist",
+      "kind": "festival"
+    },
+    {
+      "year": "2025",
+      "pt": "Urban Giants, Milão, artista convidado",
+      "en": "Urban Giants, Milan, guest artist",
+      "kind": "festival"
+    },
+    {
+      "year": "2025",
+      "pt": "Into the Reef, University College Cork e TIDAL ArtS",
+      "en": "Into the Reef, University College Cork and TIDAL ArtS",
+      "kind": "mural"
+    },
+    {
+      "year": "2025",
+      "pt": "Festival Internacional Beco dos Sonhos, artista convidado",
+      "en": "Beco dos Sonhos International Festival, guest artist",
+      "kind": "festival"
+    },
+    {
+      "year": "2025",
+      "pt": "Exposição coletiva, Magma",
+      "en": "Group exhibition, Magma, Brazil",
+      "kind": "group"
+    },
+    {
+      "year": "2025",
+      "pt": "ArteCool, pintura ao vivo",
+      "en": "ArteCool, live painting, Brazil",
+      "kind": "festival"
+    },
+    {
+      "year": "2025",
+      "pt": "Art Festival NH, Novo Hamburgo, mural coletivo",
+      "en": "Art Festival NH, Novo Hamburgo, collective mural",
+      "kind": "festival"
+    },
+    {
+      "year": "2024",
+      "pt": "Art Riddler, Dublin, exposição coletiva",
+      "en": "Art Riddler, Dublin, group exhibition",
+      "kind": "group"
+    },
+    {
+      "year": "2024",
+      "pt": "SumGood Art Auction, Copper House Gallery, Dublin",
+      "en": "SumGood Art Auction, Copper House Gallery, Dublin",
+      "kind": "group"
+    },
+    {
+      "year": "2024",
+      "pt": "Top8, Limerick, artista convidado",
+      "en": "Top8, Limerick, guest artist",
+      "kind": "festival"
+    },
+    {
+      "year": "2022–24",
+      "pt": "Waterford Walls, Irlanda, artista convidado",
+      "en": "Waterford Walls, Ireland, guest artist",
+      "kind": "festival"
+    },
+    {
+      "year": "2021–24",
+      "pt": "Cork Jam, Irlanda, artista convidado",
+      "en": "Cork Jam, Ireland, guest artist",
+      "kind": "festival"
+    },
+    {
+      "year": "2022",
+      "pt": "Mural Do Not Remove, Dublin",
+      "en": "Do Not Remove mural, Dublin",
+      "kind": "mural"
+    },
+    {
+      "year": "2021",
+      "pt": "Mural Dream, Dublin",
+      "en": "Dream mural, Dublin",
+      "kind": "mural"
+    },
+    {
+      "year": "2018",
+      "pt": "Mural Semente da Terra, Curitiba",
+      "en": "Seed of Earth mural, Curitiba",
+      "kind": "mural"
+    },
+    {
+      "year": "2018",
+      "pt": "Bud Basement, Budweiser, Copa do Mundo FIFA 2018, Curitiba",
+      "en": "Bud Basement, Budweiser, FIFA World Cup 2018, Curitiba",
+      "kind": "festival"
+    },
+    {
+      "year": "2017",
+      "pt": "Curitibacool, pintura ao vivo",
+      "en": "Curitibacool, live painting",
+      "kind": "festival"
+    },
+    {
+      "year": "2017",
+      "pt": "Mural Despertar da Consciência, Curitiba",
+      "en": "Awakening of Consciousness mural, Curitiba",
+      "kind": "mural"
+    },
+    {
+      "year": "2016",
+      "pt": "Mural Mito da Vida, Curitiba",
+      "en": "Myth of Life mural, Curitiba",
+      "kind": "mural"
+    },
+    {
+      "year": "2015",
+      "pt": "Contramão, Curitiba, exposição coletiva",
+      "en": "Contramão, Curitiba, group exhibition",
+      "kind": "group"
+    },
+    {
+      "year": "2015",
+      "pt": "Curitibando, Curitiba, exposição",
+      "en": "Curitibando, Curitiba, exhibition",
+      "kind": "group"
+    },
+    {
+      "year": "2012",
+      "pt": "Recortes da Cidade, SESC/PR, exposição coletiva",
+      "en": "Recortes da Cidade, SESC/PR, group exhibition",
+      "kind": "group"
+    },
+    {
+      "year": "2012",
+      "pt": "Expalmilhas, Curitiba, exposição coletiva",
+      "en": "Expalmilhas, Curitiba, group exhibition",
+      "kind": "group"
+    },
+    {
+      "year": "2011–12",
+      "pt": "Prêmio Paraná Hip Hop, finalista",
+      "en": "Prêmio Paraná Hip Hop, finalist",
+      "kind": "festival"
+    },
+    {
+      "year": "2007",
+      "pt": "Black Beats, Curitiba, exposição individual",
+      "en": "Black Beats, Curitiba, solo exhibition",
+      "kind": "solo"
+    },
+    {
+      "year": "2006",
+      "pt": "Black Tié (92º), Curitiba, exposição coletiva",
+      "en": "Black Tié (92º), Curitiba, group exhibition",
+      "kind": "group"
+    },
+    {
+      "year": "2006",
+      "pt": "Graffiti nos Bairros, Curitiba",
+      "en": "Graffiti in the Neighbourhoods, Curitiba",
+      "kind": "group"
+    },
+    {
+      "year": "2005",
+      "pt": "Encontro da Juventude em Rede, Belo Horizonte, exposição individual",
+      "en": "Encontro da Juventude em Rede, Belo Horizonte, solo exhibition",
+      "kind": "solo"
+    },
+    {
+      "year": "2003",
+      "pt": "Feira da Providência, Rio de Janeiro",
+      "en": "Providence Fair, Rio de Janeiro",
+      "kind": "group"
+    },
+    {
+      "year": "2003",
+      "pt": "Mercado Mundo Mix, Curitiba",
+      "en": "Mercado Mundo Mix, Curitiba",
+      "kind": "group"
+    },
+    {
+      "year": "1999–2002",
+      "pt": "Hip-Hop Pro Arte, Curitiba",
+      "en": "Hip-Hop Pro Arte, Curitiba",
+      "kind": "group"
+    },
+    {
+      "year": "1999",
+      "pt": "1º B.boys Jam, Curitiba",
+      "en": "1st B.boys Jam, Curitiba",
+      "kind": "group"
+    }
   ],
   "talks": [
-    { "year": "2024", "pt": "Creative Places MacUíllíam, Dublin", "en": "Creative Places MacUíllíam, Dublin" },
-    { "year": "2024", "pt": "St. Aoife’s Street Arts Academy, Dublin", "en": "St. Aoife’s Street Arts Academy, Dublin" },
-    { "year": "2023", "pt": "Adamstown Cruinniu na nÓg, Irlanda", "en": "Adamstown Cruinniu na nÓg, Ireland" },
-    { "year": "2015", "pt": "Parâmetros do Graffiti no Paraná, Murarte", "en": "Graffiti Parameters in Paraná, Murarte" },
-    { "year": "2012", "pt": "Tipografia Urbana no Contexto do Graffiti, UNIBRASIL", "en": "Urban Typography in Graffiti, UNIBRASIL" },
-    { "year": "2012", "pt": "Design e Graffiti, SINGURA/UNIBRASIL", "en": "Design and Graffiti, SINGURA/UNIBRASIL" },
-    { "year": "2007", "pt": "Origens e Ramos da Arte, 1º Encontro de Graffiti de Pinhais", "en": "Origins and Branches of Art, 1st Pinhais Graffiti Meeting" },
-    { "year": "2007", "pt": "Arte Urbana e Cultura, UNIBRASIL", "en": "Urban Art and Culture, UNIBRASIL" },
-    { "year": "2006", "pt": "Profissionalização do Graffiti, Universidade Dom Bosco", "en": "Professionalisation of Graffiti, Dom Bosco University" },
-    { "year": "2005", "pt": "Teoria das Cores e Composição no Graffiti, Curitiba", "en": "Colour Theory and Composition in Graffiti, Curitiba" },
-    { "year": "2004", "pt": "Redução da Violência Através da Arte, Novas Tebas", "en": "Reducing Violence Through Art, Novas Tebas" },
-    { "year": "2003", "pt": "Graffiti como Forma de Intervenção Poética, UNIBRASIL", "en": "Graffiti as Poetic Intervention, UNIBRASIL" },
-    { "year": "2002", "pt": "O Graffiti Intervindo na Sociedade, Hip-Hop Pro Arte", "en": "Graffiti Intervening in Society, Hip-Hop Pro Arte" }
+    {
+      "year": "2024",
+      "pt": "Creative Places MacUíllíam, Dublin",
+      "en": "Creative Places MacUíllíam, Dublin"
+    },
+    {
+      "year": "2024",
+      "pt": "St. Aoife’s Street Arts Academy, Dublin",
+      "en": "St. Aoife’s Street Arts Academy, Dublin"
+    },
+    {
+      "year": "2023",
+      "pt": "Adamstown Cruinniu na nÓg, Irlanda",
+      "en": "Adamstown Cruinniu na nÓg, Ireland"
+    },
+    {
+      "year": "2015",
+      "pt": "Parâmetros do Graffiti no Paraná, Murarte",
+      "en": "Graffiti Parameters in Paraná, Murarte"
+    },
+    {
+      "year": "2012",
+      "pt": "Tipografia Urbana no Contexto do Graffiti, UNIBRASIL",
+      "en": "Urban Typography in Graffiti, UNIBRASIL"
+    },
+    {
+      "year": "2012",
+      "pt": "Design e Graffiti, SINGURA/UNIBRASIL",
+      "en": "Design and Graffiti, SINGURA/UNIBRASIL"
+    },
+    {
+      "year": "2007",
+      "pt": "Origens e Ramos da Arte, 1º Encontro de Graffiti de Pinhais",
+      "en": "Origins and Branches of Art, 1st Pinhais Graffiti Meeting"
+    },
+    {
+      "year": "2007",
+      "pt": "Arte Urbana e Cultura, UNIBRASIL",
+      "en": "Urban Art and Culture, UNIBRASIL"
+    },
+    {
+      "year": "2006",
+      "pt": "Profissionalização do Graffiti, Universidade Dom Bosco",
+      "en": "Professionalisation of Graffiti, Dom Bosco University"
+    },
+    {
+      "year": "2005",
+      "pt": "Teoria das Cores e Composição no Graffiti, Curitiba",
+      "en": "Colour Theory and Composition in Graffiti, Curitiba"
+    },
+    {
+      "year": "2004",
+      "pt": "Redução da Violência Através da Arte, Novas Tebas",
+      "en": "Reducing Violence Through Art, Novas Tebas"
+    },
+    {
+      "year": "2003",
+      "pt": "Graffiti como Forma de Intervenção Poética, UNIBRASIL",
+      "en": "Graffiti as Poetic Intervention, UNIBRASIL"
+    },
+    {
+      "year": "2002",
+      "pt": "O Graffiti Intervindo na Sociedade, Hip-Hop Pro Arte",
+      "en": "Graffiti Intervening in Society, Hip-Hop Pro Arte"
+    }
   ],
   "press": [
-    { "year": "2025", "pt": "MaREI, University College Cork", "en": "MaREI, University College Cork", "url": "https://www.marei.ie/ocean-mural-into-the-reef-at-ucc-hub-by-street-artist-neto-vettorello/" },
-    { "year": "2025", "pt": "Bem Paraná", "en": "Bem Paraná", "url": "https://www.bemparana.com.br/publicacao/blogs/arteaoredor/neto-vettorello-inaugurade-urihi-a-orun/" },
-    { "year": "2025", "pt": "Pimenta Nativa", "en": "Pimenta Nativa", "url": "https://pimentanativa.com/cultura/artista-brasileiro-neto-vettorello-lanca-exposicao-em-curitiba/" },
-    { "year": "2025", "pt": "Plural", "en": "Plural", "url": "https://www.plural.jor.br/mostra-de-urihi-a-orun-de-neto-vettorello-entra-em-cartaz-em-curitiba-2/" },
-    { "year": "2024", "pt": "Waterford Live", "en": "Waterford Live", "url": "https://www.waterfordlive.ie/news/local-news/1568137/waterford-walls-2024-celebrating-a-decade-of-street-art.html" },
-    { "year": "2023", "pt": "Totally Dublin, “Street Strife”", "en": "Totally Dublin, “Street Strife”", "url": "https://www.totallydublin.ie/arts-culture/street-strife/" },
-    { "year": "2022", "pt": "E-Dublin", "en": "E-Dublin", "url": "https://www.edublin.com.br/mural-celebra-200-anos-do-brasil-no-centro-de-dublin/" },
-    { "year": "2021", "pt": "R7 / Folha Vitória", "en": "R7 / Folha Vitória", "url": "https://noticias.r7.com/cidades/folha-vitoria/brasileiro-e-contemplado-em-edital-de-arte-urbana-na-europa-26102021/" }
+    {
+      "year": "2025",
+      "pt": "MaREI, University College Cork",
+      "en": "MaREI, University College Cork",
+      "url": "https://www.marei.ie/ocean-mural-into-the-reef-at-ucc-hub-by-street-artist-neto-vettorello/"
+    },
+    {
+      "year": "2025",
+      "pt": "Bem Paraná",
+      "en": "Bem Paraná",
+      "url": "https://www.bemparana.com.br/publicacao/blogs/arteaoredor/neto-vettorello-inaugurade-urihi-a-orun/"
+    },
+    {
+      "year": "2025",
+      "pt": "Pimenta Nativa",
+      "en": "Pimenta Nativa",
+      "url": "https://pimentanativa.com/cultura/artista-brasileiro-neto-vettorello-lanca-exposicao-em-curitiba/"
+    },
+    {
+      "year": "2025",
+      "pt": "Plural",
+      "en": "Plural",
+      "url": "https://www.plural.jor.br/mostra-de-urihi-a-orun-de-neto-vettorello-entra-em-cartaz-em-curitiba-2/"
+    },
+    {
+      "year": "2024",
+      "pt": "Waterford Live",
+      "en": "Waterford Live",
+      "url": "https://www.waterfordlive.ie/news/local-news/1568137/waterford-walls-2024-celebrating-a-decade-of-street-art.html"
+    },
+    {
+      "year": "2023",
+      "pt": "Totally Dublin, “Street Strife”",
+      "en": "Totally Dublin, “Street Strife”",
+      "url": "https://www.totallydublin.ie/arts-culture/street-strife/"
+    },
+    {
+      "year": "2022",
+      "pt": "E-Dublin",
+      "en": "E-Dublin",
+      "url": "https://www.edublin.com.br/mural-celebra-200-anos-do-brasil-no-centro-de-dublin/"
+    },
+    {
+      "year": "2021",
+      "pt": "R7 / Folha Vitória",
+      "en": "R7 / Folha Vitória",
+      "url": "https://noticias.r7.com/cidades/folha-vitoria/brasileiro-e-contemplado-em-edital-de-arte-urbana-na-europa-26102021/"
+    }
   ]
 }

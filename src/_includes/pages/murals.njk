@@ -1,13 +1,24 @@
 {%- set t = i18n[lang] -%}
 {%- import "cards.njk" as cards -%}
-<section class="page-head">
+{%- set list = murais | sorted -%}
+{%- set places = list | countries(lang) -%}
+<section class="page-head wrap">
   <h1>{{ t.nav_murals }}</h1>
   <p class="page-intro">{{ t.murals_intro }}</p>
+  {%- if places.length > 1 %}
+  <div class="chips" data-filter-for="#lista" hidden>
+    <button class="chip" type="button" data-filter="*" aria-pressed="true">{{ t.f_all }}</button>
+    {%- for c in places %}
+    <button class="chip" type="button" data-filter="{{ c }}" aria-pressed="false">{{ c }}</button>
+    {%- endfor %}
+  </div>
+  {%- endif %}
 </section>
-<section class="block block--first">
-  <div class="grid grid--2">
-    {%- for m in murais | sorted %}
-    {{ cards.muralCard(m, lang, t, ('/' + lang + '/' + t.path_murals + '/' + m.slug + '/') | u, m.images[0] | img(900)) }}
+<section class="wrap list">
+  <div class="grid-shots" id="lista">
+    {%- for m in list %}
+    {{ cards.shot(m, m.slug, lang, ('/' + lang + '/' + t.path_murals + '/' + m.slug + '/') | u, m.images[0] | img(1600)) }}
     {%- endfor %}
   </div>
 </section>
+{% include "closing.njk" %}

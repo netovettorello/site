@@ -1,20 +1,38 @@
-{%- macro muralCard(m, lang, t, u, src) -%}
-<a class="card" href="{{ u }}">
-  <span class="thumb thumb--wide"><img src="{{ src }}" alt="{{ m.title }}" loading="lazy"></span>
-  <span class="cap">
-    <span class="cap-title">{{ m.title }}</span>
-    <span class="cap-meta">{% if m.year %}{{ m.year }} · {% endif %}{{ m.city }}{% if lang == 'pt' %}{% if m.country_pt %}, {{ m.country_pt }}{% endif %}{% else %}{% if m.country_en %}, {{ m.country_en }}{% endif %}{% endif %}</span>
+{#- Mural: foto que ocupa o cartão inteiro, com legenda sobre a imagem. -#}
+{%- macro shot(m, slug, lang, href, src, cls) -%}
+{%- set country = m['country_' + lang] -%}
+<a class="shot{% if cls %} {{ cls }}{% endif %}" href="{{ href }}" style="view-transition-name:m-{{ slug }}"{% if country %} data-tags="{{ country }}"{% endif %}>
+  <img src="{{ src }}" alt="{{ m.title }}" loading="lazy" decoding="async">
+  <span class="shot-cap">
+    <span class="shot-title">{{ m.title }}</span>
+    <span class="shot-meta">{{ m.city }}{% if country %}, {{ country }}{% endif %}{% if m.year %}, {{ m.year }}{% endif %}</span>
   </span>
 </a>
 {%- endmacro -%}
 
-{%- macro workCard(w, lang, t, u, src) -%}
-<a class="card" href="{{ u }}">
-  <span class="thumb thumb--work"><img src="{{ src }}" alt="{{ w.title }}" loading="lazy"></span>
-  <span class="cap">
-    <span class="cap-title">{{ w.title }}</span>
-    <span class="cap-meta">{% if w.year %}{{ w.year }} · {% endif %}{{ w.dimensions or t[w.kind] }}</span>
+{#- Obra: a imagem aparece inteira, sem corte, sobre um cartão. -#}
+{%- macro art(w, slug, lang, t, href, src, cls) -%}
+{%- set dims = ((w.dimensions or '') | replace(',', '.')) if lang == 'en' else w.dimensions -%}
+<a class="art{% if cls %} {{ cls }}{% endif %}" href="{{ href }}" data-tags="{{ w.status }}|{{ w.kind }}">
+  <span class="art-media"><img src="{{ src }}" alt="{{ w.title }}" loading="lazy" decoding="async" style="view-transition-name:w-{{ slug }}"></span>
+  <span class="art-cap">
+    <span class="art-title">{{ w.title }}</span>
+    <span class="art-meta">{{ dims or t[w.kind] }}{% if w.year %}, {{ w.year }}{% endif %}</span>
     <span class="status status--{{ w.status }}">{{ t[w.status] }}</span>
   </span>
+</a>
+{%- endmacro -%}
+
+{#- Exposição: cartão largo com texto de um lado e foto do outro. -#}
+{%- macro feature(e, lang, t, href, src) -%}
+{%- set country = e['country_' + lang] -%}
+<a class="feature tile" href="{{ href }}" data-reveal>
+  <span class="feature-text">
+    <span class="feature-kind">{{ e['type_' + lang] }}</span>
+    <span class="feature-title">{{ e.title }}</span>
+    <span class="feature-meta">{{ e.venue }}, {{ e.city }}{% if e.year %}, {{ e.year }}{% endif %}</span>
+    <span class="btn btn--ghost">{{ t.see_show }}</span>
+  </span>
+  <span class="feature-media"><img src="{{ src }}" alt="{{ e.title }}" loading="lazy" decoding="async"></span>
 </a>
 {%- endmacro -%}

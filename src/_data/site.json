@@ -10,22 +10,26 @@
   "hero": [
     {
       "image": "/img/portal.jpg",
-      "caption": "The Portal · Waterford, 2023"
+      "caption": "The Portal, Waterford, 2023"
     },
     {
       "image": "/img/exu-black-panther.jpg",
-      "caption": "The Exu Black Panther · Dublin, 2024"
+      "caption": "The Exu Black Panther, Dublin, 2024"
     },
     {
       "image": "/img/into-the-reef.jpg",
-      "caption": "Into the Reef · Cork, 2025"
+      "caption": "Into the Reef, Cork, 2025"
     },
     {
       "image": "/img/connections.jpg",
-      "caption": "Connections · Arklow, 2023"
+      "caption": "Connections, Arklow, 2023"
     }
   ],
   "theme": "dark",
   "clients_image": "/img/clients.png",
-  "clients_alt": "Nike, Budweiser, MTN, ÖUS, Dublin City Council, University College Cork, Blue Mission AA, Prefeitura de Curitiba, Street of Styles, PUCPR, Festival Coolritiba, Barleria"
+  "clients_alt": "Nike, Budweiser, MTN, ÖUS, Dublin City Council, University College Cork, Blue Mission AA, Prefeitura de Curitiba, Street of Styles, PUCPR, Festival Coolritiba, Barleria",
+  "headline_pt": "A cidade é só o começo.",
+  "headline_en": "The city is just the beginning.",
+  "sub_pt": "Arte, matéria e memória. Uma prática visual entre a rua e outras dimensões.",
+  "sub_en": "Art, matter and memory. A visual practice between the streets and other dimensions."
 }

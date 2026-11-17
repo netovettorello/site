@@ -1,29 +1,35 @@
 {%- set t = i18n[lang] -%}
 {%- macro cvlist(items, lang) -%}
-<ol class="cv">
+<ol class="cv cv--cols">
   {%- for e in items %}
   <li><span class="cv-year">{{ e.year }}</span><span>{% if e.url %}<a class="link" href="{{ e.url }}" target="_blank" rel="noopener">{{ e[lang] }}</a>{% else %}{{ e[lang] }}{% endif %}</span></li>
   {%- endfor %}
 </ol>
 {%- endmacro -%}
-<section class="page-head">
+<section class="page-head wrap">
   <h1>{{ t.about_title }}</h1>
 </section>
-<section class="about">
-  <figure class="about-portrait"><img src="{{ about.portrait | img(1000) }}" alt="Neto Vettorello"></figure>
-  <div class="about-text">
+<section class="about wrap">
+  <figure class="about-portrait" data-reveal><img src="{{ about.portrait | img(1000) }}" alt="Neto Vettorello"></figure>
+  <div class="about-text prose">
     {{ (about.bio_pt if lang == 'pt' else about.bio_en) | paras | safe }}
-    <p class="actions"><a class="button" href="{{ site.portfolio_pdf | u }}" download>{{ t.download_pdf }}</a></p>
+    <p class="actions"><a class="btn btn--ghost" href="{{ site.portfolio_pdf | u }}" download>{{ t.download_pdf }}</a></p>
   </div>
 </section>
-<section class="cv-grid">
-  <div>
-    <h2>{{ t.awards }}</h2>
-    {{ cvlist(about.awards, lang) }}
-    <p class="cv-more"><a class="label-link" href="{{ ('/' + lang + '/' + t.path_exhibitions + '/') | u }}">{{ t.see_exhibitions }} →</a></p>
-  </div>
-  <div class="cv-span">
-    <h2>{{ t.talks }}</h2>
-    {{ cvlist(about.talks, lang) }}
-  </div>
+<section class="sec wrap cv-block">
+  <h2>{{ t.awards }}</h2>
+  {{ cvlist(about.awards, lang) }}
 </section>
+<section class="sec wrap cv-block">
+  <h2>{{ t.exhibitions }}</h2>
+  <ol class="cv cv--cols">
+    {%- for e in about.exhibitions %}{% if e.kind != 'mural' %}
+    <li><span class="cv-year">{{ e.year }}</span><span>{% if e.page %}<a class="link" href="{{ ('/' + lang + '/' + t.path_exhibitions + '/' + e.page + '/') | u }}">{{ e[lang] }}</a>{% elif e.url %}<a class="link" href="{{ e.url }}" target="_blank" rel="noopener">{{ e[lang] }}</a>{% else %}{{ e[lang] }}{% endif %}</span></li>
+    {%- endif %}{% endfor %}
+  </ol>
+</section>
+<section class="sec wrap cv-block">
+  <h2>{{ t.talks }}</h2>
+  {{ cvlist(about.talks, lang) }}
+</section>
+{% include "closing.njk" %}

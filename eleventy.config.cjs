@@ -12,6 +12,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/img": "img" });
   eleventyConfig.addPassthroughCopy({ "src/files": "files" });
   eleventyConfig.addPassthroughCopy({ "src/css": "css" });
+  eleventyConfig.addPassthroughCopy({ "src/js": "js" });
   eleventyConfig.addPassthroughCopy({ "src/admin": "admin" });
 
   // URL relativa à página atual: funciona em qualquer domínio e na prévia.
@@ -48,6 +49,33 @@ module.exports = function (eleventyConfig) {
     const feat = list.filter((x) => x.featured), rest = list.filter((x) => !x.featured && x.status !== "sold");
     const n = Math.min(6, Math.max(3, Math.ceil(feat.length / 3) * 3));
     return feat.concat(rest).slice(0, n);
+  });
+  // Destaques primeiro, depois o resto, até n itens.
+  eleventyConfig.addFilter("top", (arr, n) => {
+    const l = arr || [];
+    return l.filter((x) => x.featured).concat(l.filter((x) => !x.featured)).slice(0, n);
+  });
+  // Grade "bento" da home: 1 grande, 2 pequenas, 1 larga (uma obra horizontal, se houver).
+  eleventyConfig.addFilter("bento", (arr) => {
+    const l = (arr || []).filter((x) => x.status !== "sold");
+    const pick = l.filter((x) => x.featured).concat(l.filter((x) => !x.featured)).slice(0, 4);
+    const isWide = (x) => { const m = String(x.dimensions || "").replace(/,/g, ".").match(/([\d.]+)\s*[×x]\s*([\d.]+)/); return m ? +m[2] > +m[1] : false; };
+    const wi = pick.findIndex((x, i) => i > 0 && isWide(x));
+    if (wi > -1) pick.push(pick.splice(wi, 1)[0]);
+    const slots = ["lg", "sm", "sm", "wd"];
+    return pick.map((x, i) => ({ ...x, slot: slots[i] || "sm" }));
+  });
+  // Murais compridos (largura >= 2,5x a altura), do mais extenso ao menor, todos na mesma escala.
+  eleventyConfig.addFilter("toScale", (arr, n) => {
+    const parse = (s) => { const m = String(s || "").replace(/,/g, ".").match(/^\s*([\d.]+)\s*[×x]\s*([\d.]+)\s*m\s*$/i); return m ? { w: +m[1], h: +m[2] } : null; };
+    const l = (arr || []).map((x) => ({ ...x, d: parse(x.dimensions) })).filter((x) => x.d && x.d.w >= 2.5 * x.d.h).sort((a, b) => b.d.w - a.d.w).slice(0, n);
+    const max = Math.max(1, ...l.map((x) => x.d.w));
+    return l.map((x) => ({ ...x, pct: +((x.d.w / max) * 100).toFixed(2), ar: +(x.d.w / x.d.h).toFixed(3), person: +((1.75 / x.d.h) * 100).toFixed(1) }));
+  });
+  eleventyConfig.addFilter("countries", (arr, lang) => [...new Set((arr || []).map((x) => x["country_" + lang]).filter(Boolean))]);
+  eleventyConfig.addFilter("after", (arr, slug, n) => {
+    const i = arr.findIndex((x) => x.slug === slug);
+    return arr.slice(i + 1).concat(arr.slice(0, Math.max(i, 0))).slice(0, n);
   });
   eleventyConfig.addFilter("neighbours", (arr, slug) => {
     const i = arr.findIndex((x) => x.slug === slug);

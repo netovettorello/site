@@ -1,26 +1,14 @@
 {%- set t = i18n[lang] -%}
-<section class="page-head">
+{%- import "cards.njk" as cards -%}
+<section class="page-head wrap">
   <h1>{{ t.nav_exhibitions }}</h1>
   <p class="page-intro">{{ t.exhibitions_intro }}</p>
 </section>
-<section class="block block--first">
-  <div class="panels">
+<section class="wrap list">
+  <div class="features">
     {%- for e in exposicoes | sorted %}
-    <a class="panel" href="{{ ('/' + lang + '/' + t.path_exhibitions + '/' + e.slug + '/') | u }}">
-      <img src="{{ e.images[0] | img(2000) }}" alt="{{ e.title }}" loading="lazy">
-      <span class="panel-cap">
-        <span class="panel-title">{{ e.title }}</span>
-        <span class="panel-meta">{{ e.type_pt if lang == 'pt' else e.type_en }} · {{ e.venue }}, {{ e.city }} · {{ e.year }}</span>
-      </span>
-    </a>
+    {{ cards.feature(e, lang, t, ('/' + lang + '/' + t.path_exhibitions + '/' + e.slug + '/') | u, e.images[0] | img(1600)) }}
     {%- endfor %}
   </div>
 </section>
-<section class="block">
-  <div class="block-head"><h2>{{ t.history }}</h2></div>
-  <ol class="cv cv--wide">
-    {%- for e in about.exhibitions %}
-    <li><span class="cv-year">{{ e.year }}</span><span>{% if e.url %}<a class="link" href="{{ e.url }}" target="_blank" rel="noopener">{{ e[lang] }}</a>{% else %}{{ e[lang] }}{% endif %}</span></li>
-    {%- endfor %}
-  </ol>
-</section>
+{% include "closing.njk" %}
