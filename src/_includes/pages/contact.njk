@@ -1,0 +1,51 @@
+{%- set t = i18n[lang] -%}
+{%- set thanks = '/' + lang + '/' + t.path_contact + '/' + ('obrigado' if lang == 'pt' else 'thanks') + '/' -%}
+<section class="page-head">
+  <h1>{{ t.contact_title }}</h1>
+</section>
+<section class="contact">
+  <div class="contact-intro">
+    <p class="page-intro">{{ t.contact_text }}</p>
+    <p class="contact-direct">{{ t.f_or }}<br><a class="link" href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+  </div>
+
+  <form class="form" name="contato" method="POST" action="{{ thanks | u }}" data-netlify="true" netlify-honeypot="website"{% if env.preview %} data-preview="1"{% endif %}>
+    <input type="hidden" name="form-name" value="contato">
+    <input type="hidden" name="idioma" value="{{ lang }}">
+    <p class="hp" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></p>
+
+    <div class="row">
+      <label class="field" for="f-name"><span>{{ t.f_name }}</span><input id="f-name" name="nome" autocomplete="name" required></label>
+      <label class="field" for="f-email"><span>{{ t.f_email }}</span><input id="f-email" name="email" type="email" autocomplete="email" required></label>
+    </div>
+    <div class="row">
+      <label class="field" for="f-type"><span>{{ t.f_type }}</span>
+        <select id="f-type" name="assunto">
+          <option value="mural">{{ t.t_mural }}</option>
+          <option value="obra">{{ t.t_work }}</option>
+          <option value="exposicao">{{ t.t_exhibition }}</option>
+          <option value="marca">{{ t.t_brand }}</option>
+          <option value="outro">{{ t.t_other }}</option>
+        </select>
+      </label>
+      <label class="field" for="f-place"><span>{{ t.f_place }}</span><input id="f-place" name="local" autocomplete="country-name"></label>
+    </div>
+    <label class="field" for="f-budget"><span>{{ t.f_budget }}</span><input id="f-budget" name="prazo_orcamento"></label>
+    <label class="field" for="f-msg"><span>{{ t.f_msg }}</span><textarea id="f-msg" name="mensagem" rows="6" required></textarea></label>
+    <input type="hidden" name="referencia" id="f-ref">
+    <p><button class="button" type="submit">{{ t.f_send }}</button></p>
+    <p class="form-done" id="form-done" hidden><strong>{{ t.thanks_title }}.</strong> {{ t.thanks_text }}<br><span class="muted">{{ t.preview_note }}</span></p>
+  </form>
+</section>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search),type=q.get('tipo'),ref=q.get('ref'),f=document.querySelector('.form');
+  if(type){var s=document.getElementById('f-type');if(s.querySelector('option[value="'+type+'"]'))s.value=type;}
+  if(ref){
+    document.getElementById('f-ref').value=ref;
+    var msg=document.getElementById('f-msg');
+    msg.value=(type==='obra'?{{ t.msg_work | dump | safe }}:{{ t.msg_mural | dump | safe }})+' “'+ref+'”.\n\n';
+  }
+  if(f&&f.dataset.preview){f.addEventListener('submit',function(e){e.preventDefault();if(!f.reportValidity())return;document.getElementById('form-done').hidden=false;f.querySelector('button').disabled=true;});}
+})();
+</script>

@@ -1,0 +1,83 @@
+{%- set t = i18n[lang] -%}
+{%- import "cards.njk" as cards -%}
+{%- set allMurals = murais | sorted -%}
+{%- set allWorks = obras | sorted -%}
+<section class="hero" aria-label="{{ site.name }}">
+  {%- if site.hero_video %}
+  <video class="hero-media on" src="{{ site.hero_video | u }}" poster="{{ site.hero[0].image | img(2400) }}" autoplay muted loop playsinline></video>
+  <p class="hero-cap">{{ site.hero[0].caption }}</p>
+  {%- else %}
+  {%- for h in site.hero %}
+  <img class="hero-media{% if loop.first %} on{% endif %}" src="{{ h.image | img(2400) }}" alt="{{ h.caption }}" data-cap="{{ h.caption }}"{% if loop.first %} fetchpriority="high"{% else %} loading="lazy"{% endif %}>
+  {%- endfor %}
+  <p class="hero-cap" aria-live="polite">{{ site.hero[0].caption }}</p>
+  {%- endif %}
+</section>
+
+<section class="intro">
+  <p class="lead">{{ t.intro }}</p>
+</section>
+
+<section class="block">
+  <div class="block-head">
+    <h2>{{ t.selected }}</h2>
+    <a class="label-link" href="{{ ('/' + lang + '/' + t.path_murals + '/') | u }}">{{ t.all_murals }} →</a>
+  </div>
+  <div class="panels">
+    {%- for m in allMurals | fit3 %}
+    <a class="panel" href="{{ ('/' + lang + '/' + t.path_murals + '/' + m.slug + '/') | u }}">
+      <img src="{{ m.images[0] | img(2000) }}" alt="{{ m.title }}" loading="lazy">
+      <span class="panel-cap">
+        <span class="panel-title">{{ m.title }}</span>
+        <span class="panel-meta">{{ m.city }}{% if m.year %} · {{ m.year }}{% endif %}</span>
+      </span>
+    </a>
+    {%- endfor %}
+  </div>
+</section>
+
+{%- set shows = exposicoes | sorted | featured %}
+{%- if shows.length %}
+<section class="block">
+  <div class="block-head">
+    <h2>{{ t.nav_exhibitions }}</h2>
+    <a class="label-link" href="{{ ('/' + lang + '/' + t.path_exhibitions + '/') | u }}">{{ t.see_exhibitions }} →</a>
+  </div>
+  <div class="panels">
+    {%- for e in shows %}
+    <a class="panel" href="{{ ('/' + lang + '/' + t.path_exhibitions + '/' + e.slug + '/') | u }}">
+      <img src="{{ e.images[0] | img(2000) }}" alt="{{ e.title }}" loading="lazy">
+      <span class="panel-cap">
+        <span class="panel-title">{{ e.title }}</span>
+        <span class="panel-meta">{{ e.type_pt if lang == 'pt' else e.type_en }} · {{ e.city }} · {{ e.year }}</span>
+      </span>
+    </a>
+    {%- endfor %}
+  </div>
+</section>
+{%- endif %}
+
+<section class="block">
+  <div class="block-head">
+    <h2>{{ t.nav_works }}</h2>
+    <a class="label-link" href="{{ ('/' + lang + '/' + t.path_works + '/') | u }}">{{ t.all_works }} →</a>
+  </div>
+  <div class="grid grid--3">
+    {%- for w in allWorks | fit3 %}
+    {{ cards.workCard(w, lang, t, ('/' + lang + '/' + t.path_works + '/' + w.slug + '/') | u, w.images[0] | img(800)) }}
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="block">
+  <div class="block-head"><h2>{{ t.clients }}</h2></div>
+  <img class="clients-img" src="{{ site.clients_image | img(2000) }}" alt="{{ site.clients_alt }}" loading="lazy" width="2000" height="957">
+</section>
+
+<script>
+(function(){
+  var imgs=[].slice.call(document.querySelectorAll('img.hero-media')),cap=document.querySelector('.hero-cap'),i=0;
+  if(imgs.length<2||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  setInterval(function(){imgs[i].classList.remove('on');i=(i+1)%imgs.length;imgs[i].loading='eager';imgs[i].classList.add('on');cap.textContent=imgs[i].getAttribute('data-cap')},5500);
+})();
+</script>

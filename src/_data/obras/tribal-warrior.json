@@ -1,0 +1,15 @@
+{
+  "order": 8,
+  "featured": false,
+  "title": "Tribal Warrior",
+  "year": 2019,
+  "kind": "painting",
+  "dimensions": "60 × 40 × 2 cm",
+  "status": "available",
+  "images": [
+    "/img/tribal-warrior.jpg"
+  ],
+  "nv_code": "",
+  "text_pt": "",
+  "text_en": ""
+}

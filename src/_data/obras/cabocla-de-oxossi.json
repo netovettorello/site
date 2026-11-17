@@ -1,0 +1,15 @@
+{
+  "order": 7,
+  "featured": false,
+  "title": "Cabocla de Oxóssi",
+  "year": 2019,
+  "kind": "painting",
+  "dimensions": "60 × 40 × 2 cm",
+  "status": "available",
+  "images": [
+    "/img/cabocla.jpg"
+  ],
+  "nv_code": "",
+  "text_pt": "",
+  "text_en": ""
+}

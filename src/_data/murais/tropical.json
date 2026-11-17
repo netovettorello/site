@@ -1,0 +1,18 @@
+{
+  "order": 13,
+  "featured": false,
+  "title": "Tropical",
+  "year": 2018,
+  "city": "Curitiba",
+  "country_pt": "Brasil",
+  "country_en": "Brazil",
+  "client": "Budweiser · Bud Basement",
+  "client_en": "Budweiser · Bud Basement",
+  "dimensions": "5 × 3,5 m",
+  "images": [
+    "/img/tropical.jpg"
+  ],
+  "text_pt": "Artista convidado da Budweiser para os eventos da Copa do Mundo FIFA 2018.",
+  "text_en": "Guest artist for Budweiser’s FIFA World Cup 2018 events.",
+  "vimeo": ""
+}

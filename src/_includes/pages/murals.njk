@@ -1,0 +1,13 @@
+{%- set t = i18n[lang] -%}
+{%- import "cards.njk" as cards -%}
+<section class="page-head">
+  <h1>{{ t.nav_murals }}</h1>
+  <p class="page-intro">{{ t.murals_intro }}</p>
+</section>
+<section class="block block--first">
+  <div class="grid grid--2">
+    {%- for m in murais | sorted %}
+    {{ cards.muralCard(m, lang, t, ('/' + lang + '/' + t.path_murals + '/' + m.slug + '/') | u, m.images[0] | img(900)) }}
+    {%- endfor %}
+  </div>
+</section>

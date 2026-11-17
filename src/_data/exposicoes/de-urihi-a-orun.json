@@ -1,0 +1,24 @@
+{
+  "order": 1,
+  "featured": true,
+  "title": "De Urihi a Òrun",
+  "year": 2025,
+  "type_pt": "Exposição individual",
+  "type_en": "Solo exhibition",
+  "venue": "Barleria",
+  "city": "Curitiba",
+  "country_pt": "Brasil",
+  "country_en": "Brazil",
+  "images": [
+    "/img/de-urihi-a-orun.jpg"
+  ],
+  "link": "https://thunderous-mandazi-303575.netlify.app",
+  "works": [
+    "mestres",
+    "rape",
+    "aiye-orun",
+    "respect"
+  ],
+  "text_pt": "Uma cartografia simbólica entre duas cosmologias: Urihi, a terra-floresta yanomami, e Òrun, o plano espiritual iorubá. A exposição evidencia as conexões entre os povos indígenas das Américas e as culturas da diáspora africana, e trata a arte como sistema vivo de conhecimento e resistência.\n\nPinturas, instalações e esculturas inéditas, em diálogo com o pensamento de Davi Kopenawa e Luiz Rufino.",
+  "text_en": "A symbolic cartography between two cosmologies: Urihi, the Yanomami forest-world, and Òrun, the Yoruba spiritual plane. The exhibition draws out the connections between the Indigenous peoples of the Americas and the cultures of the African diaspora, treating art as a living system of knowledge and resistance.\n\nNew paintings, installations and sculptures, in dialogue with the thought of Davi Kopenawa and Luiz Rufino."
+}

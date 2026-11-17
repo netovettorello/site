@@ -1,0 +1,15 @@
+---
+layout: base.njk
+lang: en
+section: murals
+pagination:
+  data: murais
+  size: 1
+  alias: slug
+  resolve: keys
+permalink: "/en/murals/{{ slug }}/"
+eleventyComputed:
+  pageTitle: "{{ murais[slug].title }} — Neto Vettorello"
+  ogImage: "{{ murais[slug].images[0] }}"
+---
+{% include "pages/mural.njk" %}

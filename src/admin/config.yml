@@ -1,0 +1,125 @@
+# Painel de edição do site (Decap CMS).
+# Acesse netovettorello.com/admin e entre com sua conta do GitHub.
+backend:
+  name: github
+  repo: netovettorello/site   # troque se o repositório tiver outro nome
+  branch: main
+locale: pt
+site_url: https://netovettorello.com
+media_folder: src/img/uploads
+public_folder: /img/uploads
+
+collections:
+  - name: murais
+    label: Murais
+    label_singular: Mural
+    folder: src/_data/murais
+    extension: json
+    format: json
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{year}}"
+    sortable_fields: [order, year, title]
+    fields:
+      - { label: Título, name: title, widget: string }
+      - { label: Ano, name: year, widget: number, value_type: int, required: false }
+      - { label: Cidade, name: city, widget: string }
+      - { label: País (português), name: country_pt, widget: string }
+      - { label: País (inglês), name: country_en, widget: string }
+      - { label: Cliente / festival (português), name: client, widget: string, required: false }
+      - { label: Cliente / festival (inglês), name: client_en, widget: string, required: false }
+      - { label: Dimensões, name: dimensions, widget: string, required: false, hint: "Ex.: 12 × 3 m" }
+      - { label: Fotos, name: images, widget: list, field: { label: Foto, name: image, widget: image }, hint: "A primeira foto é a capa." }
+      - { label: Vídeo no Vimeo (número), name: vimeo, widget: string, required: false, hint: "Só o número, ex.: 867092359" }
+      - { label: Texto (português), name: text_pt, widget: text, required: false }
+      - { label: Texto (inglês), name: text_en, widget: text, required: false }
+      - { label: Destaque na home, name: featured, widget: boolean, default: false }
+      - { label: Ordem na lista, name: order, widget: number, value_type: int, default: 50, hint: "Menor número aparece primeiro." }
+
+  - name: obras
+    label: Obras
+    label_singular: Obra
+    folder: src/_data/obras
+    extension: json
+    format: json
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{status}}"
+    sortable_fields: [order, year, title]
+    fields:
+      - { label: Título, name: title, widget: string }
+      - { label: Ano, name: year, widget: number, value_type: int, required: false }
+      - label: Tipo
+        name: kind
+        widget: select
+        options: [{ label: "Pintura (técnica mista sobre tela)", value: painting }, { label: Escultura, value: sculpture }]
+      - { label: Dimensões, name: dimensions, widget: string, required: false, hint: "Ex.: 80 × 60 × 2 cm" }
+      - label: Situação
+        name: status
+        widget: select
+        options: [{ label: Disponível, value: available }, { label: Reservada, value: reserved }, { label: Vendida, value: sold }]
+      - { label: Código NV do registro, name: nv_code, widget: string, required: false, hint: "Ex.: NV-2026-001. Cria o link para o certificado." }
+      - { label: Fotos, name: images, widget: list, field: { label: Foto, name: image, widget: image } }
+      - { label: Texto (português), name: text_pt, widget: text, required: false }
+      - { label: Texto (inglês), name: text_en, widget: text, required: false }
+      - { label: Destaque na home, name: featured, widget: boolean, default: false }
+      - { label: Ordem na lista, name: order, widget: number, value_type: int, default: 50 }
+
+  - name: exposicoes
+    label: Exposições
+    label_singular: Exposição
+    folder: src/_data/exposicoes
+    extension: json
+    format: json
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{year}}"
+    fields:
+      - { label: Título, name: title, widget: string }
+      - { label: Ano, name: year, widget: number, value_type: int }
+      - { label: Tipo (português), name: type_pt, widget: string, hint: "Ex.: Exposição individual" }
+      - { label: Tipo (inglês), name: type_en, widget: string, hint: "Ex.: Solo exhibition" }
+      - { label: Local / galeria, name: venue, widget: string }
+      - { label: Cidade, name: city, widget: string }
+      - { label: País (português), name: country_pt, widget: string }
+      - { label: País (inglês), name: country_en, widget: string }
+      - { label: Fotos, name: images, widget: list, field: { label: Foto, name: image, widget: image }, hint: "A primeira foto é a capa." }
+      - { label: Obras da exposição, name: works, widget: relation, collection: obras, value_field: "{{slug}}", search_fields: [title], display_fields: [title], multiple: true, required: false }
+      - { label: Site da exposição (opcional), name: link, widget: string, required: false }
+      - { label: Texto (português), name: text_pt, widget: text, required: false }
+      - { label: Texto (inglês), name: text_en, widget: text, required: false }
+      - { label: Destaque na home, name: featured, widget: boolean, default: false }
+      - { label: Ordem na lista, name: order, widget: number, value_type: int, default: 50 }
+
+  - name: config
+    label: Configurações
+    files:
+      - name: site
+        label: Dados gerais
+        file: src/_data/site.json
+        fields:
+          - { label: E-mail, name: email, widget: string }
+          - { label: Instagram, name: instagram, widget: string }
+          - { label: Vimeo, name: vimeo, widget: string }
+          - { label: Loja, name: shop, widget: string }
+          - { label: Registro de obras, name: registry, widget: string }
+          - { label: Portfólio em PDF, name: portfolio_pdf, widget: file }
+          - { label: Fotos de abertura da home, name: hero, widget: list, fields: [{ label: Foto, name: image, widget: image }, { label: Legenda, name: caption, widget: string }], hint: "Passam sozinhas na abertura. Use 3 a 5." }
+          - { label: Vídeo de abertura (opcional, .mp4), name: hero_video, widget: file, required: false, hint: "Loop curto sem som, até 10 MB. Se houver vídeo, ele substitui as fotos." }
+          - { label: Logos de clientes (PNG branco, fundo transparente), name: clients_image, widget: image }
+          - { label: Nomes dos clientes (texto alternativo), name: clients_alt, widget: string }
+          - label: Tema
+            name: theme
+            widget: select
+            options: [{ label: Escuro, value: dark }, { label: Claro, value: light }]
+          - { label: Nome, name: name, widget: hidden }
+      - name: about
+        label: Sobre e CV
+        file: src/_data/about.json
+        fields:
+          - { label: Retrato, name: portrait, widget: image }
+          - { label: Bio (português), name: bio_pt, widget: text }
+          - { label: Bio (inglês), name: bio_en, widget: text }
+          - { label: Prêmios, name: awards, widget: list, fields: [{ label: Ano, name: year, widget: string }, { label: Português, name: pt, widget: string }, { label: Inglês, name: en, widget: string }, { label: Link, name: url, widget: string, required: false }] }
+          - { label: Histórico de exposições (página Exposições), name: exhibitions, widget: list, fields: [{ label: Ano, name: year, widget: string }, { label: Português, name: pt, widget: string }, { label: Inglês, name: en, widget: string }, { label: Link, name: url, widget: string, required: false }] }
+          - { label: Palestras e workshops, name: talks, widget: list, fields: [{ label: Ano, name: year, widget: string }, { label: Português, name: pt, widget: string }, { label: Inglês, name: en, widget: string }, { label: Link, name: url, widget: string, required: false }] }

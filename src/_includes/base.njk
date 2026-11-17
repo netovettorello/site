@@ -1,0 +1,68 @@
+{%- set t = i18n[lang] -%}
+{%- macro navlink(key, sec) -%}
+<a href="{{ ('/' + lang + '/' + t['path_' + key] + '/') | u }}"{% if section == sec %} aria-current="page"{% endif %}>{{ t['nav_' + key] }}</a>
+{%- endmacro -%}
+<!doctype html>
+<html lang="{{ t.locale }}" data-theme="{{ site.theme or 'dark' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ pageTitle or site.name }}</title>
+<meta name="description" content="{{ pageDescription or t.home_description }}">
+<meta name="author" content="{{ site.name }}">
+<meta name="copyright" content="© {{ build.year }} {{ site.name }}">
+<meta name="theme-color" content="{{ '#0c0c0c' if (site.theme or 'dark') == 'dark' else '#ffffff' }}">
+<meta property="og:title" content="{{ pageTitle or site.name }}">
+<meta property="og:description" content="{{ pageDescription or t.home_description }}">
+<meta property="og:image" content="{{ ogImage or site.hero[0].image }}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="{{ i18n[t.other].locale }}" href="{{ page.url | swapLang(lang) }}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&display=swap">
+<link rel="stylesheet" href="{{ '/css/site.css' | u }}">
+</head>
+<body>
+<aside class="side">
+  <div class="side-top">
+    <a class="logo" href="{{ ('/' + lang + '/') | u }}" aria-label="{{ site.name }}">{% include "logo.svg" %}</a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+  <nav id="menu" class="menu" aria-label="Menu">
+    {{ navlink('murals', 'murals') }}
+    {{ navlink('works', 'works') }}
+    {{ navlink('exhibitions', 'exhibitions') }}
+    {{ navlink('about', 'about') }}
+    {{ navlink('contact', 'contact') }}
+    <span class="side-foot">
+      <a class="icon" href="{{ site.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="0.9" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a class="lang" href="{{ page.url | swapLang(lang) | u }}" hreflang="{{ t.other }}" aria-label="{{ 'English' if lang == 'pt' else 'Português' }}">{{ t.other_label }}</a>
+    </span>
+  </nav>
+</aside>
+
+<div class="shell">
+<main>
+{{ content | safe }}
+</main>
+
+<footer class="site-footer">
+  <p class="rights">{{ t.rights | replace("{year}", build.year) }}</p>
+  <p class="foot-links">
+    <a href="{{ site.shop }}" target="_blank" rel="noopener">{{ t.footer_shop }}</a>
+    <a href="{{ site.registry }}" target="_blank" rel="noopener">{{ t.footer_registry }}</a>
+  </p>
+</footer>
+</div>
+
+<script>
+(function(){
+  var b=document.querySelector('.menu-toggle'),m=document.getElementById('menu');
+  if(b){b.addEventListener('click',function(){var o=m.classList.toggle('open');b.setAttribute('aria-expanded',o)})}
+})();
+</script>
+</body>
+</html>

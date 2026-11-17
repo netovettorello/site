@@ -1,0 +1,36 @@
+{%- set t = i18n[lang] -%}
+{%- import "cards.njk" as cards -%}
+{%- set e = exposicoes[slug] -%}
+{%- set base = '/' + lang + '/' + t.path_exhibitions + '/' -%}
+<article class="item">
+  <aside class="item-info">
+    <a class="back link-quiet" href="{{ base | u }}">← {{ t.back_exhibitions }}</a>
+    <h1>{{ e.title }}</h1>
+    <dl class="facts">
+      <div><dd>{{ e.type_pt if lang == 'pt' else e.type_en }}</dd></div>
+      <div><dd>{{ e.venue }}, {{ e.city }}{% if lang == 'pt' %}{% if e.country_pt %}, {{ e.country_pt }}{% endif %}{% else %}{% if e.country_en %}, {{ e.country_en }}{% endif %}{% endif %}</dd></div>
+      {% if e.year %}<div><dd>{{ e.year }}</dd></div>{% endif %}
+    </dl>
+    {% set txt = e.text_pt if lang == 'pt' else e.text_en %}
+    {% if txt %}<div class="item-text">{{ txt | paras | safe }}</div>{% endif %}
+    <p class="actions">
+      {% if e.link %}<a class="button button--ghost" href="{{ e.link }}" target="_blank" rel="noopener">{{ t.visit_site }} ↗</a>{% endif %}
+      <a class="button" href="{{ ('/' + lang + '/' + t.path_contact + '/') | u }}?tipo=exposicao&amp;ref={{ e.title | enc }}">{{ t.project_enquire }}</a>
+    </p>
+  </aside>
+  <div class="item-media">
+    {%- for src in e.images %}
+    <img src="{{ src | img(2000) }}" alt="{{ e.title }}"{% if not loop.first %} loading="lazy"{% endif %}>
+    {%- endfor %}
+  </div>
+</article>
+{% if e.works and e.works.length %}
+<section class="block">
+  <div class="block-head"><h2>{{ t.works_in_show }}</h2></div>
+  <div class="grid grid--4">
+    {%- for s in e.works %}{% set w = obras[s] %}{% if w %}
+    {{ cards.workCard(w, lang, t, ('/' + lang + '/' + t.path_works + '/' + s + '/') | u, w.images[0] | img(700)) }}
+    {%- endif %}{% endfor %}
+  </div>
+</section>
+{% endif %}

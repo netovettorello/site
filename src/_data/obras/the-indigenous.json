@@ -1,0 +1,15 @@
+{
+  "order": 6,
+  "featured": false,
+  "title": "The Indigenous",
+  "year": 2018,
+  "kind": "painting",
+  "dimensions": "120 × 70 × 4 cm",
+  "status": "available",
+  "images": [
+    "/img/the-indigenous.jpg"
+  ],
+  "nv_code": "",
+  "text_pt": "",
+  "text_en": ""
+}

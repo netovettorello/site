@@ -1,0 +1,20 @@
+{
+  "order": 4,
+  "featured": false,
+  "title": "Dream",
+  "year": 2021,
+  "city": "Dublin",
+  "country_pt": "Irlanda",
+  "country_en": "Ireland",
+  "client": "Dublin City Council · Paint the Town",
+  "client_en": "Dublin City Council · Paint the Town",
+  "dimensions": "80 × 3,5 m",
+  "images": [
+    "/img/dream.jpg",
+    "/img/dream-2.jpg",
+    "/img/dream-3.jpg"
+  ],
+  "text_pt": "Primeiro brasileiro a assinar um grande mural público em Dublin, selecionado em edital do Dublin City Council.",
+  "text_en": "The first Brazilian artist to sign a large-scale public mural in Dublin, selected through a Dublin City Council open call.",
+  "vimeo": ""
+}

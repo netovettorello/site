@@ -1,0 +1,17 @@
+[build]
+  command = "npx @11ty/eleventy"
+  publish = "_site"
+
+[images]
+  remote_images = ["https://cdn.myportfolio.com/.*"]
+
+[[redirects]]
+  from = "/"
+  to = "/pt/"
+  status = 302
+  conditions = {Language = ["pt", "pt-BR", "pt-PT"]}
+
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302

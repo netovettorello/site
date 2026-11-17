@@ -1,0 +1,18 @@
+{
+  "order": 3,
+  "featured": true,
+  "title": "Into the Reef",
+  "year": 2025,
+  "city": "Cork",
+  "country_pt": "Irlanda",
+  "country_en": "Ireland",
+  "client": "University College Cork · TIDAL ArtS",
+  "client_en": "University College Cork · TIDAL ArtS",
+  "dimensions": "6 × 3 × 5 m",
+  "images": [
+    "/img/into-the-reef.jpg"
+  ],
+  "text_pt": "Inaugurado em junho de 2025 na University College Cork, durante o Cork Harbour Festival. A instalação transforma o campus em um recife e convida à proteção dos oceanos.",
+  "text_en": "Unveiled in June 2025 at University College Cork during the Cork Harbour Festival. The installation turns the campus into a reef and raises awareness of ocean protection.",
+  "vimeo": ""
+}

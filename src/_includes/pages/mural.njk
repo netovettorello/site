@@ -1,0 +1,33 @@
+{%- set t = i18n[lang] -%}
+{%- set m = murais[slug] -%}
+{%- set list = murais | sorted -%}
+{%- set nb = list | neighbours(slug) -%}
+{%- set base = '/' + lang + '/' + t.path_murals + '/' -%}
+<article class="item">
+  <aside class="item-info">
+    <a class="back link-quiet" href="{{ base | u }}">← {{ t.back_murals }}</a>
+    <h1>{{ m.title }}</h1>
+    <dl class="facts">
+      {% if m.year %}<div><dt class="sr">Ano</dt><dd>{{ m.year }}</dd></div>{% endif %}
+      <div><dd>{{ m.city }}{% if lang == 'pt' %}{% if m.country_pt %}, {{ m.country_pt }}{% endif %}{% else %}{% if m.country_en %}, {{ m.country_en }}{% endif %}{% endif %}</dd></div>
+      {% set client = m.client if lang == 'pt' else (m.client_en or m.client) %}
+      {% if client %}<div><dd>{{ client }}</dd></div>{% endif %}
+      {% if m.dimensions %}<div><dd>{{ m.dimensions }}</dd></div>{% endif %}
+    </dl>
+    {% set txt = m.text_pt if lang == 'pt' else m.text_en %}
+    {% if txt %}<div class="item-text">{{ txt | paras | safe }}</div>{% endif %}
+    <p class="actions">
+      {% if m.vimeo %}<a class="link" href="https://vimeo.com/{{ m.vimeo }}" target="_blank" rel="noopener">{{ t.watch_video }}</a>{% endif %}
+      <a class="button" href="{{ ('/' + lang + '/' + t.path_contact + '/') | u }}?tipo=mural&amp;ref={{ m.title | enc }}">{{ t.project_enquire }}</a>
+    </p>
+  </aside>
+  <div class="item-media">
+    {%- for src in m.images %}
+    <img src="{{ src | img(2000) }}" alt="{{ m.title }}{% if not loop.first %} ({{ loop.index }}){% endif %}"{% if not loop.first %} loading="lazy"{% endif %}>
+    {%- endfor %}
+  </div>
+</article>
+<nav class="pager" aria-label="{{ t.nav_murals }}">
+  <a class="link-quiet" href="{{ (base + nb.prev.slug + '/') | u }}"><span class="muted">{{ t.prev }}</span><br>{{ nb.prev.title }}</a>
+  <a class="link-quiet right" href="{{ (base + nb.next.slug + '/') | u }}"><span class="muted">{{ t.next }}</span><br>{{ nb.next.title }}</a>
+</nav>

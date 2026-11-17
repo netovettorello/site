@@ -1,0 +1,18 @@
+{
+  "order": 8,
+  "featured": false,
+  "title": "Connections",
+  "year": 2023,
+  "city": "Arklow",
+  "country_pt": "Irlanda",
+  "country_en": "Ireland",
+  "client": "Arklow Jam",
+  "client_en": "Arklow Jam",
+  "dimensions": "12 × 20 m",
+  "images": [
+    "/img/connections.jpg"
+  ],
+  "text_pt": "",
+  "text_en": "",
+  "vimeo": ""
+}

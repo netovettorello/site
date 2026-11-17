@@ -1,0 +1,15 @@
+---
+layout: base.njk
+lang: pt
+section: exhibitions
+pagination:
+  data: exposicoes
+  size: 1
+  alias: slug
+  resolve: keys
+permalink: "/pt/exposicoes/{{ slug }}/"
+eleventyComputed:
+  pageTitle: "{{ exposicoes[slug].title }} — Neto Vettorello"
+  ogImage: "{{ exposicoes[slug].images[0] }}"
+---
+{% include "pages/exhibition.njk" %}

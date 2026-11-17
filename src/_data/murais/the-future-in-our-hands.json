@@ -1,0 +1,18 @@
+{
+  "order": 6,
+  "featured": false,
+  "title": "The Future in Our Hands",
+  "year": 2025,
+  "city": "Castro",
+  "country_pt": "Brasil",
+  "country_en": "Brazil",
+  "client": "Fábrica de Graffiti",
+  "client_en": "Fábrica de Graffiti",
+  "dimensions": "30 × 3 m",
+  "images": [
+    "/img/future-in-our-hands.jpg"
+  ],
+  "text_pt": "",
+  "text_en": "",
+  "vimeo": ""
+}

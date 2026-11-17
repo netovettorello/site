@@ -1,0 +1,18 @@
+{
+  "order": 9,
+  "featured": false,
+  "title": "Nike Well Collective",
+  "year": 2023,
+  "city": "Dublin",
+  "country_pt": "Irlanda",
+  "country_en": "Ireland",
+  "client": "Nike · Well Collective, Dundrum",
+  "client_en": "Nike · Well Collective, Dundrum",
+  "dimensions": "6 × 4 m",
+  "images": [
+    "/img/nike.jpg"
+  ],
+  "text_pt": "",
+  "text_en": "",
+  "vimeo": ""
+}

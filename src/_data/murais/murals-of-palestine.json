@@ -1,0 +1,20 @@
+{
+  "order": 10,
+  "featured": false,
+  "title": "Murals of Palestine",
+  "year": null,
+  "city": "Dublin",
+  "country_pt": "Irlanda",
+  "country_en": "Ireland",
+  "client": "",
+  "client_en": "",
+  "dimensions": "",
+  "images": [
+    "https://cdn.myportfolio.com/26e725fd-36a7-4e35-908b-33afe06d2837/10d49a8c-62e8-477c-97f7-ea8cd53bbe47_rw_1920.jpg?h=a48ce3b9e54489b468f7d0d442c22182",
+    "https://cdn.myportfolio.com/26e725fd-36a7-4e35-908b-33afe06d2837/c75dbf1c-d4fe-42ea-bacc-3fe77b47a313_rw_1920.jpg?h=3e2754c856d027d06d400069de7f89c6",
+    "https://cdn.myportfolio.com/26e725fd-36a7-4e35-908b-33afe06d2837/4f9660a7-70bb-46d5-b762-6883af53428e_rw_1920.jpg?h=958b1491fbb142afd0a3ed2a58087a8f"
+  ],
+  "text_pt": "Três murais pintados em pontos diferentes de Dublin contam uma única história: a devastação da Palestina sob a invasão de Gaza, pela dor e pela perda de uma família. “I Am Just a Kid”, “Fight for Freedom” e “The Invasion (Where is your Humanity?)”. Três murais, três momentos, uma história que continua se repetindo.",
+  "text_en": "Three murals painted in different locations across Dublin tell a single story: the devastation of Palestine under the invasion of Gaza, through the pain and loss of one family. “I Am Just a Kid”, “Fight for Freedom” and “The Invasion (Where is your Humanity?)”. Three murals, three moments, a story that keeps repeating itself.",
+  "vimeo": ""
+}

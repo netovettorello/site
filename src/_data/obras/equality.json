@@ -1,0 +1,15 @@
+{
+  "order": 5,
+  "featured": false,
+  "title": "Equality",
+  "year": 2022,
+  "kind": "painting",
+  "dimensions": "80 × 60 × 2 cm",
+  "status": "sold",
+  "images": [
+    "/img/equality.jpg"
+  ],
+  "nv_code": "",
+  "text_pt": "",
+  "text_en": ""
+}

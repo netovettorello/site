@@ -1,0 +1,20 @@
+{%- macro muralCard(m, lang, t, u, src) -%}
+<a class="card" href="{{ u }}">
+  <span class="thumb thumb--wide"><img src="{{ src }}" alt="{{ m.title }}" loading="lazy"></span>
+  <span class="cap">
+    <span class="cap-title">{{ m.title }}</span>
+    <span class="cap-meta">{% if m.year %}{{ m.year }} · {% endif %}{{ m.city }}{% if lang == 'pt' %}{% if m.country_pt %}, {{ m.country_pt }}{% endif %}{% else %}{% if m.country_en %}, {{ m.country_en }}{% endif %}{% endif %}</span>
+  </span>
+</a>
+{%- endmacro -%}
+
+{%- macro workCard(w, lang, t, u, src) -%}
+<a class="card" href="{{ u }}">
+  <span class="thumb thumb--work"><img src="{{ src }}" alt="{{ w.title }}" loading="lazy"></span>
+  <span class="cap">
+    <span class="cap-title">{{ w.title }}</span>
+    <span class="cap-meta">{% if w.year %}{{ w.year }} · {% endif %}{{ w.dimensions or t[w.kind] }}</span>
+    <span class="status status--{{ w.status }}">{{ t[w.status] }}</span>
+  </span>
+</a>
+{%- endmacro -%}

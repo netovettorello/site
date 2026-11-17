@@ -1,0 +1,13 @@
+{%- set t = i18n[lang] -%}
+{%- import "cards.njk" as cards -%}
+<section class="page-head">
+  <h1>{{ t.nav_works }}</h1>
+  <p class="page-intro">{{ t.works_intro }}</p>
+</section>
+<section class="block block--first">
+  <div class="grid grid--3">
+    {%- for w in obras | sorted %}
+    {{ cards.workCard(w, lang, t, ('/' + lang + '/' + t.path_works + '/' + w.slug + '/') | u, w.images[0] | img(800)) }}
+    {%- endfor %}
+  </div>
+</section>

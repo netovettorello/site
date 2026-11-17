@@ -1,0 +1,19 @@
+{
+  "order": 1,
+  "featured": true,
+  "title": "Do Not Remove / Não Remova",
+  "year": 2022,
+  "city": "Dublin",
+  "country_pt": "Irlanda",
+  "country_en": "Ireland",
+  "client": "Embaixada do Brasil na Irlanda · com Asbestos",
+  "client_en": "Embassy of Brazil in Ireland · with Asbestos",
+  "dimensions": "70 × 4 m",
+  "images": [
+    "/img/do-not-remove-2.jpg",
+    "/img/do-not-remove.jpg"
+  ],
+  "vimeo": "867092359",
+  "text_pt": "Mural comissionado às margens do rio Liffey, no centro de Dublin, para celebrar os 200 anos da independência do Brasil e os 100 anos do Irish Free State. A obra pede que o público olhe para a própria história e cuide da cultura e do patrimônio de cada lugar.",
+  "text_en": "Commissioned on the River Liffey in central Dublin to mark 200 years of Brazilian independence and 100 years of the Irish Free State. The work asks the public to look back at their own history and to protect the culture and heritage of each place."
+}

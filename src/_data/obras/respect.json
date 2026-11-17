@@ -1,0 +1,15 @@
+{
+  "order": 4,
+  "featured": false,
+  "title": "Respect",
+  "year": 2022,
+  "kind": "painting",
+  "dimensions": "80 × 60 × 2 cm",
+  "status": "available",
+  "images": [
+    "/img/respect.jpg"
+  ],
+  "nv_code": "",
+  "text_pt": "",
+  "text_en": ""
+}

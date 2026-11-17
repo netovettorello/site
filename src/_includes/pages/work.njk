@@ -1,0 +1,32 @@
+{%- set t = i18n[lang] -%}
+{%- set w = obras[slug] -%}
+{%- set list = obras | sorted -%}
+{%- set nb = list | neighbours(slug) -%}
+{%- set base = '/' + lang + '/' + t.path_works + '/' -%}
+<article class="item">
+  <aside class="item-info">
+    <a class="back link-quiet" href="{{ base | u }}">← {{ t.back_works }}</a>
+    <h1>{{ w.title }}</h1>
+    <dl class="facts">
+      {% if w.year %}<div><dd>{{ w.year }}</dd></div>{% endif %}
+      <div><dd>{{ t[w.kind] }}</dd></div>
+      {% if w.dimensions %}<div><dd>{{ w.dimensions }}</dd></div>{% endif %}
+      <div><dd><span class="status status--{{ w.status }}">{{ t[w.status] }}</span></dd></div>
+      {% if w.nv_code %}<div><dd><a class="link" href="{{ site.registry }}/{{ w.nv_code }}" target="_blank" rel="noopener">{{ t.certificate }} · {{ w.nv_code }}</a></dd></div>{% endif %}
+    </dl>
+    {% set txt = w.text_pt if lang == 'pt' else w.text_en %}
+    {% if txt %}<div class="item-text">{{ txt | paras | safe }}</div>{% endif %}
+    {% if w.status != 'sold' %}
+    <p class="actions"><a class="button" href="{{ ('/' + lang + '/' + t.path_contact + '/') | u }}?tipo=obra&amp;ref={{ (w.title + (' (' + w.year + ')' if w.year else '')) | enc }}">{{ t.enquire }}</a></p>
+    {% endif %}
+  </aside>
+  <div class="item-media item-media--work">
+    {%- for src in w.images %}
+    <img src="{{ src | img(1800) }}" alt="{{ w.title }}"{% if not loop.first %} loading="lazy"{% endif %}>
+    {%- endfor %}
+  </div>
+</article>
+<nav class="pager" aria-label="{{ t.nav_works }}">
+  <a class="link-quiet" href="{{ (base + nb.prev.slug + '/') | u }}"><span class="muted">{{ t.prev }}</span><br>{{ nb.prev.title }}</a>
+  <a class="link-quiet right" href="{{ (base + nb.next.slug + '/') | u }}"><span class="muted">{{ t.next }}</span><br>{{ nb.next.title }}</a>
+</nav>

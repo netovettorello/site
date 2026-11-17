@@ -1,0 +1,15 @@
+{
+  "order": 1,
+  "featured": true,
+  "title": "Mestres",
+  "year": 2025,
+  "kind": "painting",
+  "dimensions": "120 × 90 × 4 cm",
+  "status": "available",
+  "images": [
+    "/img/mestres.jpg"
+  ],
+  "nv_code": "",
+  "text_pt": "",
+  "text_en": ""
+}

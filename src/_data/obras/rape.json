@@ -1,0 +1,15 @@
+{
+  "order": 2,
+  "featured": false,
+  "title": "Rapé",
+  "year": 2025,
+  "kind": "painting",
+  "dimensions": "80 × 120 × 4 cm",
+  "status": "available",
+  "images": [
+    "/img/rape.jpg"
+  ],
+  "nv_code": "",
+  "text_pt": "",
+  "text_en": ""
+}

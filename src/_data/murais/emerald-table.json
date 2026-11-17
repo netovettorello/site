@@ -1,0 +1,18 @@
+{
+  "order": 7,
+  "featured": false,
+  "title": "Emerald Table, Hermes Trismegistus",
+  "year": 2023,
+  "city": "Waterford",
+  "country_pt": "Irlanda",
+  "country_en": "Ireland",
+  "client": "Waterford Walls",
+  "client_en": "Waterford Walls",
+  "dimensions": "12 × 3 m",
+  "images": [
+    "/img/emerald-table.jpg"
+  ],
+  "text_pt": "",
+  "text_en": "",
+  "vimeo": ""
+}

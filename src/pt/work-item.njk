@@ -1,0 +1,15 @@
+---
+layout: base.njk
+lang: pt
+section: works
+pagination:
+  data: obras
+  size: 1
+  alias: slug
+  resolve: keys
+permalink: "/pt/obras/{{ slug }}/"
+eleventyComputed:
+  pageTitle: "{{ obras[slug].title }} — Neto Vettorello"
+  ogImage: "{{ obras[slug].images[0] }}"
+---
+{% include "pages/work.njk" %}

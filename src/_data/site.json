@@ -1,0 +1,31 @@
+{
+  "name": "Neto Vettorello",
+  "email": "neto@netovettorello.com",
+  "instagram": "https://www.instagram.com/netovettorello",
+  "vimeo": "https://vimeo.com/netovettorello",
+  "shop": "https://netovettorello.lojavirtualnuvem.com.br",
+  "registry": "https://obras.netovettorello.com",
+  "portfolio_pdf": "/files/portfolio-neto-vettorello.pdf",
+  "hero_video": "",
+  "hero": [
+    {
+      "image": "/img/portal.jpg",
+      "caption": "The Portal · Waterford, 2023"
+    },
+    {
+      "image": "/img/exu-black-panther.jpg",
+      "caption": "The Exu Black Panther · Dublin, 2024"
+    },
+    {
+      "image": "/img/into-the-reef.jpg",
+      "caption": "Into the Reef · Cork, 2025"
+    },
+    {
+      "image": "/img/connections.jpg",
+      "caption": "Connections · Arklow, 2023"
+    }
+  ],
+  "theme": "dark",
+  "clients_image": "/img/clients.png",
+  "clients_alt": "Nike, Budweiser, MTN, ÖUS, Dublin City Council, University College Cork, Blue Mission AA, Prefeitura de Curitiba, Street of Styles, PUCPR, Festival Coolritiba, Barleria"
+}
