@@ -1,0 +1,30 @@
+{
+  "order": 2,
+  "featured": false,
+  "title": "Série Resistência",
+  "year": 2026,
+  "kind": "painting",
+  "dimensions": "Série de 13 obras em papel",
+  "status": "sold",
+  "images": [
+    "/img/resistencia/resistencia-series-mark.png",
+    "/img/resistencia/resistencia-headdress.png",
+    "/img/resistencia/resistencia-embrace.png",
+    "/img/resistencia/resistencia-hood.png",
+    "/img/resistencia/resistencia-yellow-scarf.png",
+    "/img/resistencia/resistencia-who-are-u.png",
+    "/img/resistencia/resistencia-sign.png",
+    "/img/resistencia/resistencia-gasmask.png",
+    "/img/resistencia/resistencia-tanie.png",
+    "/img/resistencia/resistencia-smoke.png",
+    "/img/resistencia/resistencia-bleeding-flag.png",
+    "/img/resistencia/resistencia-molotov.png",
+    "/img/resistencia/resistencia-palestine.png",
+    "/img/resistencia/resistencia-green-scarf.png"
+  ],
+  "nv_code": "",
+  "text_pt": "Resistência é uma série de 13 obras em papel criada como resposta ao avanço do autoritarismo, da violência política e da extrema direita. A partir de Tani É, a série transforma indignação em imagem e faz da arte uma tomada de posição. Entre fumaça, barricadas, bandeiras, afeto e confronto, cada peça propõe uma pergunta que atravessa toda a série: quem é você diante da injustiça?\n\nApresentada em edição especial e esgotada em poucos minutos, a série reafirma a arte como linguagem de resistência, memória e presença pública.",
+  "text_en": "Resistance is a series of 13 works on paper created in response to the rise of authoritarianism, political violence and the far right. Through Tani É, the series turns indignation into image and treats art as an explicit act of position-taking. Among smoke, barricades, flags, affection and confrontation, each work asks the question running through the series: who are you in the face of injustice?\n\nReleased as a special edition and sold out within minutes, the series reaffirms art as a language of resistance, memory and public presence.",
+  "dimensions_pt": "Série de 13 obras em papel",
+  "dimensions_en": "Series of 13 works on paper"
+}

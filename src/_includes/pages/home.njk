@@ -5,53 +5,88 @@
 {%- set muralsUrl = '/' + lang + '/' + t.path_murals + '/' -%}
 {%- set worksUrl = '/' + lang + '/' + t.path_works + '/' -%}
 {%- set showsUrl = '/' + lang + '/' + t.path_exhibitions + '/' -%}
+{%- set aboutUrl = '/' + lang + '/' + t.path_about + '/' -%}
+{%- set resistanceUrl = worksUrl + 'resistencia/' -%}
 <section class="hero nv-hero" aria-label="{{ site.name }}">
   <div class="hero-stick">
     <div class="hero-frame nv-hero-frame">
       <div class="hero-slides">
         {% for h in site.hero %}<img class="hero-media{% if loop.first %} on{% endif %}" src="{{ h.image | img(2400) }}" alt="{{ h.caption }}" data-cap="{{ h.caption }}" {% if loop.first %}fetchpriority="high"{% endif %} decoding="async">{% endfor %}
       </div>
-      
-      
     </div>
+
     <div class="nv-hero-layout">
-      <div class="nv-top-label">{{ "PORTFÓLIO / 2026" if lang == "pt" else "PORTFOLIO / 2026" }} <span>CURITIBA · INTERNATIONAL</span></div>
-      <div class="nv-hero-headline" aria-label="Neto Vettorello"><span class="nv-title-one">Neto</span><span class="nv-title-two">Vettorello</span><span class="nv-hero-profession">{{ "Artista visual · Arte pública, pintura, escultura e instalação" if lang == "pt" else "Visual artist · Public art, painting, sculpture & installation" }}</span></div>
-      <div class="nv-hero-bottom">
-        <div class="nv-hero-index"><span class="nv-index-number">01</span><span class="nv-index-rule"></span><span class="nv-index-total">0{{ site.hero.length }}</span></div>
-        <div class="nv-hero-descriptor"><strong>{{ "Obras e projetos selecionados" if lang == "pt" else "Selected art & projects" }}</strong><span>{{ "Brasil · Irlanda · Internacional" if lang == "pt" else "Brazil · Ireland · International" }}</span></div>
-        <a href="#nv-curated" class="nv-scroll-cue" aria-label="{{ 'Explorar obras' if lang == 'pt' else 'Explore works' }}">{{ 'DESCOBRIR' if lang == 'pt' else 'DISCOVER' }}<span>↘</span></a>
+      <div class="nv-hero-copy" data-reveal>
+        <h1 class="nv-hero-headline" aria-label="Neto Vettorello"><span class="nv-title-one">Neto</span><span class="nv-title-two">Vettorello</span></h1>
+        <p class="nv-hero-profession">{{ "Visual artist · Public art, painting, sculpture & installation" if lang == "en" else "Artista visual · Arte pública, pintura, escultura e instalação" }}</p>
       </div>
-      <div class="nv-slide-mark">{{ site.hero[0].caption }}</div>
+
+      <div class="nv-hero-bottom" data-reveal>
+        <div class="nv-hero-dossier">
+          <strong>{{ "Selected works & projects" if lang == "en" else "Obras e projetos selecionados" }}</strong>
+          <span>{{ "A curated overview of murals, artworks and site-specific practice." if lang == "en" else "Um panorama curado entre murais, obras e prática site-specific." }}</span>
+        </div>
+
+        <div class="nv-hero-nav" aria-label="{{ 'Featured projects' if lang == 'en' else 'Projetos em destaque' }}">
+          <div class="nv-hero-caption" data-nv-caption>{{ site.hero[0].caption }}</div>
+          <div class="nv-hero-progress"><span class="nv-progress-current" data-nv-current>01</span><div class="nv-progress-bar"><span data-nv-progress-fill></span></div><span class="nv-progress-total">0{{ site.hero.length }}</span></div>
+          <div class="nv-hero-dots" data-nv-dots>
+            {% for h in site.hero %}<button type="button" class="nv-dot{% if loop.first %} is-active{% endif %}" aria-label="{{ h.caption }}" data-index="{{ loop.index0 }}"></button>{% endfor %}
+          </div>
+        </div>
+
+        <a href="#nv-curated" class="nv-scroll-cue" aria-label="{{ 'Explore works' if lang == 'en' else 'Explorar obras' }}">{{ 'DISCOVER' if lang == 'en' else 'DESCOBRIR' }}<span>↘</span></a>
+      </div>
     </div>
-    <button class="nv-slide-next" type="button" aria-label="Next artwork">NEXT <span>↗</span></button>
   </div>
 </section>
-<section class="nv-manifesto" aria-label="Artist introduction">
-  <span class="nv-micro">{{ "PRÁTICA ARTÍSTICA" if lang == "pt" else "ARTISTIC PRACTICE" }}</span>
-  <div class="nv-manifesto-content"><h2 class="nv-manifesto-copy">{{ "Uma prática, múltiplas linguagens." if lang == "pt" else "One practice, many forms." }}</h2>
-  <p class="nv-manifesto-description">{{ "Murais, pinturas, esculturas e instalações para espaços públicos, exposições e colaborações internacionais." if lang == "pt" else "Murals, paintings, sculpture and installations for public spaces, exhibitions and international collaborations." }}</p></div>
-  <a class="nv-manifesto-link" href="{{ ('/' + lang + '/sobre/') if lang == 'pt' else ('/' + lang + '/about/') }}">{{ "CONHEÇA O ARTISTA" if lang == "pt" else "ABOUT THE ARTIST" }} ↗</a>
+
+<section class="nv-manifesto" aria-label="{{ 'Practice overview' if lang == 'en' else 'Visão geral da prática' }}">
+  <span class="nv-micro" data-reveal>{{ "PRACTICE" if lang == "en" else "PRÁTICA" }}</span>
+  <div class="nv-manifesto-content">
+    <h2 class="nv-manifesto-copy" data-reveal>{{ "A visual practice built across public space, original works and commissioned projects." if lang == "en" else "Uma prática visual construída entre espaço público, obras autorais e projetos comissionados." }}</h2>
+    <p class="nv-manifesto-description" data-reveal>{{ "From murals and paintings to sculpture and installation, each project is shaped by scale, context and a distinct visual language." if lang == "en" else "De murais e pinturas a esculturas e instalações, cada projeto é conduzido por escala, contexto e uma linguagem visual própria." }}</p>
+  </div>
+  <a class="nv-manifesto-link" href="#nv-curated" data-reveal>{{ "VIEW SELECTED WORKS" if lang == "en" else "VER OBRAS SELECIONADAS" }} ↘</a>
 </section>
-<section class="nv-curated" id="nv-curated" aria-label="Selected visual works">
-  <div class="nv-curated-top"><span>[ 002 — SELECTED WORKS ]</span><span>SCROLL TO EXPLORE ↓</span></div>
-  <div class="nv-curated-heading"><h2>{{ "Obras selecionadas" if lang == "pt" else "Selected works" }}</h2><p>{{ "Uma seleção de murais, pinturas e instalações." if lang == "pt" else "A selection of murals, paintings and installations." }}</p></div>
+
+<section class="nv-curated" id="nv-curated" aria-label="{{ 'Selected works' if lang == 'en' else 'Obras selecionadas' }}">
+  <div class="nv-curated-heading" data-reveal><h2>{{ "Selected works" if lang == "en" else "Obras selecionadas" }}</h2><p>{{ "A concise selection across murals, paintings and sculptural thinking." if lang == "en" else "Uma seleção concisa entre murais, pinturas e pensamento escultórico." }}</p></div>
   <div class="nv-immersive-rail" data-immersive-rail>
-    <a href="{{ muralsUrl | u }}" class="nv-immersive-card"><img src="/img/portal.jpg" alt="The Portal — mural" loading="lazy"><span class="nv-immersive-meta"><b>01 / THE PORTAL</b><small>WATERFORD — 2023</small></span></a>
-    <a href="{{ worksUrl | u }}" class="nv-immersive-card"><img src="/img/tani-e.jpg" alt="Tani É" loading="lazy"><span class="nv-immersive-meta"><b>02 / TANI É</b><small>VISUAL LANGUAGE</small></span></a>
-    <a href="{{ muralsUrl | u }}" class="nv-immersive-card"><img src="/img/into-the-reef.jpg" alt="Into the Reef" loading="lazy"><span class="nv-immersive-meta"><b>03 / INTO THE REEF</b><small>CORK — 2025</small></span></a>
-    <a href="{{ worksUrl | u }}" class="nv-immersive-card"><img src="/img/mestres.jpg" alt="Mestres" loading="lazy"><span class="nv-immersive-meta"><b>04 / MESTRES</b><small>2025</small></span></a>
+    <a href="{{ muralsUrl | u }}" class="nv-immersive-card" data-reveal><img src="/img/portal.jpg" alt="The Portal — mural" loading="lazy"><span class="nv-immersive-meta"><b>THE PORTAL</b><small>WATERFORD — 2023</small></span></a>
+    <a href="{{ resistanceUrl | u }}" class="nv-immersive-card" data-reveal><img src="/img/resistencia/resistencia-series-mark.png" alt="{{ 'Resistance Series' if lang == 'en' else 'Série Resistência' }}" loading="lazy"><span class="nv-immersive-meta"><b>{{ "RESISTANCE SERIES" if lang == "en" else "SÉRIE RESISTÊNCIA" }}</b><small>2026</small></span></a>
+    <a href="{{ worksUrl | u }}" class="nv-immersive-card" data-reveal><img src="/img/tani-e.jpg" alt="Tani É" loading="lazy"><span class="nv-immersive-meta"><b>TANI É</b><small>{{ "VISUAL LANGUAGE" if lang == "en" else "LINGUAGEM VISUAL" }}</small></span></a>
+    <a href="{{ muralsUrl | u }}" class="nv-immersive-card" data-reveal><img src="/img/into-the-reef.jpg" alt="Into the Reef" loading="lazy"><span class="nv-immersive-meta"><b>INTO THE REEF</b><small>CORK — 2025</small></span></a>
   </div>
-  <div class="nv-rail-footer"><span>DRAG / SCROLL TO NAVIGATE</span><div class="nv-rail-actions"><button type="button" data-nv-prev aria-label="Previous artwork">←</button><button type="button" data-nv-next aria-label="Next artwork">→</button></div></div>
+  <div class="nv-rail-footer" data-reveal><span>{{ "Drag or scroll to navigate" if lang == "en" else "Arraste ou role para navegar" }}</span><div class="nv-rail-actions"><button type="button" data-nv-prev aria-label="Previous artwork">←</button><button type="button" data-nv-next aria-label="Next artwork">→</button></div></div>
+</section>
+
+<section class="nv-resistance wrap" aria-label="{{ 'Resistance series' if lang == 'en' else 'Série Resistência' }}">
+  <div class="nv-resistance-head">
+    <div data-reveal>
+      <span class="nv-resistance-kicker">{{ "SERIES" if lang == "en" else "SÉRIE" }}</span>
+      <h2>{{ "Resistance" if lang == "en" else "Resistência" }}</h2>
+    </div>
+    <div class="nv-resistance-intro" data-reveal>
+      <p>{{ "A 2026 series of works in which Tani É confronts authoritarianism, political violence and social tension through protest, memory and symbolic presence." if lang == "en" else "Uma série de 2026 em que Tani É confronta o autoritarismo, a violência política e a tensão social por meio de protesto, memória e presença simbólica." }}</p>
+      <a class="btn btn--ghost nv-resistance-link" href="{{ resistanceUrl | u }}">{{ "VIEW THE SERIES" if lang == "en" else "VER A SÉRIE" }} <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+  <div class="nv-resistance-grid">
+    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card nv-resistance-card--lead" data-reveal><img src="/img/resistencia/resistencia-molotov.png" alt="Resistance series — Molotov work" loading="lazy"></a>
+    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="/img/resistencia/resistencia-bleeding-flag.png" alt="Resistance series — bleeding flag work" loading="lazy"></a>
+    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="/img/resistencia/resistencia-palestine.png" alt="Resistance series — Palestine work" loading="lazy"></a>
+    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="/img/resistencia/resistencia-sign.png" alt="Resistance series — sign work" loading="lazy"></a>
+  </div>
 </section>
 
 <section class="statement wrap">
-  <div class="statement-index"><span>{{ "03 / SOBRE O ARTISTA" if lang == "pt" else "03 / ABOUT THE ARTIST" }}</span><span class="statement-asterisk" aria-hidden="true">✳</span></div>
-  <div class="nv-statement-layout"><h2 class="nv-statement-title">{{ "Sobre o artista" if lang == "pt" else "About the artist" }}</h2><div class="nv-statement-content"><p class="statement-text">{{ t.intro }}</p><a class="btn btn--ghost nv-statement-cta" href="{{ ('/' + lang + '/' + t.path_about + '/') | u }}">{{ "CONHEÇA O ARTISTA" if lang == "pt" else "EXPLORE THE PRACTICE" }} <span aria-hidden="true">↗</span></a></div></div>
+  <div class="statement-index" data-reveal><span>{{ "ABOUT THE ARTIST" if lang == "en" else "SOBRE O ARTISTA" }}</span></div>
+  <div class="nv-statement-layout"><h2 class="nv-statement-title" data-reveal>{{ "A multidisciplinary practice with a distinct visual language." if lang == "en" else "Uma prática multidisciplinar com linguagem visual própria." }}</h2><div class="nv-statement-content"><p class="statement-text" data-reveal>{{ t.intro }}</p><a class="btn btn--ghost nv-statement-cta" href="{{ aboutUrl | u }}" data-reveal>{{ "EXPLORE THE PRACTICE" if lang == "en" else "CONHEÇA O ARTISTA" }} <span aria-hidden="true">↗</span></a></div></div>
 </section>
 
 <section class="sec section-numbered" style="--section-n:'02'">
-  <div class="head wrap">
+  <div class="head wrap" data-reveal>
     <h2>{{ t.nav_murals }}</h2>
     <a class="more" href="{{ muralsUrl | u }}">{{ t.all_murals }}{% include "chev.svg" %}</a>
   </div>
@@ -93,7 +128,7 @@
 {%- endif %}
 
 <section class="sec section-numbered" style="--section-n:'04'">
-  <div class="head wrap">
+  <div class="head wrap" data-reveal>
     <h2>{{ t.nav_works }}</h2>
     <a class="more" href="{{ worksUrl | u }}">{{ t.all_works }}{% include "chev.svg" %}</a>
   </div>
@@ -107,7 +142,7 @@
 {%- set shows = exposicoes | sorted | featured %}
 {%- if shows.length %}
 <section class="sec wrap">
-  <div class="head">
+  <div class="head" data-reveal>
     <h2>{{ t.nav_exhibitions }}</h2>
     <a class="more" href="{{ showsUrl | u }}">{{ t.see_exhibitions }}{% include "chev.svg" %}</a>
   </div>
@@ -120,7 +155,7 @@
 {%- endif %}
 
 <section class="sec wrap clients">
-  <h2>{{ t.clients }}</h2>
+  <h2 data-reveal>{{ t.clients }}</h2>
   <img class="clients-img" src="{{ site.clients_image | img(2000) }}" alt="{{ site.clients_alt }}" loading="lazy" decoding="async" width="2000" height="957" data-reveal>
 </section>
 

@@ -12,7 +12,8 @@
 
 {#- Obra: a imagem aparece inteira, sem corte, sobre um cartão. -#}
 {%- macro art(w, slug, lang, t, href, src, cls) -%}
-{%- set dims = ((w.dimensions or '') | replace(',', '.')) if lang == 'en' else w.dimensions -%}
+{%- set rawDims = w['dimensions_' + lang] or w.dimensions -%}
+{%- set dims = ((rawDims or '') | replace(',', '.')) if lang == 'en' else rawDims -%}
 <a class="art{% if cls %} {{ cls }}{% endif %}" href="{{ href }}" data-tags="{{ w.status }}|{{ w.kind }}">
   <span class="art-media"><img src="{{ src }}" alt="{{ w.title }}" loading="lazy" decoding="async" style="view-transition-name:w-{{ slug }}"></span>
   <span class="art-cap">

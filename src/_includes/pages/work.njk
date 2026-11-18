@@ -3,7 +3,8 @@
 {%- set w = obras[slug] -%}
 {%- set list = obras | sorted -%}
 {%- set base = '/' + lang + '/' + t.path_works + '/' -%}
-{%- set dims = ((w.dimensions or '') | replace(',', '.')) if lang == 'en' else w.dimensions -%}
+{%- set rawDims = w['dimensions_' + lang] or w.dimensions -%}
+{%- set dims = ((rawDims or '') | replace(',', '.')) if lang == 'en' else rawDims -%}
 {%- set txt = w['text_' + lang] -%}
 <article class="piece wrap">
   <div class="piece-media">
