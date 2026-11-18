@@ -16,7 +16,7 @@
     </div>
     <div class="nv-hero-layout">
       <div class="nv-top-label">{{ "PORTFÓLIO / 2026" if lang == "pt" else "PORTFOLIO / 2026" }} <span>CURITIBA · INTERNATIONAL</span></div>
-      <div class="nv-hero-headline" aria-label="Neto Vettorello"><span class="nv-title-one">Neto</span><span class="nv-title-two">Vettorello</span><span class="nv-hero-profession">{{ "Artista visual · Graffiti, pintura e instalações" if lang == "pt" else "Visual artist · Graffiti, painting & installations" }}</span></div>
+      <div class="nv-hero-headline" aria-label="Neto Vettorello"><span class="nv-title-one">Neto</span><span class="nv-title-two">Vettorello</span><span class="nv-hero-profession">{{ "Artista visual · Arte pública, pintura, escultura e instalação" if lang == "pt" else "Visual artist · Public art, painting, sculpture & installation" }}</span></div>
       <div class="nv-hero-bottom">
         <div class="nv-hero-index"><span class="nv-index-number">01</span><span class="nv-index-rule"></span><span class="nv-index-total">0{{ site.hero.length }}</span></div>
         <div class="nv-hero-descriptor"><strong>{{ "Obras e projetos selecionados" if lang == "pt" else "Selected art & projects" }}</strong><span>{{ "Brasil · Irlanda · Internacional" if lang == "pt" else "Brazil · Ireland · International" }}</span></div>
@@ -28,9 +28,9 @@
   </div>
 </section>
 <section class="nv-manifesto" aria-label="Artist introduction">
-  <span class="nv-micro">{{ "SOBRE A PRÁTICA" if lang == "pt" else "THE PRACTICE" }}</span>
-  <div class="nv-manifesto-content"><h2 class="nv-manifesto-copy">{{ "Da rua ao espaço expositivo." if lang == "pt" else "From the street to the exhibition space." }}</h2>
-  <p class="nv-manifesto-description">{{ "Uma trajetória entre o graffiti, a pintura e a instalação. Projetos que investigam identidade, território e memória." if lang == "pt" else "A practice across graffiti, painting and installation. Projects exploring identity, territory and memory." }}</p></div>
+  <span class="nv-micro">{{ "PRÁTICA ARTÍSTICA" if lang == "pt" else "ARTISTIC PRACTICE" }}</span>
+  <div class="nv-manifesto-content"><h2 class="nv-manifesto-copy">{{ "Uma prática, múltiplas linguagens." if lang == "pt" else "One practice, many forms." }}</h2>
+  <p class="nv-manifesto-description">{{ "Murais, pinturas, esculturas e instalações para espaços públicos, exposições e colaborações internacionais." if lang == "pt" else "Murals, paintings, sculpture and installations for public spaces, exhibitions and international collaborations." }}</p></div>
   <a class="nv-manifesto-link" href="{{ ('/' + lang + '/sobre/') if lang == 'pt' else ('/' + lang + '/about/') }}">{{ "CONHEÇA O ARTISTA" if lang == "pt" else "ABOUT THE ARTIST" }} ↗</a>
 </section>
 <section class="nv-curated" id="nv-curated" aria-label="Selected visual works">
@@ -46,8 +46,8 @@
 </section>
 
 <section class="statement wrap">
-  <div class="statement-index"><span>01 / ARTIST STATEMENT</span><span class="statement-asterisk" aria-hidden="true">✳</span></div>
-  <p class="statement-text">{{ t.intro }}</p>
+  <div class="statement-index"><span>{{ "03 / SOBRE O ARTISTA" if lang == "pt" else "03 / ABOUT THE ARTIST" }}</span><span class="statement-asterisk" aria-hidden="true">✳</span></div>
+  <div class="nv-statement-layout"><h2 class="nv-statement-title">{{ "Sobre o artista" if lang == "pt" else "About the artist" }}</h2><div class="nv-statement-content"><p class="statement-text">{{ t.intro }}</p><a class="btn btn--ghost nv-statement-cta" href="{{ ('/' + lang + '/' + t.path_about + '/') | u }}">{{ "CONHEÇA O ARTISTA" if lang == "pt" else "EXPLORE THE PRACTICE" }} <span aria-hidden="true">↗</span></a></div></div>
 </section>
 
 <section class="sec section-numbered" style="--section-n:'02'">

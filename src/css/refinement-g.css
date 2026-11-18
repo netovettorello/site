@@ -1,0 +1,122 @@
+/* VERSION G — quiet premium / coherent optical glass system
+   Consistent corner radii, typographic scale and glass surfaces.
+   Artwork remains unfiltered. A single type family (Geist) throughout.
+*/
+:root {
+  --nv-radius-card: clamp(16px, 1.75vw, 24px);
+  --nv-radius-control: 999px;
+  --nv-radius-inner: 15px;
+  --nv-soft-edge: rgba(255,255,255,.20);
+  --r-lg: var(--nv-radius-card);
+  --r-md: var(--nv-radius-inner);
+  --gap: clamp(14px,1.65vw,22px);
+  --nv-ease: cubic-bezier(.22,1,.36,1);
+}
+/* One consistent family and restrained hierarchy */
+body, button, input, select, textarea { font-family: var(--font); }
+h1,h2,h3 { text-wrap: balance; }
+/* Capsule navigation: gentle border and internal highlight, no hard rectangle */
+.nav { top: clamp(12px,1.7vw,22px); padding-inline: 14px; }
+.nav-pill {
+  border-radius: var(--nv-radius-control) !important;
+  min-height: 58px; height: auto;
+  padding: 6px 8px 6px 24px;
+  gap: clamp(10px,1.7vw,24px);
+  background: rgba(27,28,30,.62) !important;
+  border: 1px solid rgba(255,255,255,.26) !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,.20), inset 0 1px 0 rgba(255,255,255,.26), inset 0 -1px rgba(255,255,255,.035) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(155%) !important;
+  backdrop-filter: blur(28px) saturate(155%) !important;
+}
+.nav-pill:before { border-radius:inherit; background:linear-gradient(112deg,rgba(255,255,255,.095),transparent 37%,rgba(255,255,255,.045)); }
+.nav-links a, .nav-lang { border-radius: var(--nv-radius-control); text-decoration: none !important; transition: background .3s ease,color .3s ease; }
+.nav-links a:hover,.nav-links a[aria-current],.nav-lang:hover { background:rgba(255,255,255,.115); }
+.nav .btn,.nav .btn--sm {
+  border-radius:var(--nv-radius-control) !important;
+  min-height:40px; height:40px;
+  padding-inline:clamp(15px,1.6vw,23px);
+  color:#18191b !important;
+  background:rgba(250,249,246,.96) !important;
+}
+.nav-icon,.nav-toggle { border-radius: var(--nv-radius-control); }
+/* All actions follow one geometry: pill, not mixed squares and circles */
+.btn,.btn--ghost,.chip,.paddle,.more,.nav-toggle,.nv-rail-actions button,.nv-slide-next {
+  border-radius:var(--nv-radius-control) !important;
+}
+.btn { min-height:46px; transition:transform .35s var(--nv-ease), background .25s, box-shadow .3s; }
+.btn:hover { transform:translateY(-1px); }
+.btn:focus-visible,.nav-links a:focus-visible,.nv-slide-next:focus-visible { outline-offset:4px; }
+.more { padding:10px 0; }
+/* Soft but consistent artwork/card edges across all pages */
+.tile,.art,.feature,.shot,.next,.gallery img,.grid-shots .shot,
+.nv-immersive-card,.nv-immersive-card:nth-child(even) {
+  border-radius:var(--nv-radius-card) !important;
+  overflow:hidden;
+}
+.scale-bar {border-radius: 12px !important;}
+.art { background:var(--tile);border:1px solid rgba(255,255,255,.085); }
+.art-cap {border-top-color:rgba(255,255,255,.09)}
+.feature { background:var(--tile); }
+.gallery img {display:block}
+/* Visible but quiet overlays inside gallery cards */
+.nv-immersive-meta {
+  border-radius: var(--nv-radius-inner) !important;
+  background:rgba(15,17,18,.50);
+  border:1px solid rgba(255,255,255,.24);
+  padding:clamp(14px,1.45vw,19px) clamp(16px,1.6vw,22px);
+}
+.nv-curated-heading h2 {font-size:clamp(32px,3.35vw,50px);line-height:1.11;letter-spacing:-.038em;}
+.nv-curated-heading p {font-size:clamp(13px,1vw,15px)}
+.nv-curated {padding-block:clamp(74px,7vw,110px)}
+.nv-immersive-card {box-shadow: 0 16px 42px rgba(0,0,0,.24);}
+.nv-rail-actions button {width:44px;height:44px;}
+/* Hero — artwork first, clear label, one consistent font */
+.nv-hero .hero-media {filter:brightness(.81) saturate(.96)}
+.nv-hero-headline {font-size:clamp(44px,5vw,74px);letter-spacing:-.05em;line-height:1.055;}
+.nv-hero-profession {margin-top:22px; font-size:clamp(13px,1.12vw,16px);line-height:1.6; max-width:440px;}
+.nv-hero .nv-slide-next {background:rgba(22,24,26,.26);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);}
+/* Intro: concept + commercially meaningful supporting text */
+.nv-manifesto {padding-block:clamp(78px,8.5vw,128px);min-height:auto;gap:58px;}
+.nv-manifesto-content {grid-template-columns:minmax(0,1.25fr) minmax(250px,.7fr);gap:clamp(38px,6vw,95px);align-items:center;}
+.nv-manifesto-copy {max-width:640px;font-size:clamp(30px,3vw,46px);letter-spacing:-.037em;line-height:1.13;}
+.nv-manifesto-description {max-width:360px;font-size:clamp(14px,1.15vw,17px);line-height:1.65;}
+.nv-manifesto-link {display:inline-flex;align-items:center;min-height:42px;border:1px solid rgba(20,20,20,.18);border-radius:var(--nv-radius-control);padding:0 20px;background:rgba(255,255,255,.45);font-size:10px;letter-spacing:.09em;transition:background .25s,transform .25s;}
+.nv-manifesto-link:hover {background:#fff;transform:translateY(-2px);}
+/* About panel replaces the huge slogan treatment */
+.statement {padding-block:clamp(82px,10vw,150px) clamp(65px,8vw,120px) !important;}
+.statement-index {margin-bottom:clamp(32px,4vw,65px);}
+.nv-statement-layout {display:grid;grid-template-columns:minmax(200px,.6fr) minmax(0,1.4fr);gap:clamp(35px,6vw,100px);align-items:start;}
+.nv-statement-title {font-size:clamp(25px,2.7vw,39px);letter-spacing:-.045em;font-weight:500;line-height:1.13;}
+.nv-statement-content {display:grid;justify-items:start;gap:clamp(24px,3.2vw,42px);}
+.statement-text {font-size:clamp(18px,1.85vw,27px) !important;line-height:1.47 !important;letter-spacing:-.022em !important;max-width:850px;font-weight:400;text-wrap:pretty;}
+.nv-statement-cta {font-size:11px;padding:0 23px;letter-spacing:.085em;}
+.nv-statement-cta span {font-size:16px;margin-left:5px;}
+/* Lower sections share clear, contained headings */
+.sec .head h2 {font-size:clamp(27px,3.1vw,45px);letter-spacing:-.04em;line-height:1.13;}
+.section-numbered .head h2::before {font-size:10px;margin-top:5px;}
+.clients h2 {font-size:clamp(24px,2.5vw,38px);letter-spacing:-.035em;line-height:1.2;}
+.clients-img {opacity:.91;}
+/* Forms / detail pages use aligned gentle corners */
+.form,.form-ref,.form-done {border-radius:var(--nv-radius-card);}
+.form :is(input,textarea,select) {border-radius:14px;}
+.sheet {backdrop-filter:blur(30px) saturate(140%);-webkit-backdrop-filter:blur(30px) saturate(140%);}
+@media (max-width:880px) {
+  .nav-pill {width:100%;min-height:56px;padding-left:18px;padding-right:8px;}
+  .nav-toggle {width:40px;height:40px;}
+}
+@media (max-width:760px) {
+  .nv-hero-headline {font-size:clamp(42px,9vw,62px);max-width:90%;}
+  .nv-hero-profession {font-size:13px;max-width:295px;}
+  .nv-manifesto {gap:34px;padding-block:76px;}
+  .nv-manifesto-content {grid-template-columns:1fr;gap:19px;}
+  .nv-manifesto-copy {font-size:clamp(29px,7.2vw,39px);}
+  .nv-manifesto-description {max-width:420px;}
+  .nv-statement-layout {grid-template-columns:1fr;gap:25px;}
+  .statement-text {font-size:clamp(18px,4.3vw,22px) !important;}
+  .nv-curated-heading h2 {font-size:clamp(31px,7vw,42px);}
+  .nv-immersive-meta {border-radius:14px !important;}
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn,.nv-manifesto-link {transition:none!important;}
+  .btn:hover,.nv-manifesto-link:hover {transform:none!important;}
+}
