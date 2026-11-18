@@ -11,32 +11,36 @@
   <div class="hero-stick">
     <div class="hero-frame nv-hero-frame">
       <div class="hero-slides">
-        {% for h in site.hero %}<img class="hero-media{% if loop.first %} on{% endif %}" src="{{ h.image | img(2400) }}" alt="{{ h.caption }}" data-cap="{{ h.caption }}" {% if loop.first %}fetchpriority="high"{% endif %} decoding="async">{% endfor %}
+        {% for h in site.hero %}<img draggable="false" class="hero-media{% if loop.first %} on{% endif %}" src="{{ h.image | img(2400) }}" alt="{{ h.caption }}" data-cap="{{ h.caption }}" {% if loop.first %}fetchpriority="high"{% endif %} decoding="async">{% endfor %}
       </div>
     </div>
 
     <div class="nv-hero-layout">
-      <div class="nv-hero-copy" data-reveal>
-        <h1 class="nv-hero-headline" aria-label="Neto Vettorello"><span class="nv-title-one">Neto</span><span class="nv-title-two">Vettorello</span></h1>
-        <p class="nv-hero-profession">{{ "Visual artist · Public art, painting, sculpture & installation" if lang == "en" else "Artista visual · Arte pública, pintura, escultura e instalação" }}</p>
+      <div class="nv-hero-copy">
+        <h1 class="nv-hero-headline" aria-label="Neto Vettorello" data-reveal><span class="nv-title-one">Neto</span><span class="nv-title-two">Vettorello</span></h1>
+        <p class="nv-hero-profession" data-reveal>{{ "Visual artist · Public art, painting, sculpture & installation" if lang == "en" else "Artista visual · Arte pública, pintura, escultura e instalação" }}</p>
       </div>
 
-      <div class="nv-hero-bottom" data-reveal>
-        <div class="nv-hero-dossier">
-          <strong>{{ "Selected works & projects" if lang == "en" else "Obras e projetos selecionados" }}</strong>
-          <span>{{ "A curated overview of murals, artworks and site-specific practice." if lang == "en" else "Um panorama curado entre murais, obras e prática site-specific." }}</span>
-        </div>
+      <button class="nv-hero-arrow nv-hero-arrow--prev" type="button" data-nv-slide-prev aria-label="{{ 'Previous artwork' if lang == 'en' else 'Obra anterior' }}"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="m14 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <button class="nv-hero-arrow nv-hero-arrow--next" type="button" data-nv-slide-next aria-label="{{ 'Next artwork' if lang == 'en' else 'Próxima obra' }}"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="m10 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
 
-        <div class="nv-hero-nav" aria-label="{{ 'Featured projects' if lang == 'en' else 'Projetos em destaque' }}">
-          <div class="nv-hero-caption" data-nv-caption>{{ site.hero[0].caption }}</div>
-          <div class="nv-hero-progress"><span class="nv-progress-current" data-nv-current>01</span><div class="nv-progress-bar"><span data-nv-progress-fill></span></div><span class="nv-progress-total">0{{ site.hero.length }}</span></div>
-          <div class="nv-hero-dots" data-nv-dots>
-            {% for h in site.hero %}<button type="button" class="nv-dot{% if loop.first %} is-active{% endif %}" aria-label="{{ h.caption }}" data-index="{{ loop.index0 }}"></button>{% endfor %}
+      <div class="nv-hero-bottom">
+        <div class="nv-carousel-ui" role="group" aria-label="{{ 'Artwork slideshow controls' if lang == 'en' else 'Controles do carrossel de obras' }}">
+          <div class="nv-carousel-pill" data-nv-controls>
+            <button class="nv-carousel-step" type="button" data-nv-slide-prev-bottom aria-label="{{ 'Previous artwork' if lang == 'en' else 'Obra anterior' }}"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="m14 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+            <div class="nv-carousel-dots" data-nv-dots>
+              {% for h in site.hero %}<button type="button" class="nv-carousel-dot{% if loop.first %} is-active{% endif %}" data-index="{{ loop.index0 }}" aria-label="{{ 'Go to slide' if lang == 'en' else 'Ir para imagem' }} {{ loop.index }}" aria-current="{{ 'true' if loop.first else 'false' }}"><span class="nv-carousel-track"><span class="nv-carousel-fill"></span></span></button>{% endfor %}
+            </div>
+            <button class="nv-carousel-step" type="button" data-nv-slide-next-bottom aria-label="{{ 'Next artwork' if lang == 'en' else 'Próxima obra' }}"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="m10 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           </div>
+          <button class="nv-carousel-toggle" data-nv-autoplay type="button" aria-label="{{ 'Pause slideshow' if lang == 'en' else 'Pausar apresentação' }}" aria-pressed="true" title="{{ 'Pause slideshow' if lang == 'en' else 'Pausar apresentação' }}">
+            <svg class="nv-icon-pause" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg>
+            <svg class="nv-icon-play" viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path d="M7 4.7a1.2 1.2 0 0 1 1.85-1.01l11 7.3a1.2 1.2 0 0 1 0 2.02l-11 7.3A1.2 1.2 0 0 1 7 19.3V4.7Z" fill="currentColor"/></svg>
+          </button>
         </div>
-
-        <a href="#nv-curated" class="nv-scroll-cue" aria-label="{{ 'Explore works' if lang == 'en' else 'Explorar obras' }}">{{ 'DISCOVER' if lang == 'en' else 'DESCOBRIR' }}<span>↘</span></a>
+        <a href="#nv-curated" class="nv-scroll-cue" aria-label="{{ 'Explore works' if lang == 'en' else 'Explorar obras' }}">{{ 'EXPLORE' if lang == 'en' else 'EXPLORAR' }}<span aria-hidden="true">↓</span></a>
       </div>
+      <div class="nv-slide-live sr-only" aria-live="polite" data-nv-live></div>
     </div>
   </div>
 </section>
