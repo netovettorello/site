@@ -118,6 +118,28 @@ collections:
             widget: select
             options: [{ label: Escuro, value: dark }, { label: Claro, value: light }]
           - { label: Nome, name: name, widget: hidden }
+      - name: tanie
+        label: Tani É — Página do personagem
+        file: src/_data/tanie.json
+        fields:
+          - { label: Título, name: title, widget: string }
+          - { label: Categoria (português), name: eyebrow_pt, widget: string }
+          - { label: Categoria (inglês), name: eyebrow_en, widget: string }
+          - { label: Chamada (português), name: headline_pt, widget: string }
+          - { label: Chamada (inglês), name: headline_en, widget: string }
+          - { label: Introdução (português), name: intro_pt, widget: text }
+          - { label: Introdução (inglês), name: intro_en, widget: text }
+          - { label: Título origem (português), name: origin_title_pt, widget: string }
+          - { label: Título origem (inglês), name: origin_title_en, widget: string }
+          - { label: Texto origem (português), name: origin_pt, widget: text }
+          - { label: Texto origem (inglês), name: origin_en, widget: text }
+          - { label: Título simbolismo (português), name: symbol_title_pt, widget: string }
+          - { label: Título simbolismo (inglês), name: symbol_title_en, widget: string }
+          - { label: Texto simbolismo (português), name: symbol_pt, widget: text }
+          - { label: Texto simbolismo (inglês), name: symbol_en, widget: text }
+          - { label: Imagem principal, name: image, widget: image }
+          - { label: Imagem secundária, name: image_secondary, widget: image }
+          - { label: Imagem adicional, name: image_tertiary, widget: image }
       - name: about
         label: Sobre e CV
         file: src/_data/about.json

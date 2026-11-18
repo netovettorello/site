@@ -45,24 +45,15 @@
   </div>
 </section>
 
-<section class="nv-manifesto" aria-label="{{ 'Practice overview' if lang == 'en' else 'Visão geral da prática' }}">
-  <span class="nv-micro" data-reveal>{{ "PRACTICE" if lang == "en" else "PRÁTICA" }}</span>
-  <div class="nv-manifesto-content">
-    <h2 class="nv-manifesto-copy" data-reveal>{{ "A visual practice built across public space, original works and commissioned projects." if lang == "en" else "Uma prática visual construída entre espaço público, obras autorais e projetos comissionados." }}</h2>
-    <p class="nv-manifesto-description" data-reveal>{{ "From murals and paintings to sculpture and installation, each project is shaped by scale, context and a distinct visual language." if lang == "en" else "De murais e pinturas a esculturas e instalações, cada projeto é conduzido por escala, contexto e uma linguagem visual própria." }}</p>
-  </div>
-  <a class="nv-manifesto-link" href="#nv-curated" data-reveal>{{ "VIEW SELECTED WORKS" if lang == "en" else "VER OBRAS SELECIONADAS" }} ↘</a>
-</section>
-
 <section class="nv-curated" id="nv-curated" aria-label="{{ 'Selected works' if lang == 'en' else 'Obras selecionadas' }}">
-  <div class="nv-curated-heading" data-reveal><h2>{{ "Selected works" if lang == "en" else "Obras selecionadas" }}</h2><p>{{ "A concise selection across murals, paintings and sculptural thinking." if lang == "en" else "Uma seleção concisa entre murais, pinturas e pensamento escultórico." }}</p></div>
-  <div class="nv-immersive-rail" data-immersive-rail>
-    <a href="{{ muralsUrl | u }}" class="nv-immersive-card" data-reveal><img src="/img/portal.jpg" alt="The Portal — mural" loading="lazy"><span class="nv-immersive-meta"><b>THE PORTAL</b><small>WATERFORD — 2023</small></span></a>
-    <a href="{{ resistanceUrl | u }}" class="nv-immersive-card" data-reveal><img src="/img/resistencia/resistencia-series-mark.png" alt="{{ 'Resistance Series' if lang == 'en' else 'Série Resistência' }}" loading="lazy"><span class="nv-immersive-meta"><b>{{ "RESISTANCE SERIES" if lang == "en" else "SÉRIE RESISTÊNCIA" }}</b><small>2026</small></span></a>
-    <a href="{{ worksUrl | u }}" class="nv-immersive-card" data-reveal><img src="/img/tani-e.jpg" alt="Tani É" loading="lazy"><span class="nv-immersive-meta"><b>TANI É</b><small>{{ "VISUAL LANGUAGE" if lang == "en" else "LINGUAGEM VISUAL" }}</small></span></a>
-    <a href="{{ muralsUrl | u }}" class="nv-immersive-card" data-reveal><img src="/img/into-the-reef.jpg" alt="Into the Reef" loading="lazy"><span class="nv-immersive-meta"><b>INTO THE REEF</b><small>CORK — 2025</small></span></a>
+  <div class="nv-curated-heading" data-reveal><h2>{{ "Selected works" if lang == "en" else "Obras selecionadas" }}</h2></div>
+  <div class="nv-immersive-rail" data-immersive-rail tabindex="0" aria-label="{{ 'Selected projects. Use arrow keys or controls to browse.' if lang == 'en' else 'Projetos em destaque. Use as setas do teclado ou os controles para navegar.' }}">
+    <a href="{{ (muralsUrl + 'the-portal/') | u }}" class="nv-immersive-card" data-reveal><img src="{{ '/img/portal.jpg' | img(1600) }}" alt="The Portal — mural" loading="lazy"><span class="nv-immersive-meta"><b>THE PORTAL</b><small>WATERFORD — 2023</small></span></a>
+    <a href="{{ resistanceUrl | u }}" class="nv-immersive-card" data-reveal><img src="{{ '/img/resistencia/resistencia-headdress.png' | img(1250) }}" alt="{{ 'Resistance Series' if lang == 'en' else 'Série Resistência' }}" loading="lazy"><span class="nv-immersive-meta"><b>{{ "RESISTANCE SERIES" if lang == "en" else "SÉRIE RESISTÊNCIA" }}</b><small>2026</small></span></a>
+    <a href="{{ ('/' + lang + '/tani-e/') | u }}" class="nv-immersive-card" data-reveal><img src="{{ '/img/tani-e.jpg' | img(1600) }}" alt="Tani É" loading="lazy"><span class="nv-immersive-meta"><b>TANI É</b><small>{{ "VISUAL LANGUAGE" if lang == "en" else "LINGUAGEM VISUAL" }}</small></span></a>
+    <a href="{{ (muralsUrl + 'into-the-reef/') | u }}" class="nv-immersive-card" data-reveal><img src="{{ '/img/into-the-reef.jpg' | img(1600) }}" alt="Into the Reef" loading="lazy"><span class="nv-immersive-meta"><b>INTO THE REEF</b><small>CORK — 2025</small></span></a>
   </div>
-  <div class="nv-rail-footer" data-reveal><span>{{ "Drag or scroll to navigate" if lang == "en" else "Arraste ou role para navegar" }}</span><div class="nv-rail-actions"><button type="button" data-nv-prev aria-label="Previous artwork">←</button><button type="button" data-nv-next aria-label="Next artwork">→</button></div></div>
+  <div class="nv-rail-footer" data-reveal><div class="nv-rail-actions"><button type="button" data-nv-prev aria-label="Previous artwork">←</button><button type="button" data-nv-next aria-label="Next artwork">→</button></div></div>
 </section>
 
 <section class="nv-resistance wrap" aria-label="{{ 'Resistance series' if lang == 'en' else 'Série Resistência' }}">
@@ -77,10 +68,10 @@
     </div>
   </div>
   <div class="nv-resistance-grid">
-    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card nv-resistance-card--lead" data-reveal><img src="/img/resistencia/resistencia-molotov.png" alt="Resistance series — Molotov work" loading="lazy"></a>
-    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="/img/resistencia/resistencia-bleeding-flag.png" alt="Resistance series — bleeding flag work" loading="lazy"></a>
-    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="/img/resistencia/resistencia-palestine.png" alt="Resistance series — Palestine work" loading="lazy"></a>
-    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="/img/resistencia/resistencia-sign.png" alt="Resistance series — sign work" loading="lazy"></a>
+    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card nv-resistance-card--lead" data-reveal><img src="{{ '/img/resistencia/resistencia-molotov.png' | img(1200) }}" alt="Resistance series — Molotov work" loading="lazy"></a>
+    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="{{ '/img/resistencia/resistencia-bleeding-flag.png' | img(900) }}" alt="Resistance series — bleeding flag work" loading="lazy"></a>
+    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="{{ '/img/resistencia/resistencia-palestine.png' | img(900) }}" alt="Resistance series — Palestine work" loading="lazy"></a>
+    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="{{ '/img/resistencia/resistencia-sign.png' | img(900) }}" alt="Resistance series — sign work" loading="lazy"></a>
   </div>
 </section>
 
@@ -89,7 +80,7 @@
   <div class="nv-statement-layout"><h2 class="nv-statement-title" data-reveal>{{ "A multidisciplinary practice with a distinct visual language." if lang == "en" else "Uma prática multidisciplinar com linguagem visual própria." }}</h2><div class="nv-statement-content"><p class="statement-text" data-reveal>{{ t.intro }}</p><a class="btn btn--ghost nv-statement-cta" href="{{ aboutUrl | u }}" data-reveal>{{ "EXPLORE THE PRACTICE" if lang == "en" else "CONHEÇA O ARTISTA" }} <span aria-hidden="true">↗</span></a></div></div>
 </section>
 
-<section class="sec section-numbered" style="--section-n:'02'">
+<section class="sec">
   <div class="head wrap" data-reveal>
     <h2>{{ t.nav_murals }}</h2>
     <a class="more" href="{{ muralsUrl | u }}">{{ t.all_murals }}{% include "chev.svg" %}</a>
@@ -131,9 +122,9 @@
 </section>
 {%- endif %}
 
-<section class="sec section-numbered" style="--section-n:'04'">
+<section class="sec">
   <div class="head wrap" data-reveal>
-    <h2>{{ t.nav_works }}</h2>
+    <h2>{{ "Original artworks" if lang == "en" else "Obras autorais" }}</h2>
     <a class="more" href="{{ worksUrl | u }}">{{ t.all_works }}{% include "chev.svg" %}</a>
   </div>
   <div class="bento wrap">

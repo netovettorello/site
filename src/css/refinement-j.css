@@ -1,0 +1,56 @@
+/* VERSION J — user-centered content architecture and project detail experience. */
+/* Removing a redundant intro means featured work follows the hero immediately. */
+.nv-curated { padding-top: clamp(84px, 8.5vw, 130px); }
+.nv-curated-heading { margin-bottom: clamp(28px, 3.5vw, 46px); }
+.nv-curated-heading h2 { font-size: clamp(34px, 3.8vw, 58px); font-weight: 500; line-height: 1.08; letter-spacing: -.052em; }
+.nv-immersive-card { text-decoration: none; cursor: pointer; }
+.nv-immersive-card:focus-visible { outline: 3px solid #f5f4f2; outline-offset: 5px; }
+.nv-immersive-meta { pointer-events: none; }
+.nv-immersive-meta b { letter-spacing: .015em; }
+.nv-immersive-rail { scroll-padding-inline: clamp(24px,5.5vw,92px); }
+.nv-immersive-rail:focus-visible { outline: 2px solid #aaa; outline-offset: -3px; }
+.nv-rail-footer > span { text-transform: none; font-weight: 400; font-size: 12px; letter-spacing: 0; }
+.nv-curated + .nv-resistance { margin-top: 0; }
+@media (max-width: 760px) {
+  .nv-curated { padding-top: 74px; }
+  .nv-curated-heading { margin-inline: 22px; }
+}
+
+/* Character page: individual destination for Tani É, not a category landing. */
+.nv-character-page { padding-top: clamp(148px,13vw,215px); padding-bottom: clamp(70px,9vw,120px); }
+.nv-character-head .back { display: inline-flex; margin-bottom: clamp(50px,6vw,88px); }
+.nv-character-heading { display:flex; align-items:end; justify-content:space-between; gap:28px; padding-bottom:clamp(20px,3vw,40px); }
+.nv-character-eyebrow { margin: 0 0 12px; color: var(--muted); font-size: 11px; font-weight: 600; letter-spacing: .12em; }
+.nv-character-heading h1 { font-size: clamp(68px, 10vw, 148px); line-height: .95; letter-spacing: -.075em; font-weight: 500; }
+.nv-character-question { margin: 0 0 3px; max-width: 24rem; text-align: right; font-size: clamp(22px, 2.4vw, 34px); font-weight: 400; letter-spacing: -.035em; }
+.nv-character-hero { min-height: 460px; max-height: 750px; overflow: hidden; border-radius: var(--nv-radius-card, 22px); background: #161616; }
+.nv-character-hero img { display: block; width: 100%; height: 100%; max-height: 750px; object-fit: cover; object-position: center; }
+.nv-character-body { padding-block: clamp(65px,7.5vw,118px); }
+.nv-character-lead { margin: 0 0 clamp(70px,8vw,116px); max-width: 930px; font-size: clamp(26px,3vw,46px); line-height: 1.28; font-weight: 400; letter-spacing: -.035em; text-wrap: pretty; }
+.nv-character-chapters { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(35px,5vw,85px); }
+.nv-character-chapters section { padding-top: 20px; border-top: 1px solid var(--line); }
+.nv-character-chapters h2 { margin-bottom: 16px; font-size: clamp(22px,2.3vw,34px); font-weight: 500; letter-spacing: -.035em; }
+.nv-character-chapters p { max-width: 540px; margin:0; color: var(--muted); font-size: clamp(15px,1.15vw,18px); line-height: 1.7; }
+.nv-character-gallery { display: grid; grid-template-columns:1fr 1fr; gap: clamp(14px,2vw,24px); }
+.nv-character-gallery figure { margin: 0; }
+.nv-character-gallery img { display: block; width:100%; height: min(49vw,560px); object-fit:cover; border-radius:var(--nv-radius-card,22px); background:var(--tile); }
+.nv-character-gallery figcaption { padding-top: 12px; color:var(--muted); font-size:12px; }
+.nv-character-footer { padding-top:48px; }
+.nv-character-footer .btn { min-height:48px; }
+@media(max-width:780px) {
+  .nv-character-page { padding-top:140px; }
+  .nv-character-heading { display:block; }
+  .nv-character-question { text-align:left; margin-top:24px; }
+  .nv-character-hero { min-height: 0; }
+  .nv-character-hero img { max-height: 540px; }
+  .nv-character-chapters { grid-template-columns:1fr; gap: 44px; }
+  .nv-character-gallery { grid-template-columns:1fr; }
+  .nv-character-gallery img { height: 70vw; max-height: 520px; }
+}
+
+/* Avoid landing anchor titles under the fixed capsule navigation. */
+html { scroll-padding-top: clamp(90px, 9vw, 120px); }
+#nv-curated { scroll-margin-top: clamp(90px, 9vw, 120px); }
+.nv-immersive-meta b::after { content: ' ↗'; opacity: .75; font-size: .8em; }
+
+.nv-rail-footer { justify-content:flex-end; }

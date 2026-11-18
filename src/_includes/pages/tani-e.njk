@@ -1,0 +1,38 @@
+{%- set t = i18n[lang] -%}
+{%- set worksUrl = '/' + lang + '/' + t.path_works + '/' -%}
+<article class="nv-character-page">
+  <header class="nv-character-head wrap">
+    <a class="back" href="{{ ('/' + lang + '/') | u }}">{% include "chev.svg" %}{{ "Home" if lang == "en" else "Início" }}</a>
+    <div class="nv-character-heading" data-reveal>
+      <div>
+        <p class="nv-character-eyebrow">{{ tanie['eyebrow_' + lang] }}</p>
+        <h1>{{ tanie.title }}</h1>
+      </div>
+      <p class="nv-character-question">{{ tanie['headline_' + lang] }}</p>
+    </div>
+  </header>
+  <div class="nv-character-hero wrap" data-reveal>
+    <img src="{{ tanie.image | img(1600) }}" alt="Tani É — visual identity" fetchpriority="high" decoding="async">
+  </div>
+  <div class="nv-character-body wrap">
+    <p class="nv-character-lead" data-reveal>{{ tanie['intro_' + lang] }}</p>
+    <div class="nv-character-chapters">
+      <section data-reveal>
+        <h2>{{ tanie['origin_title_' + lang] }}</h2>
+        <p>{{ tanie['origin_' + lang] }}</p>
+      </section>
+      <section data-reveal>
+        <h2>{{ tanie['symbol_title_' + lang] }}</h2>
+        <p>{{ tanie['symbol_' + lang] }}</p>
+      </section>
+    </div>
+  </div>
+  <div class="nv-character-gallery wrap">
+    <figure data-reveal><img src="{{ tanie.image_secondary | img(1400) }}" alt="Tani É in Think Outside the Box" loading="lazy" decoding="async"><figcaption>Think Outside the Box</figcaption></figure>
+    <figure data-reveal><img src="{{ tanie.image_tertiary | img(1400) }}" alt="Tani É in Resistência, 2026" loading="lazy" decoding="async"><figcaption>Resistência · 2026</figcaption></figure>
+  </div>
+  <div class="nv-character-footer wrap" data-reveal>
+    <a class="btn btn--ghost" href="{{ worksUrl | u }}">{{ "EXPLORE WORKS" if lang == "en" else "EXPLORAR OBRAS" }} <span aria-hidden="true">↗</span></a>
+  </div>
+</article>
+{% include "closing.njk" %}
