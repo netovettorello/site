@@ -7,6 +7,7 @@ pagination:
   size: 1
   alias: slug
   resolve: keys
+  addAllPagesToCollections: true
 permalink: "/pt/murais/{{ slug }}/"
 eleventyComputed:
   pageTitle: "{{ murais[slug].title }} — Neto Vettorello"

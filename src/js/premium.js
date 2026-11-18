@@ -58,6 +58,7 @@
       isPlaying=Boolean(value) && slides.length>1;
       lastFrame=null;
       updateToggle();
+      if(typeof wake==='function')wake();
     }
     function tick(timestamp){
       if(!d.hidden && isPlaying){
@@ -70,7 +71,13 @@
         lastFrame=timestamp;
         updateProgress();
       }else{lastFrame=null;}
-      rafId=requestAnimationFrame(tick);
+      rafId=(isPlaying && !d.hidden && heroVisible)?requestAnimationFrame(tick):0;
+    }
+    /* Só anima enquanto a abertura está na tela e tocando: poupa bateria no celular. */
+    var heroVisible=true;
+    function wake(){ if(!rafId && isPlaying && !d.hidden && heroVisible){ lastFrame=null; rafId=requestAnimationFrame(tick); } }
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(entries){ heroVisible=entries[0].isIntersecting; wake(); }).observe(hero);
     }
     function step(delta){go(index+delta,true);}
 
@@ -134,7 +141,7 @@
       if(e.key==='ArrowLeft'){e.preventDefault();step(-1);}
       else if(e.key==='ArrowRight'){e.preventDefault();step(1);}
     });
-    d.addEventListener('visibilitychange',function(){lastFrame=null;visibilityPaused=d.hidden;});
+    d.addEventListener('visibilitychange',function(){lastFrame=null;visibilityPaused=d.hidden;wake();});
     render(false);
     if(window.requestAnimationFrame)rafId=requestAnimationFrame(tick);
   }
@@ -253,4 +260,57 @@
   if(close)close.addEventListener('click',function(){dialog.close()});
   if(dialog)dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close()});
   update();
+})();
+
+
+/* Ampliar imagens (obras, murais, exposições): tela cheia, setas, teclado e gesto de deslizar. */
+(function(){
+  'use strict';
+  var d=document;
+  var triggers=[].slice.call(d.querySelectorAll('[data-zoom]'));
+  if(!triggers.length||!window.HTMLDialogElement)return;
+  var pt=d.documentElement.lang==='pt-BR';
+  var dlg=d.createElement('dialog');
+  dlg.className='zoom-box';
+  dlg.setAttribute('aria-label',pt?'Imagem ampliada':'Enlarged image');
+  dlg.innerHTML='<figure class="zoom-fig"><img alt=""><figcaption class="zoom-count" aria-live="polite"></figcaption></figure>'+
+    '<button type="button" class="zoom-btn zoom-close" aria-label="'+(pt?'Fechar':'Close')+'"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>'+
+    '<button type="button" class="zoom-btn zoom-prev" aria-label="'+(pt?'Imagem anterior':'Previous image')+'"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m14 5-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>'+
+    '<button type="button" class="zoom-btn zoom-next" aria-label="'+(pt?'Próxima imagem':'Next image')+'"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="m10 5 7 7-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>';
+  d.body.appendChild(dlg);
+  var img=dlg.querySelector('img'),count=dlg.querySelector('.zoom-count');
+  var prev=dlg.querySelector('.zoom-prev'),next=dlg.querySelector('.zoom-next');
+  var list=triggers,i=0,opener=null;
+  function show(n){
+    i=(n+list.length)%list.length;
+    var t=list[i],thumb=t.querySelector('img');
+    img.src=t.getAttribute('data-zoom');
+    img.alt=thumb?thumb.alt:'';
+    count.textContent=list.length>1?(i+1)+' / '+list.length:'';
+    prev.hidden=next.hidden=list.length<2;
+  }
+  triggers.forEach(function(t){
+    t.addEventListener('click',function(){
+      opener=t;
+      /* Todas as imagens da página navegam juntas, na ordem em que aparecem. */
+      list=triggers;
+      show(list.indexOf(t));
+      dlg.showModal();
+    });
+  });
+  prev.addEventListener('click',function(){show(i-1)});
+  next.addEventListener('click',function(){show(i+1)});
+  dlg.querySelector('.zoom-close').addEventListener('click',function(){dlg.close()});
+  dlg.addEventListener('click',function(e){if(e.target===dlg||e.target.classList.contains('zoom-fig'))dlg.close()});
+  dlg.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){e.preventDefault();show(i-1)}
+    if(e.key==='ArrowRight'){e.preventDefault();show(i+1)}
+  });
+  dlg.addEventListener('close',function(){img.removeAttribute('src');if(opener)opener.focus()});
+  var sx=null;
+  dlg.addEventListener('touchstart',function(e){if(e.touches.length===1)sx=e.touches[0].clientX},{passive:true});
+  dlg.addEventListener('touchend',function(e){
+    if(sx===null)return;var dx=e.changedTouches[0].clientX-sx;sx=null;
+    if(Math.abs(dx)>50&&list.length>1)show(i+(dx<0?1:-1));
+  },{passive:true});
 })();

@@ -1,0 +1,14 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for p in collections.all %}{% if p.data.lang and p.url and not p.data.noindex %}
+  <url>
+    <loc>{{ p.url | abs }}</loc>
+    <xhtml:link rel="alternate" hreflang="{{ i18n[p.data.lang].locale }}" href="{{ p.url | abs }}"/>
+    <xhtml:link rel="alternate" hreflang="{{ i18n[i18n[p.data.lang].other].locale }}" href="{{ (p.url | swapLang(p.data.lang)) | abs }}"/>
+  </url>
+{%- endif %}{% endfor %}
+</urlset>

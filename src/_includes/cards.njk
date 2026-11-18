@@ -2,7 +2,7 @@
 {%- macro shot(m, slug, lang, href, src, cls) -%}
 {%- set country = m['country_' + lang] -%}
 <a class="shot{% if cls %} {{ cls }}{% endif %}" href="{{ href }}" style="view-transition-name:m-{{ slug }}"{% if country %} data-tags="{{ country }}"{% endif %}>
-  <img src="{{ src }}" alt="{{ m.title }}" loading="lazy" decoding="async">
+  <img src="{{ src }}" alt="{{ m.title }}" loading="lazy" decoding="async" onerror="this.parentNode.classList.add('img-missing')">
   <span class="shot-cap">
     <span class="shot-title">{{ m.title }}</span>
     <span class="shot-meta">{{ m.city }}{% if country %}, {{ country }}{% endif %}{% if m.year %}, {{ m.year }}{% endif %}</span>
@@ -18,8 +18,8 @@
   <span class="art-media"><img src="{{ src }}" alt="{{ w.title }}" loading="lazy" decoding="async" style="view-transition-name:w-{{ slug }}"></span>
   <span class="art-cap">
     <span class="art-title">{{ w.title }}</span>
-    <span class="art-meta">{{ dims or t[w.kind] }}{% if w.year %}, {{ w.year }}{% endif %}</span>
-    <span class="status status--{{ w.status }}">{{ t[w.status] }}</span>
+    <span class="art-meta">{{ dims or w['medium_' + lang] or t[w.kind] }}{% if w.year %}, {{ w.year }}{% endif %}</span>
+    <span class="status status--{{ w.status }}">{{ t.sold_out if (w.series and w.status == 'sold') else t[w.status] }}</span>
   </span>
 </a>
 {%- endmacro -%}

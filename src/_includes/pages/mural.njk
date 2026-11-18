@@ -15,7 +15,7 @@
   </header>
 
   <div class="wrap">
-    <figure class="detail-hero" style="view-transition-name:m-{{ slug }}"><img src="{{ m.images[0] | img(2400) }}" alt="{{ m.title }}" fetchpriority="high"></figure>
+    <figure class="detail-hero" style="view-transition-name:m-{{ slug }}"><button class="zoom" type="button" data-zoom="{{ m.images[0] | img(2400) }}" aria-label="{{ t.view_larger }}: {{ m.title }}"><img src="{{ m.images[0] | img(2400) }}" alt="{{ m.title }}" {{ m.images[0] | wh | safe }} fetchpriority="high" onerror="this.closest('figure').classList.add('img-missing')"></button></figure>
   </div>
 
   <div class="detail-body wrap">
@@ -35,7 +35,7 @@
   {%- if m.images.length > 1 %}
   <div class="gallery wrap">
     {%- for src in m.images %}{% if not loop.first %}
-    <img src="{{ src | img(1800) }}" alt="{{ m.title }} ({{ loop.index }})" loading="lazy" decoding="async" data-reveal>
+    <button class="zoom" type="button" data-zoom="{{ src | img(2400) }}" aria-label="{{ t.view_larger }} {{ loop.index }}" data-reveal><img src="{{ src | img(1800) }}" alt="{{ m.title }} ({{ loop.index }})" {{ src | wh | safe }} loading="lazy" decoding="async" onerror="this.parentNode.classList.add('img-missing')"></button>
     {%- endif %}{% endfor %}
   </div>
   {%- endif %}
@@ -43,7 +43,7 @@
 
 <section class="wrap next-wrap">
   <a class="next" href="{{ (base + nb.next.slug + '/') | u }}" style="view-transition-name:m-{{ nb.next.slug }}">
-    <img src="{{ nb.next.images[0] | img(1800) }}" alt="" loading="lazy" decoding="async" data-parallax>
+    <img src="{{ nb.next.images[0] | img(1800) }}" alt="" loading="lazy" decoding="async" data-parallax onerror="this.style.visibility='hidden'">
     <span class="next-cap">
       <span class="next-label">{{ t.next_mural }}</span>
       <span class="next-title">{{ nb.next.title }}</span>

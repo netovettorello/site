@@ -5,29 +5,52 @@
 {%- set base = '/' + lang + '/' + t.path_works + '/' -%}
 {%- set rawDims = w['dimensions_' + lang] or w.dimensions -%}
 {%- set dims = ((rawDims or '') | replace(',', '.')) if lang == 'en' else rawDims -%}
+{%- set medium = w['medium_' + lang] or t[w.kind] -%}
 {%- set txt = w['text_' + lang] -%}
-<article class="piece wrap">
-  <div class="piece-media">
-    {%- for src in w.images %}
-    <figure class="tile piece-frame"><img src="{{ src | img(1800) }}" alt="{{ w.title }}"{% if loop.first %} fetchpriority="high" style="view-transition-name:w-{{ slug }}"{% else %} loading="lazy"{% endif %}></figure>
-    {%- endfor %}
+{%- set statusLabel = t.sold_out if (w.series and w.status == 'sold') else t[w.status] -%}
+{%- set many = w.images.length > 2 -%}
+<article class="piece wrap{% if many %} piece--series{% endif %}">
+  <div class="piece-media" data-zoom-group>
+    {%- for src in w.images %}{% if loop.first or not many %}
+    <figure class="tile piece-frame">
+      <button class="zoom" type="button" data-zoom="{{ src | img(2400) }}" aria-label="{{ t.view_larger }}: {{ w.title }}">
+        <img src="{{ src | img(1800) }}" alt="{{ w.title }}{% if not loop.first %} ({{ loop.index }}){% endif %}" {{ src | wh | safe }}{% if loop.first %} fetchpriority="high" style="view-transition-name:w-{{ slug }}"{% else %} loading="lazy"{% endif %} decoding="async">
+      </button>
+    </figure>
+    {%- endif %}{% endfor %}
   </div>
   <aside class="piece-info">
     <a class="back" href="{{ base | u }}">{% include "chev.svg" %}{{ t.back_works }}</a>
     <h1>{{ w.title }}</h1>
-    <p class="status status--{{ w.status }}">{{ t[w.status] }}</p>
+    <p class="status status--{{ w.status }}">{{ statusLabel }}</p>
     <dl class="rows">
       {% if w.year %}<div><dt>{{ t.s_year }}</dt><dd>{{ w.year }}</dd></div>{% endif %}
-      <div><dt>{{ t.s_medium }}</dt><dd>{{ t[w.kind] }}</dd></div>
+      <div><dt>{{ t.s_medium }}</dt><dd>{{ medium }}</dd></div>
       {% if dims %}<div><dt>{{ t.s_size }}</dt><dd>{{ dims }}</dd></div>{% endif %}
       {% if w.nv_code %}<div><dt>{{ t.s_cert }}</dt><dd><a class="link" href="{{ site.registry }}/{{ w.nv_code }}" target="_blank" rel="noopener">{{ w.nv_code }}</a></dd></div>{% endif %}
     </dl>
     {% if txt %}<div class="prose">{{ txt | paras | safe }}</div>{% endif %}
     {% if w.status != 'sold' %}
+    <p class="piece-note">{{ t.price_note }}</p>
     <p class="actions"><a class="btn" href="{{ ('/' + lang + '/' + t.path_contact + '/') | u }}?tipo=obra&amp;ref={{ (w.title + (' (' + w.year + ')' if w.year else '')) | enc }}">{{ t.enquire }}</a></p>
+    {% else %}
+    <p class="piece-note">{{ t.series_sold_note if w.series else t.sold_note }}</p>
+    <p class="actions"><a class="btn btn--ghost" href="{{ base | u }}?f=available">{{ t.see_available }}</a></p>
     {% endif %}
   </aside>
 </article>
+
+{%- if many %}
+<section class="sec wrap piece-gallery-wrap" aria-label="{{ t.gallery }}">
+  <div class="piece-gallery" data-zoom-group>
+    {%- for src in w.images %}{% if not loop.first %}
+    <button class="zoom tile" type="button" data-zoom="{{ src | img(2400) }}" aria-label="{{ t.view_larger }} {{ loop.index }}">
+      <img src="{{ src | img(900) }}" alt="{{ w.title }} ({{ loop.index }})" {{ src | wh | safe }} loading="lazy" decoding="async">
+    </button>
+    {%- endif %}{% endfor %}
+  </div>
+</section>
+{%- endif %}
 
 <section class="sec wrap">
   <div class="head">

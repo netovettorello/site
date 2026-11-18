@@ -163,8 +163,19 @@
           el.classList.add('in');
         });
       }
-      if (d.startViewTransition && !reduce) d.startViewTransition(apply); else apply();
+      if (d.startViewTransition && !reduce && e.isTrusted) d.startViewTransition(apply); else apply();
+      /* O filtro fica no endereço, para o link poder ser compartilhado. */
+      try {
+        var url = new URL(location.href);
+        if (f === '*') url.searchParams.delete('f'); else url.searchParams.set('f', f);
+        history.replaceState(null, '', url);
+      } catch (err) {}
     });
+    var initial = new URLSearchParams(location.search).get('f');
+    if (initial) {
+      var pre = Array.prototype.find.call(group.querySelectorAll('[data-filter]'), function (b) { return b.dataset.filter === initial; });
+      if (pre) pre.click();
+    }
   });
 
   /* ---------- efeitos ligados à rolagem ---------- */

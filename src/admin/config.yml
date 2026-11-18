@@ -53,7 +53,10 @@ collections:
       - label: Tipo
         name: kind
         widget: select
-        options: [{ label: "Pintura (técnica mista sobre tela)", value: painting }, { label: Escultura, value: sculpture }]
+        options: [{ label: "Pintura (técnica mista sobre tela)", value: painting }, { label: "Obra sobre papel", value: paper }, { label: Escultura, value: sculpture }]
+      - { label: "Técnica (português)", name: medium_pt, widget: string, required: false, hint: "Opcional. Substitui o texto do Tipo, ex.: Acrílica e spray sobre tela." }
+      - { label: "Técnica (inglês)", name: medium_en, widget: string, required: false }
+      - { label: "É uma série?", name: series, widget: boolean, default: false, required: false, hint: "Mostra 'Esgotada' em vez de 'Vendida' e organiza as fotos em galeria." }
       - { label: Dimensões, name: dimensions, widget: string, required: false, hint: "Ex.: 80 × 60 × 2 cm" }
       - label: Situação
         name: status
@@ -105,6 +108,28 @@ collections:
           - { label: Loja, name: shop, widget: string }
           - { label: Registro de obras, name: registry, widget: string }
           - { label: Portfólio em PDF, name: portfolio_pdf, widget: file }
+          - label: "Home: obras selecionadas (cartões logo após a abertura)"
+            name: selected
+            widget: list
+            fields:
+              - { label: Título (português), name: title_pt, widget: string }
+              - { label: Título (inglês), name: title_en, widget: string }
+              - { label: Linha de baixo (português), name: sub_pt, widget: string, required: false, hint: "Ex.: Waterford, 2023" }
+              - { label: Linha de baixo (inglês), name: sub_en, widget: string, required: false }
+              - { label: Foto, name: image, widget: image }
+              - { label: Página de destino, name: link, widget: string, hint: "Caminho em português, sem barras nas pontas. Ex.: murais/the-portal, obras/resistencia, tani-e" }
+          - label: "Home: série em destaque"
+            name: home_series
+            widget: object
+            fields:
+              - { label: Obra/série (nome do arquivo), name: work, widget: string, hint: "Ex.: resistencia. O botão Explorar a série leva para esta página." }
+              - label: Fotos do carrossel
+                name: images
+                widget: list
+                fields:
+                  - { label: Foto, name: src, widget: image }
+                  - { label: Descrição (português), name: alt_pt, widget: string }
+                  - { label: Descrição (inglês), name: alt_en, widget: string }
           - { label: Título da home (português), name: headline_pt, widget: string }
           - { label: Título da home (inglês), name: headline_en, widget: string }
           - { label: Subtítulo da home (português), name: sub_pt, widget: string }

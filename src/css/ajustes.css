@@ -1,0 +1,81 @@
+/* Ajustes da auditoria de UI/UX (novembro de 2026).
+   Última camada: corrige ritmo, toque, imagens ampliáveis e estados de erro.
+   No site publicado todas as camadas viram um único arquivo, css/site.bundle.css. */
+
+/* ---------- ritmo vertical da home: espaços iguais entre seções ---------- */
+.page-home .nv-curated { padding-bottom: clamp(48px, 5vw, 72px); }
+.page-home .nv-resistance { padding-block: clamp(48px, 5vw, 72px); }
+.page-home .statement { padding-block: clamp(48px, 5vw, 72px) 0 !important; }
+.page-home .nv-curated + .nv-resistance,
+.page-home .nv-resistance + .statement { margin-top: 0; }
+
+/* ---------- alvos de toque com no mínimo 24 px ---------- */
+.nv-carousel-dot { min-width: 24px; min-height: 24px; }
+.nv-resistance-indicators button { min-width: 24px; min-height: 24px; }
+
+/* ---------- imagens ampliáveis ---------- */
+.zoom {
+  display: block; width: 100%; margin: 0; padding: 0; border: 0;
+  background: none; color: inherit; font: inherit; text-align: inherit;
+  cursor: zoom-in; border-radius: inherit;
+}
+.zoom:focus-visible { outline: 2px solid var(--fg); outline-offset: 4px; }
+.piece-frame .zoom { display: grid; place-items: center; }
+.detail-hero .zoom img { width: 100%; }
+.gallery > .zoom { overflow: hidden; border-radius: clamp(18px, 1.6vw, 26px); }
+.gallery > .zoom img { width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 0 !important; transition: transform 0.9s var(--ease); }
+.gallery > .zoom:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.gallery > .zoom:last-child:nth-child(odd) img { aspect-ratio: auto; height: auto; }
+@media (hover: hover) { .gallery > .zoom:hover img { transform: scale(1.03); } }
+.show-media .zoom img { width: 100%; height: auto; }
+
+/* Série: a primeira imagem fica ao lado das informações, o resto em grade. */
+.piece-gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); }
+.piece-gallery .zoom { display: grid; place-items: center; padding: clamp(14px, 2vw, 26px); border-radius: clamp(18px, 1.6vw, 26px); background: var(--tile); transition: background-color 0.3s; }
+.piece-gallery .zoom:hover { background: var(--tile-2); }
+.piece-gallery img { width: auto; max-width: 100%; height: auto; max-height: 360px; filter: var(--art-shadow); }
+@media (max-width: 1000px) { .piece-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .piece-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.piece-gallery-wrap { margin-top: clamp(40px, 5vw, 72px); }
+
+.piece-note { max-width: 40ch; font-size: 14px; line-height: 1.5; color: var(--muted); }
+
+/* Visor em tela cheia */
+.zoom-box {
+  width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0;
+  background: rgba(0, 0, 0, 0.94); color: #fff; overscroll-behavior: contain;
+}
+.zoom-box::backdrop { background: rgba(0, 0, 0, 0.6); }
+.zoom-box[open] { display: grid; place-items: center; }
+.zoom-fig { display: grid; place-items: center; gap: 14px; width: 100%; height: 100%; margin: 0; padding: clamp(56px, 7vw, 88px) clamp(16px, 7vw, 96px); }
+.zoom-fig img { max-width: 100%; max-height: calc(100dvh - 150px); width: auto; height: auto; object-fit: contain; }
+.zoom-count { font-size: 13px; color: rgba(255, 255, 255, 0.7); font-variant-numeric: tabular-nums; min-height: 1.5em; }
+.zoom-btn {
+  position: fixed; display: grid; place-items: center; width: 48px; height: 48px; padding: 0; border: 0; border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12); color: #fff; cursor: pointer;
+  -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); transition: background-color 0.2s;
+}
+.zoom-btn:hover { background: rgba(255, 255, 255, 0.24); }
+.zoom-btn:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.zoom-close { top: 16px; right: 16px; }
+.zoom-prev { left: 16px; top: 50%; transform: translateY(-50%); }
+.zoom-next { right: 16px; top: 50%; transform: translateY(-50%); }
+@media (max-width: 640px) {
+  .zoom-prev, .zoom-next { top: auto; bottom: 18px; transform: none; }
+  .zoom-prev { left: calc(50% - 60px); }
+  .zoom-next { right: calc(50% - 60px); }
+}
+.motion .zoom-box[open] img { animation: zoom-in 0.35s var(--ease) both; }
+@keyframes zoom-in { from { opacity: 0; transform: scale(0.97); } }
+
+/* ---------- foto que não carregou: mantém o cartão em vez de um ícone quebrado ---------- */
+.img-missing { background: var(--tile-2) !important; }
+.img-missing img { visibility: hidden; }
+.detail-hero.img-missing { min-height: 320px; }
+
+/* ---------- página não encontrada ---------- */
+.page-notfound .thanks h1 { line-height: 1.15; }
+.page-notfound .thanks h1 .muted { font-weight: 500; }
+
+/* Com largura e altura no HTML, a imagem precisa de altura automática para não esticar. */
+.piece-frame img, .detail-hero img, .show-media img, .nv-resistance-slide img { height: auto; }

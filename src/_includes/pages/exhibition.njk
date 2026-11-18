@@ -25,7 +25,7 @@
     </div>
     <div class="show-media">
       {%- for src in e.images %}
-      <img src="{{ src | img(1600) }}" alt="{{ e.title }}"{% if not loop.first %} loading="lazy"{% endif %}>
+      <button class="zoom" type="button" data-zoom="{{ src | img(2400) }}" aria-label="{{ t.view_larger }}: {{ e.title }}"><img src="{{ src | img(1600) }}" alt="{{ e.title }}" {{ src | wh | safe }}{% if not loop.first %} loading="lazy"{% endif %}></button>
       {%- endfor %}
     </div>
   </div>

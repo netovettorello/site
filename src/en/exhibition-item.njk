@@ -7,6 +7,7 @@ pagination:
   size: 1
   alias: slug
   resolve: keys
+  addAllPagesToCollections: true
 permalink: "/en/exhibitions/{{ slug }}/"
 eleventyComputed:
   pageTitle: "{{ exposicoes[slug].title }} — Neto Vettorello"

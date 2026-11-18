@@ -1,7 +1,6 @@
-# Site netovettorello.com — versão B
+# Site netovettorello.com
 
-Mesmo conteúdo e mesmo painel da versão anterior, com visual de marca de tecnologia e mais movimento ligado à rolagem.
-Use esta pasta **ou** a anterior no GitHub, não as duas.
+Versão atual: K + auditoria de UI/UX (novembro de 2026). O relatório completo da auditoria está em `AUDITORIA-UX.md`.
 
 Site em português e inglês, com painel de edição em **netovettorello.com/admin**.
 Você atualiza murais, obras, bio e CV preenchendo formulários. Não precisa mexer em código.
@@ -39,9 +38,15 @@ Ao clicar em **Publicar**, o site se atualiza sozinho em cerca de 1 minuto.
 
 - `src/_data/murais/*.json` e `src/_data/obras/*.json` — um arquivo por mural/obra
 - `src/_data/site.json`, `about.json`, `i18n.json` — dados gerais, bio/CV e textos da interface
-- `src/_includes/pages/*.njk` — layout de cada página; `src/css/site.css` — visual (cores no topo do arquivo); `src/js/site.js` — movimento
+- `src/_includes/pages/*.njk` — layout de cada página
+- `src/css/*.css` — visual em camadas, na ordem: site, premium, gloss, refinement-g a k, ajustes. No site publicado elas são unidas num só arquivo (`css/site.bundle.css`). Para mudar algo, edite a camada `ajustes.css`, que vem por último
+- `src/js/site.js` e `src/js/premium.js` — movimento, carrosséis e visor de imagens ampliadas
 - `src/admin/config.yml` — campos do painel
 - Testar no computador: `npm install` e depois `npm start`
 
-As fotos atuais vieram do PDF do portfólio e devem ser trocadas pelas originais.
-Os murais Palestina, Seed of Earth e Myth of Life ainda usam fotos hospedadas no Adobe Portfolio: suba as fotos pelo painel antes de cancelar o Adobe.
+## Fotos
+
+- Formatos: JPG para fotos, WebP quando a imagem tem fundo transparente. Lado maior de 2400 a 3000 px. Evite PNG de vários MB.
+- O Netlify gera automaticamente as versões menores de cada foto para celular e computador.
+- As fotos atuais vieram do PDF do portfólio e devem ser trocadas pelas originais. A lista do que falta está em `AUDITORIA-UX.md`.
+- Os murais Palestina, Seed of Earth e Myth of Life ainda usam fotos hospedadas no Adobe Portfolio: suba as fotos pelo painel antes de cancelar o Adobe.

@@ -8,28 +8,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{%- set item = null -%}
+{%- if slug and section == 'works' %}{% set item = obras[slug] %}{% elif slug and section == 'murals' %}{% set item = murais[slug] %}{% elif slug and section == 'exhibitions' %}{% set item = exposicoes[slug] %}{% endif -%}
+{%- set itemText = item['text_' + lang] if item else '' -%}
+{%- if item and not itemText -%}
+{%- set itemText = item.title + (' — ' + (item['medium_' + lang] or t[item.kind]) if item.kind else '') + (', ' + (item['dimensions_' + lang] or item.dimensions) if (item['dimensions_' + lang] or item.dimensions) else '') + (', ' + item.city if item.city else '') + (', ' + item.year if item.year else '') + '. Neto Vettorello.' -%}
+{%- endif -%}
+{%- set desc = (pageDescription or itemText or t.home_description) | plain(158) -%}
+{%- set person = { "@type": "Person", "@id": "https://netovettorello.com/#artist", "name": site.name, "url": ("/" + lang + "/") | abs, "image": about.portrait | abs, "jobTitle": ("Artista visual" if lang == "pt" else "Visual artist"), "nationality": { "@type": "Country", "name": "Brazil" }, "description": t.home_description, "award": "Prêmio Curitiba 2025", "sameAs": [site.instagram, site.vimeo, site.registry, site.shop] } -%}
+{%- set jsonld = null -%}
+{%- if section == 'home' or section == 'about' -%}
+{%- set jsonld = { "@context": "https://schema.org", "@graph": [person, { "@type": "WebSite", "@id": "https://netovettorello.com/#site", "url": "https://netovettorello.com/", "name": site.name, "inLanguage": t.locale, "publisher": { "@id": "https://netovettorello.com/#artist" } }] } -%}
+{%- elif item and section != 'exhibitions' -%}
+{%- set imgs = [] -%}{%- for i in item.images %}{% set imgs = (imgs.push(i | abs), imgs) %}{% endfor -%}
+{%- set form = ('Mural' if section == 'murals' else ('Sculpture' if item.kind == 'sculpture' else ('Drawing' if item.kind == 'paper' else 'Painting'))) -%}
+{%- set jsonld = { "@context": "https://schema.org", "@type": "VisualArtwork", "name": item.title, "url": page.url | abs, "image": imgs, "description": itemText | plain(300), "artform": form, "artMedium": (item['medium_' + lang] or t[item.kind] or ''), "dateCreated": (item.year | string if item.year else ''), "size": (item['dimensions_' + lang] or item.dimensions or ''), "locationCreated": ({ "@type": "Place", "name": item.city + ", " + item['country_' + lang] } if item.city else null), "creator": { "@type": "Person", "@id": "https://netovettorello.com/#artist", "name": site.name } } -%}
+{%- elif item -%}
+{%- set jsonld = { "@context": "https://schema.org", "@type": "ExhibitionEvent", "name": item.title, "url": page.url | abs, "image": (item.images[0] | abs), "description": itemText | plain(300), "startDate": item.year | string, "location": { "@type": "Place", "name": item.venue, "address": item.city + ", " + item['country_' + lang] }, "performer": { "@type": "Person", "@id": "https://netovettorello.com/#artist", "name": site.name } } -%}
+{%- endif -%}
+{%- set selfUrl = page.url | abs -%}
+{%- set otherUrl = (page.url | swapLang(lang)) | abs -%}
+{%- set shareImg = (ogImage or site.hero[0].image) -%}
 <title>{{ pageTitle or site.name }}</title>
-<meta name="description" content="{{ pageDescription or t.home_description }}">
+<meta name="description" content="{{ desc }}">
 <meta name="author" content="{{ site.name }}">
 <meta name="copyright" content="© {{ build.year }} {{ site.name }}">
 <meta name="theme-color" content="{{ '#000000' if tone == 'dark' else '#ffffff' }}">
+{%- if noindex or section == "thanks" %}
+<meta name="robots" content="noindex">
+{%- endif %}
+<link rel="canonical" href="{{ selfUrl }}">
+<link rel="alternate" hreflang="{{ t.locale }}" href="{{ selfUrl }}">
+<link rel="alternate" hreflang="{{ i18n[t.other].locale }}" href="{{ otherUrl }}">
+<link rel="alternate" hreflang="x-default" href="{{ selfUrl if lang == 'en' else otherUrl }}">
+<link rel="icon" href="{{ '/favicon.svg' | u }}" type="image/svg+xml">
+<meta property="og:site_name" content="{{ site.name }}">
 <meta property="og:title" content="{{ pageTitle or site.name }}">
-<meta property="og:description" content="{{ pageDescription or t.home_description }}">
-<meta property="og:image" content="{{ ogImage or site.hero[0].image }}">
-<meta property="og:type" content="website">
+<meta property="og:description" content="{{ desc }}">
+<meta property="og:url" content="{{ selfUrl }}">
+<meta property="og:image" content="{{ shareImg | abs }}">
+<meta property="og:locale" content="{{ 'pt_BR' if lang == 'pt' else 'en_GB' }}">
+<meta property="og:type" content="{{ 'article' if item else 'website' }}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="alternate" hreflang="{{ i18n[t.other].locale }}" href="{{ page.url | swapLang(lang) }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="{{ '/css/site.css' | u }}">
-<link rel="stylesheet" href="{{ '/css/premium.css' | u }}">
-<link rel="stylesheet" href="{{ '/css/gloss.css' | u }}">
-<link rel="stylesheet" href="{{ '/css/refinement-g.css' | u }}">
-<link rel="stylesheet" href="{{ '/css/refinement-h.css' | u }}">
-<link rel="stylesheet" href="{{ '/css/refinement-i.css' | u }}">
-<link rel="stylesheet" href="{{ '/css/refinement-j.css' | u }}">
-<link rel="stylesheet" href="{{ '/css/refinement-k.css' | u }}">
+{%- if env.preview %}
+{%- for layer in ["site", "premium", "gloss", "refinement-g", "refinement-h", "refinement-i", "refinement-j", "refinement-k", "ajustes"] %}
+<link rel="stylesheet" href="{{ ('/css/' + layer + '.css') | u }}">
+{%- endfor %}
+{%- else %}
+<link rel="stylesheet" href="{{ '/css/site.bundle.css' | u }}">
+{%- endif %}
+{%- if jsonld %}
+<script type="application/ld+json">{{ jsonld | json | safe }}</script>
+{%- endif %}
 <script>
 /* Liga as animações só quando o JavaScript está ativo e a pessoa não pediu menos movimento. */
 (function(r){r.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches){r.classList.add('motion');setTimeout(function(){if(!window.__nv)r.classList.remove('motion')},4000)}})(document.documentElement);
@@ -78,6 +111,7 @@
   <div class="wrap foot-in">
     <p class="rights">{{ t.rights | replace("{year}", build.year) }}</p>
     <p class="foot-links">
+      <a href="{{ ('/' + lang + '/tani-e/') | u }}">Tani É</a>
       <a href="{{ site.shop }}" target="_blank" rel="noopener">{{ t.footer_shop }}</a>
       <a href="{{ site.registry }}" target="_blank" rel="noopener">{{ t.footer_registry }}</a>
       <a class="nav-icon" href="{{ site.instagram }}" target="_blank" rel="noopener" aria-label="Instagram">{% include "ig.svg" %}</a>

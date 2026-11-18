@@ -6,12 +6,12 @@
 {%- set worksUrl = '/' + lang + '/' + t.path_works + '/' -%}
 {%- set showsUrl = '/' + lang + '/' + t.path_exhibitions + '/' -%}
 {%- set aboutUrl = '/' + lang + '/' + t.path_about + '/' -%}
-{%- set resistanceUrl = worksUrl + 'resistencia/' -%}
+{%- set resistanceUrl = worksUrl + ((site.home_series.work if site.home_series else '') or 'resistencia') + '/' -%}
 <section class="hero nv-hero" aria-label="{{ site.name }}">
   <div class="hero-stick">
     <div class="hero-frame nv-hero-frame">
       <div class="hero-slides">
-        {% for h in site.hero %}<img draggable="false" class="hero-media{% if loop.first %} on{% endif %}" src="{{ h.image | img(2400) }}" alt="{{ h.caption }}" data-cap="{{ h.caption }}" {% if loop.first %}fetchpriority="high"{% endif %} decoding="async">{% endfor %}
+        {% for h in site.hero %}<img draggable="false" class="hero-media{% if loop.first %} on{% endif %}" src="{{ h.image | img(2400) }}" alt="{{ h.caption }}" data-cap="{{ h.caption }}" {{ h.image | wh | safe }} fetchpriority="{{ 'high' if loop.first else 'low' }}" decoding="async">{% endfor %}
       </div>
     </div>
 
@@ -48,12 +48,12 @@
 <section class="nv-curated" id="nv-curated" aria-label="{{ 'Selected works' if lang == 'en' else 'Obras selecionadas' }}">
   <div class="nv-curated-heading" data-reveal><h2>{{ "Selected works" if lang == "en" else "Obras selecionadas" }}</h2></div>
   <div class="nv-immersive-rail" data-immersive-rail tabindex="0" aria-label="{{ 'Selected projects. Use arrow keys or controls to browse.' if lang == 'en' else 'Projetos em destaque. Use as setas do teclado ou os controles para navegar.' }}">
-    <a href="{{ (muralsUrl + 'the-portal/') | u }}" class="nv-immersive-card" data-reveal><img src="{{ '/img/portal.jpg' | img(1600) }}" alt="The Portal — mural" loading="lazy"><span class="nv-immersive-meta"><b>THE PORTAL</b><small>WATERFORD — 2023</small></span></a>
-    <a href="{{ resistanceUrl | u }}" class="nv-immersive-card" data-reveal><img src="{{ '/img/resistencia/resistencia-headdress.png' | img(1250) }}" alt="{{ 'Resistance Series' if lang == 'en' else 'Série Resistência' }}" loading="lazy"><span class="nv-immersive-meta"><b>{{ "RESISTANCE SERIES" if lang == "en" else "SÉRIE RESISTÊNCIA" }}</b><small>2026</small></span></a>
-    <a href="{{ ('/' + lang + '/tani-e/') | u }}" class="nv-immersive-card" data-reveal><img src="{{ '/img/tani-e.jpg' | img(1600) }}" alt="Tani É" loading="lazy"><span class="nv-immersive-meta"><b>TANI É</b><small>{{ "VISUAL LANGUAGE" if lang == "en" else "LINGUAGEM VISUAL" }}</small></span></a>
-    <a href="{{ (muralsUrl + 'into-the-reef/') | u }}" class="nv-immersive-card" data-reveal><img src="{{ '/img/into-the-reef.jpg' | img(1600) }}" alt="Into the Reef" loading="lazy"><span class="nv-immersive-meta"><b>INTO THE REEF</b><small>CORK — 2025</small></span></a>
+    {%- for c in site.selected %}
+    {%- set ptUrl = '/pt/' + c.link + '/' -%}
+    <a href="{{ (ptUrl if lang == 'pt' else (ptUrl | swapLang('pt'))) | u }}" class="nv-immersive-card" data-reveal><img src="{{ c.image | img(1600) }}" alt="{{ c['title_' + lang] }}" {{ c.image | wh | safe }} loading="lazy" decoding="async"><span class="nv-immersive-meta"><b>{{ c['title_' + lang] | upper }}</b><small>{{ c['sub_' + lang] | upper }}</small></span></a>
+    {%- endfor %}
   </div>
-  <div class="nv-rail-footer" data-reveal><div class="nv-rail-actions"><button type="button" data-nv-prev aria-label="Previous artwork">←</button><button type="button" data-nv-next aria-label="Next artwork">→</button></div></div>
+  <div class="nv-rail-footer" data-reveal><div class="nv-rail-actions"><button type="button" data-nv-prev aria-label="{{ t.sel_prev }}">←</button><button type="button" data-nv-next aria-label="{{ t.sel_next }}">→</button></div></div>
 </section>
 
 <section class="nv-resistance wrap" aria-label="{{ 'Resistance series' if lang == 'en' else 'Série Resistência' }}">
@@ -65,25 +65,20 @@
     </div>
     <a class="btn btn--ghost nv-resistance-link" href="{{ resistanceUrl | u }}">{{ "EXPLORE THE SERIES" if lang == "en" else "EXPLORAR A SÉRIE" }} <span aria-hidden="true">↗</span></a>
   </div>
-  <div class="nv-resistance-carousel" data-resistance-carousel role="region" aria-roledescription="carousel" aria-label="{{ 'Resistance series — five works' if lang == 'en' else 'Série Resistência — cinco obras' }}">
+  <div class="nv-resistance-carousel" data-resistance-carousel role="region" aria-roledescription="carousel" aria-label="{{ 'Resistance series' if lang == 'en' else 'Série Resistência' }}">
     <div class="nv-resistance-track" data-resistance-track tabindex="0" aria-label="{{ 'Swipe or use arrows to explore the artworks' if lang == 'en' else 'Deslize ou use as setas para explorar as obras' }}">
-      {% set resistanceImages = [
-        {"src":"/img/resistencia/resistencia-molotov.png", "pt":"Obra com coquetel molotov", "en":"Molotov artwork"},
-        {"src":"/img/resistencia/resistencia-bleeding-flag.png", "pt":"Bandeira que sangra", "en":"Bleeding flag"},
-        {"src":"/img/resistencia/resistencia-palestine.png", "pt":"Obra com bandeira palestina", "en":"Palestinian flag artwork"},
-        {"src":"/img/resistencia/resistencia-sign.png", "pt":"Cartaz de protesto", "en":"Protest sign artwork"},
-        {"src":"/img/resistencia/resistencia-headdress.png", "pt":"Resistência dos povos originários", "en":"Indigenous resistance artwork"}
-      ] %}
+      {%- set resistanceImages = [] -%}
+      {%- for im in (site.home_series.images if site.home_series else []) %}{% set resistanceImages = (resistanceImages.push({ "src": im.src, "pt": im.alt_pt, "en": im.alt_en }), resistanceImages) %}{% endfor %}
       {% for artwork in resistanceImages %}
-      <button class="nv-resistance-slide" type="button" data-resistance-image="{{ artwork.src | u }}" aria-label="{{ 'View artwork enlarged' if lang == 'en' else 'Ampliar obra' }}: {{ artwork[lang] }}" data-resistance-label="{{ artwork[lang] }}">
-        <img src="{{ artwork.src | img(1100) }}" alt="{{ artwork[lang] }}" loading="lazy" decoding="async" draggable="false">
+      <button class="nv-resistance-slide" type="button" data-resistance-image="{{ artwork.src | img(2000) }}" aria-label="{{ 'View artwork enlarged' if lang == 'en' else 'Ampliar obra' }}: {{ artwork[lang] }}" data-resistance-label="{{ artwork[lang] }}">
+        <img src="{{ artwork.src | img(1100) }}" alt="{{ artwork[lang] }}" {{ artwork.src | wh | safe }} loading="lazy" decoding="async" draggable="false">
         <span class="nv-resistance-zoom" aria-hidden="true">↗</span>
       </button>
       {% endfor %}
     </div>
     <div class="nv-resistance-controls">
       <div class="nv-resistance-indicators" data-resistance-indicators aria-label="{{ 'Select artwork' if lang == 'en' else 'Selecionar obra' }}">
-        {% for i in [1,2,3,4,5] %}<button type="button" data-resistance-go="{{ loop.index0 }}" aria-label="{{ 'Go to artwork' if lang == 'en' else 'Ir para obra' }} {{ i }}" aria-current="{{ 'true' if loop.first else 'false' }}"><span></span></button>{% endfor %}
+        {% for r in resistanceImages %}<button type="button" data-resistance-go="{{ loop.index0 }}" aria-label="{{ 'Go to artwork' if lang == 'en' else 'Ir para obra' }} {{ loop.index }}" aria-current="{{ 'true' if loop.first else 'false' }}"><span></span></button>{% endfor %}
       </div>
       <div class="nv-resistance-actions">
         <button type="button" data-resistance-prev aria-label="{{ 'Previous artwork' if lang == 'en' else 'Obra anterior' }}" disabled>←</button>

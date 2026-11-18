@@ -12,7 +12,7 @@
     </div>
   </header>
   <div class="nv-character-hero wrap" data-reveal>
-    <img src="{{ tanie.image | img(1600) }}" alt="Tani É — visual identity" fetchpriority="high" decoding="async">
+    <img src="{{ tanie.image | img(1600) }}" alt="{{ 'Tani É — identidade visual' if lang == 'pt' else 'Tani É — visual identity' }}" fetchpriority="high" decoding="async">
   </div>
   <div class="nv-character-body wrap">
     <p class="nv-character-lead" data-reveal>{{ tanie['intro_' + lang] }}</p>
@@ -28,8 +28,8 @@
     </div>
   </div>
   <div class="nv-character-gallery wrap">
-    <figure data-reveal><img src="{{ tanie.image_secondary | img(1400) }}" alt="Tani É in Think Outside the Box" loading="lazy" decoding="async"><figcaption>Think Outside the Box</figcaption></figure>
-    <figure data-reveal><img src="{{ tanie.image_tertiary | img(1400) }}" alt="Tani É in Resistência, 2026" loading="lazy" decoding="async"><figcaption>Resistência · 2026</figcaption></figure>
+    <figure data-reveal><img src="{{ tanie.image_secondary | img(1400) }}" alt="{{ 'Tani É em Think Outside the Box' if lang == 'pt' else 'Tani É in Think Outside the Box' }}" loading="lazy" decoding="async"><figcaption>Think Outside the Box</figcaption></figure>
+    <figure data-reveal><img src="{{ tanie.image_tertiary | img(1400) }}" alt="{{ 'Tani É na série Resistência, 2026' if lang == 'pt' else 'Tani É in the Resistance series, 2026' }}" loading="lazy" decoding="async"><figcaption>{{ "Resistência, 2026" if lang == "pt" else "Resistance, 2026" }}</figcaption></figure>
   </div>
   <div class="nv-character-footer wrap" data-reveal>
     <a class="btn btn--ghost" href="{{ worksUrl | u }}">{{ "EXPLORE WORKS" if lang == "en" else "EXPLORAR OBRAS" }} <span aria-hidden="true">↗</span></a>

@@ -104,7 +104,19 @@
     "direct": "E-mail direto",
     "pause": "Pausar",
     "play": "Reproduzir",
-    "f_ref": "Referência"
+    "f_ref": "Referência",
+    "paper": "Obra sobre papel",
+    "price_note": "Preço sob consulta. Envio internacional com certificado de autenticidade.",
+    "see_available": "Ver obras disponíveis",
+    "sold_note": "Esta obra pertence a uma coleção particular.",
+    "series_sold_note": "Série esgotada.",
+    "view_larger": "Ampliar imagem",
+    "gallery": "Galeria",
+    "sel_prev": "Projeto anterior",
+    "sel_next": "Próximo projeto",
+    "artwork_detail": "Detalhe da obra",
+    "img_of": "de",
+    "sold_out": "Esgotada"
   },
   "en": {
     "locale": "en",
@@ -211,6 +223,18 @@
     "direct": "Direct email",
     "pause": "Pause",
     "play": "Play",
-    "f_ref": "Reference"
+    "f_ref": "Reference",
+    "paper": "Work on paper",
+    "price_note": "Price on request. International shipping with certificate of authenticity.",
+    "see_available": "See available works",
+    "sold_note": "This work is in a private collection.",
+    "series_sold_note": "This series is sold out.",
+    "view_larger": "View larger",
+    "gallery": "Gallery",
+    "sel_prev": "Previous project",
+    "sel_next": "Next project",
+    "artwork_detail": "Artwork detail",
+    "img_of": "of",
+    "sold_out": "Sold out"
   }
 }
