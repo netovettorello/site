@@ -167,3 +167,90 @@
     });
   }
 })();
+
+/* Versão K — Resistance series: swipe-friendly rail, navigation and accessible art detail. */
+(function(){
+  'use strict';
+  var root=document.querySelector('[data-resistance-carousel]');
+  if(!root)return;
+  var track=root.querySelector('[data-resistance-track]');
+  var slides=[].slice.call(root.querySelectorAll('.nv-resistance-slide'));
+  var indicators=[].slice.call(root.querySelectorAll('[data-resistance-go]'));
+  var previous=root.querySelector('[data-resistance-prev]');
+  var next=root.querySelector('[data-resistance-next]');
+  var dialog=document.querySelector('[data-resistance-lightbox]');
+  var image=dialog && dialog.querySelector('[data-resistance-full]');
+  var close=dialog && dialog.querySelector('[data-resistance-close]');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var index=0;
+
+  function update(){
+    indicators.forEach(function(button,i){button.setAttribute('aria-current',String(i===index));});
+    if(previous) previous.disabled=index===0;
+    if(next) next.disabled=index===slides.length-1;
+  }
+  function go(i,animate){
+    index=Math.max(0,Math.min(slides.length-1,i));
+    var item=slides[index];
+    var maxScroll=Math.max(0,track.scrollWidth-track.clientWidth);
+    var left=Math.min(maxScroll,Math.max(0,item.offsetLeft-slides[0].offsetLeft));
+    track.scrollTo({left:left,behavior:animate&&!reduce?'smooth':'instant'});
+    update();
+  }
+  if(previous)previous.addEventListener('click',function(){go(index-1,true)});
+  if(next)next.addEventListener('click',function(){go(index+1,true)});
+  indicators.forEach(function(b,i){b.addEventListener('click',function(){go(i,true)})});
+  track.addEventListener('keydown',function(event){
+    if(event.key==='ArrowRight'){event.preventDefault();go(index+1,true)}
+    if(event.key==='ArrowLeft'){event.preventDefault();go(index-1,true)}
+  });
+  var raf=0;
+  function sync(){
+    raf=0;
+    var scroll=track.scrollLeft;
+    var max=Math.max(0,track.scrollWidth-track.clientWidth);
+    if(scroll>=max-5 && max>5){index=slides.length-1;update();return;}
+    var closest=0,dist=Infinity;
+    slides.forEach(function(slide,i){
+      var delta=Math.abs((slide.offsetLeft-slides[0].offsetLeft)-scroll);
+      if(delta<dist){dist=delta;closest=i;}
+    });
+    index=closest;update();
+  }
+  track.addEventListener('scroll',function(){if(!raf)raf=requestAnimationFrame(sync)},{passive:true});
+  window.addEventListener('resize',function(){sync()},{passive:true});
+
+  // Mouse drag. Touch devices use native horizontal swipe/scroll.
+  var drag=null;
+  var suppressClick=false;
+  track.addEventListener('pointerdown',function(e){
+    if(e.pointerType!=='mouse'||e.button!==0)return;
+    drag={x:e.clientX,left:track.scrollLeft,moved:false};
+  });
+  track.addEventListener('pointermove',function(e){
+    if(!drag)return;
+    var dx=e.clientX-drag.x;
+    if(Math.abs(dx)>7){drag.moved=true;track.style.cursor='grabbing';track.scrollLeft=drag.left-dx;}
+  });
+  ['pointerup','pointercancel','pointerleave'].forEach(function(type){
+    track.addEventListener(type,function(){
+      if(drag){suppressClick=drag.moved;drag=null;track.style.cursor='';}
+    });
+  });
+  track.addEventListener('click',function(e){
+    if(suppressClick){e.preventDefault();e.stopPropagation();suppressClick=false;}
+  },true);
+  
+  // Enlarged artwork opens on click; the single series CTA opens the dedicated project page.
+  slides.forEach(function(button){
+    button.addEventListener('click',function(){
+      if(!dialog||!image||!dialog.showModal)return;
+      image.src=button.getAttribute('data-resistance-image');
+      image.alt=button.getAttribute('data-resistance-label')||'';
+      dialog.showModal();
+    });
+  });
+  if(close)close.addEventListener('click',function(){dialog.close()});
+  if(dialog)dialog.addEventListener('click',function(e){if(e.target===dialog)dialog.close()});
+  update();
+})();

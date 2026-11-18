@@ -57,22 +57,44 @@
 </section>
 
 <section class="nv-resistance wrap" aria-label="{{ 'Resistance series' if lang == 'en' else 'Série Resistência' }}">
-  <div class="nv-resistance-head">
-    <div data-reveal>
-      <span class="nv-resistance-kicker">{{ "SERIES" if lang == "en" else "SÉRIE" }}</span>
+  <div class="nv-resistance-head" data-reveal>
+    <div class="nv-resistance-heading">
+      <span class="nv-resistance-kicker">{{ "SERIES · 2026" if lang == "en" else "SÉRIE · 2026" }}</span>
       <h2>{{ "Resistance" if lang == "en" else "Resistência" }}</h2>
+      <p class="nv-resistance-summary">{{ "Through Tani É, thirteen original works on paper confront authoritarianism, political violence and the question of how we respond to injustice." if lang == "en" else "Por meio de Tani É, treze obras originais sobre papel confrontam o autoritarismo, a violência política e nossa resposta diante da injustiça." }}</p>
     </div>
-    <div class="nv-resistance-intro" data-reveal>
-      <p>{{ "A 2026 series of works in which Tani É confronts authoritarianism, political violence and social tension through protest, memory and symbolic presence." if lang == "en" else "Uma série de 2026 em que Tani É confronta o autoritarismo, a violência política e a tensão social por meio de protesto, memória e presença simbólica." }}</p>
-      <a class="btn btn--ghost nv-resistance-link" href="{{ resistanceUrl | u }}">{{ "VIEW THE SERIES" if lang == "en" else "VER A SÉRIE" }} <span aria-hidden="true">↗</span></a>
+    <a class="btn btn--ghost nv-resistance-link" href="{{ resistanceUrl | u }}">{{ "EXPLORE THE SERIES" if lang == "en" else "EXPLORAR A SÉRIE" }} <span aria-hidden="true">↗</span></a>
+  </div>
+  <div class="nv-resistance-carousel" data-resistance-carousel role="region" aria-roledescription="carousel" aria-label="{{ 'Resistance series — five works' if lang == 'en' else 'Série Resistência — cinco obras' }}">
+    <div class="nv-resistance-track" data-resistance-track tabindex="0" aria-label="{{ 'Swipe or use arrows to explore the artworks' if lang == 'en' else 'Deslize ou use as setas para explorar as obras' }}">
+      {% set resistanceImages = [
+        {"src":"/img/resistencia/resistencia-molotov.png", "pt":"Obra com coquetel molotov", "en":"Molotov artwork"},
+        {"src":"/img/resistencia/resistencia-bleeding-flag.png", "pt":"Bandeira que sangra", "en":"Bleeding flag"},
+        {"src":"/img/resistencia/resistencia-palestine.png", "pt":"Obra com bandeira palestina", "en":"Palestinian flag artwork"},
+        {"src":"/img/resistencia/resistencia-sign.png", "pt":"Cartaz de protesto", "en":"Protest sign artwork"},
+        {"src":"/img/resistencia/resistencia-headdress.png", "pt":"Resistência dos povos originários", "en":"Indigenous resistance artwork"}
+      ] %}
+      {% for artwork in resistanceImages %}
+      <button class="nv-resistance-slide" type="button" data-resistance-image="{{ artwork.src | u }}" aria-label="{{ 'View artwork enlarged' if lang == 'en' else 'Ampliar obra' }}: {{ artwork[lang] }}" data-resistance-label="{{ artwork[lang] }}">
+        <img src="{{ artwork.src | img(1100) }}" alt="{{ artwork[lang] }}" loading="lazy" decoding="async" draggable="false">
+        <span class="nv-resistance-zoom" aria-hidden="true">↗</span>
+      </button>
+      {% endfor %}
+    </div>
+    <div class="nv-resistance-controls">
+      <div class="nv-resistance-indicators" data-resistance-indicators aria-label="{{ 'Select artwork' if lang == 'en' else 'Selecionar obra' }}">
+        {% for i in [1,2,3,4,5] %}<button type="button" data-resistance-go="{{ loop.index0 }}" aria-label="{{ 'Go to artwork' if lang == 'en' else 'Ir para obra' }} {{ i }}" aria-current="{{ 'true' if loop.first else 'false' }}"><span></span></button>{% endfor %}
+      </div>
+      <div class="nv-resistance-actions">
+        <button type="button" data-resistance-prev aria-label="{{ 'Previous artwork' if lang == 'en' else 'Obra anterior' }}" disabled>←</button>
+        <button type="button" data-resistance-next aria-label="{{ 'Next artwork' if lang == 'en' else 'Próxima obra' }}">→</button>
+      </div>
     </div>
   </div>
-  <div class="nv-resistance-grid">
-    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card nv-resistance-card--lead" data-reveal><img src="{{ '/img/resistencia/resistencia-molotov.png' | img(1200) }}" alt="Resistance series — Molotov work" loading="lazy"></a>
-    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="{{ '/img/resistencia/resistencia-bleeding-flag.png' | img(900) }}" alt="Resistance series — bleeding flag work" loading="lazy"></a>
-    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="{{ '/img/resistencia/resistencia-palestine.png' | img(900) }}" alt="Resistance series — Palestine work" loading="lazy"></a>
-    <a href="{{ resistanceUrl | u }}" class="nv-resistance-card" data-reveal><img src="{{ '/img/resistencia/resistencia-sign.png' | img(900) }}" alt="Resistance series — sign work" loading="lazy"></a>
-  </div>
+  <dialog class="nv-resistance-lightbox" data-resistance-lightbox aria-label="{{ 'Artwork detail' if lang == 'en' else 'Detalhe da obra' }}">
+    <button type="button" class="nv-resistance-close" data-resistance-close aria-label="{{ 'Close' if lang == 'en' else 'Fechar' }}">×</button>
+    <img data-resistance-full alt="">
+  </dialog>
 </section>
 
 <section class="statement wrap">
@@ -100,7 +122,7 @@
 
 {%- set scaled = allMurals | toScale(5) %}
 {%- if scaled.length > 1 %}
-<section class="sec wrap">
+<section class="sec wrap nv-scale-section">
   <div class="tile scale" data-reveal>
     <div class="scale-head">
       <h2>{{ t.scale_title }}</h2>
